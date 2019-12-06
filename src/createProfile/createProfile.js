@@ -57,8 +57,6 @@ class CreateProfile extends Component {
             return Math.floor(min + Math.random() * (max - min));
         });
         
-        console.log(allStarters[1]);
-        
         return starters.map((num, i) => {
             return allStarters[i+1][num-1];
         });
@@ -101,7 +99,7 @@ class CreateProfile extends Component {
         }else {
             return (
                 <div className="starters">
-                    <em>Loading starters...</em>
+                    <img src="./loading.gif" alt="Loading..."/>
                 </div>
             );
         }
