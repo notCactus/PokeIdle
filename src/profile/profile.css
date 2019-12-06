@@ -1,3 +1,9 @@
 .Profile {
-
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.Profile > .ProfileOverview {
+  margin-top: 1em;
 }

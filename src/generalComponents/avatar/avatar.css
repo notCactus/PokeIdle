@@ -1,0 +1,7 @@
+.Avatar > div{
+  height: 100%;
+}
+
+.Avatar > div > img{
+  height: 100%;
+}

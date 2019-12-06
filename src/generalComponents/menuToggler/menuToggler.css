@@ -1,0 +1,6 @@
+.MenuToggler > #options {
+  display: flex;
+}
+.MenuToggler > #options a{
+  padding: 1em;
+}

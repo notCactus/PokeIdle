@@ -16,7 +16,7 @@ class MenuToggler extends Component{
         <div
           id="options"
           onClick={e => {
-            alert('work');
+            alert(e.target.innerHTML);
           }}
         >
           {this.menuOptions()}
@@ -30,14 +30,14 @@ class MenuToggler extends Component{
     let options = [];
     const menus = this.props.menus;
     for(let key in menus)
-      options.push(<div key={key} value={key}>{menus[key].menuIcon}</div>);
+      options.push(<div className="menuItem" key={key} value={key}>{menus[key].menuIcon}</div>);
     return options;
   }
 
   menuToDisplay(id){
     if(this.props.menus[id] !== undefined)
       if(this.props.menus[id].items !== undefined)
-        return this.props.menus[id];
-    return <p>default</p>
+        return this.props.menus[id].items;
+    return <p>default</p> //Ska vara
   }
 } export default MenuToggler;
