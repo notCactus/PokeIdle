@@ -2,7 +2,7 @@
     height: 100%;
     border-right: 3px solid black;
     display: flex;
-    flex: 0.1;
+    width: 100px;
     flex-direction: column;
     align-items: center;
 }
@@ -11,12 +11,7 @@
     margin-top: 1em;
 }
 
-.sidebarNav {
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebarNav a {
+.sidebar a {
     margin-top: 50%;
 }
 

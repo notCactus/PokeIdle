@@ -6,11 +6,9 @@ function Sidebar({visible}) {
     return (
         <div className="sidebar" style={(visible) ? undefined : {display: 'none'}}>
             <img src={''} alt={'Logo'}/>
-            <div className="sidebarNav">
-                <SidebarLink to="/profile" value="PROFILE"/>
-                <SidebarLink to="/quest" value="QUEST"/>
-                <SidebarLink to="/shop" value="SHOP"/>
-            </div>
+            <SidebarLink to="/profile" value="PROFILE"/>
+            <SidebarLink to="/quest" value="QUEST"/>
+            <SidebarLink to="/shop" value="SHOP"/>
         </div>
     );
 }

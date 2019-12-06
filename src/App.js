@@ -9,9 +9,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <div>
       <Sidebar visible={useLocation().pathname !== '/createProfile'}/>
+      <div>
+        <Header/>
         <Route
           exact path="/profile"
           render = { (props) =>
