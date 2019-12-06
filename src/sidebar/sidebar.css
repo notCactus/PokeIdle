@@ -1,0 +1,25 @@
+.sidebar {
+    height: 100%;
+    border-right: 3px solid black;
+    display: flex;
+    flex: 0.1;
+    flex-direction: column;
+}
+
+.sidebar img {
+    margin-top: 1em;
+}
+
+.sidebarNav {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarNav a {
+    margin-top: 10%;
+}
+
+@media screen and (max-width: 600px) {
+
+}
+  

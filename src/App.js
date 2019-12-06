@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import React, { Component } from 'react';
 import Profile from './profile/profile';
+import Sidebar from './sidebar/sidebar';
 import './App.css';
 
 class PokeHeader extends Component{
