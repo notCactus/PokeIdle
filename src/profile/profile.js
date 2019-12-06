@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
+import Sidebar from '../sidebar/sidebar'
 
 
 class Profile extends Component{
@@ -12,6 +13,7 @@ class Profile extends Component{
   render(){
     return (
       <div className="Profile">
+          <Sidebar/>
           <ProfileOverview image={this.state.image}/>
       </div>
     );

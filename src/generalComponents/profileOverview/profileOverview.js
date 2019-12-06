@@ -8,7 +8,12 @@ class ProfileOverview extends Component {
     return (
       <div className="ProfileOverview">
         <Avatar image={this.props.image} radius=""/>
-        <CharacterInformation name="" health="" level="" xp=""/>
+        <CharacterInformation
+          name={this.props.name}
+          health={this.props.health}
+          level={this.props.level}
+          xp={this.props.xp}
+        />
       </div>
     );
   }

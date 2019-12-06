@@ -6,7 +6,7 @@ class Avatar extends Component {
     return (
       <div className="Avatar">
         <div>
-          <img src={this.props.image}/>
+          <img src={this.props.image} alt='avatar'/>
         </div>
       </div>
     );
