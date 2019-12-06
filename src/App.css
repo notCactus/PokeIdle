@@ -8,8 +8,13 @@
     flex-direction: column;
 }
 
+.App > .PokeHeader {
+  height: 15%;
+}
+
 .App > div:nth-of-type(2) {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: 85%;
+  width: 100%;
 }
