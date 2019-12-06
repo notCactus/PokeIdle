@@ -2,9 +2,9 @@ import React  from 'react';
 import SidebarLink from '../generalComponents/sidebarLink.js';
 import './sidebar.css';
 
-function Sidebar() {
+function Sidebar({visible}) {
     return (
-        <div className="sidebar">
+        <div className="sidebar" style={(visible) ? undefined : {display: 'none'}}>
             <img src={''} alt={'Logo'}/>
             <div className="sidebarNav">
                 <SidebarLink to="/profile" value="PROFILE"/>

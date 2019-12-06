@@ -20,6 +20,10 @@
     margin-top: 50%;
 }
 
+.selectedView {
+    background-color: green;
+}
+
 @media screen and (max-width: 600px) {
 
 }

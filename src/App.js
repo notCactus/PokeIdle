@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import React from 'react';
 import Profile from './profile/profile';
 import Header from './header/header';
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Header/>
       <div>
-      <Sidebar/>
+      <Sidebar visible={useLocation().pathname !== '/createProfile'}/>
         <Route
           exact path="/profile"
           render = { (props) =>
