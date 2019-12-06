@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import React from 'react';
 import Profile from './profile/profile';
 import Header from './header/header';
+import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
 import './App.css';
 
