@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './avatar.css';
 
-function style({width, height}) {
+function style({width, maxWidth, height}) {
   return {
     width: width,
     height: height,
+    maxWidth: maxWidth,
   };
 }
 

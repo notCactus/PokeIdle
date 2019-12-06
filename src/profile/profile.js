@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
-import Sidebar from '../sidebar/sidebar'
 import RosterView from '../rosterView/rosterView';
 import './profile.css';
 
@@ -20,7 +19,7 @@ class Profile extends Component{
             height="15%"
             image={this.state.image}
           />
-          <RosterView rosterView={this.props.rosterView}/>
+          <RosterView/>
       </div>
     );
   }

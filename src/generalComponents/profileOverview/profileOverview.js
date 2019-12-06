@@ -15,6 +15,7 @@ class ProfileOverview extends Component {
       <div className="ProfileOverview" style={style(this.props)}>
         <Avatar
           width="40%"
+          maxWidth="130px"
           height="110%"
           image={this.props.image}
           radius=""
