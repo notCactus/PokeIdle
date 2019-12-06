@@ -1,18 +1,18 @@
-import { connect } from 'react-redux'
-import SidebarPresentation from './sidebarPresentation';
+import React  from 'react';
+import SidebarLink from '../generalComponents/sidebarLink.js';
+import './sidebar.css';
 
-const mapDispatchToProps = (dispatch) => ({
-    setView: (view) => dispatch({
-        type: 'SET_VIEW',
-        view: view
-    })
-});
+function Sidebar() {
+    return (
+        <div className="sidebar">
+            <img src={''} alt={'Logo'}/>
+            <div className="sidebarNav">
+                <SidebarLink to="/profile" value="PROFILE"/>
+                <SidebarLink to="/quest" value="QUEST"/>
+                <SidebarLink to="/shop" value="SHOP"/>
+            </div>
+        </div>
+    );
+}
 
-const mapStateToProps = (state) => {
-    return {
-      view: state.view
-    }
-};
-
-const Sidebar = connect(mapStateToProps, mapDispatchToProps)(SidebarPresentation);
 export default Sidebar;
