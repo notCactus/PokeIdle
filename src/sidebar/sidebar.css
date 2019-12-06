@@ -4,6 +4,7 @@
     display: flex;
     flex: 0.1;
     flex-direction: column;
+    align-items: center;
 }
 
 .sidebar img {
@@ -16,7 +17,7 @@
 }
 
 .sidebarNav a {
-    margin-top: 10%;
+    margin-top: 50%;
 }
 
 @media screen and (max-width: 600px) {
