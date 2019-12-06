@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import HeaderPresentational from './headerPresentational';
 
 function Header(){
     return(
-        <div className="PokeHeader">
-          <h1>{getTitle(useLocation().pathname)}</h1>
-        </div>
+        <HeaderPresentational
+            title={getTitle(useLocation().pathname)}
+        />
       );
 }
 

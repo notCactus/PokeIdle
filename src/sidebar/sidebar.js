@@ -1,15 +1,13 @@
 import React  from 'react';
-import SidebarLink from '../generalComponents/sidebarLink.js';
-import './sidebar.css';
+import { useLocation } from "react-router-dom";
+import SidebarPresentational from './sidebarPresentational';
 
-function Sidebar({visible}) {
+function Sidebar() {
     return (
-        <div className="sidebar" style={(visible) ? undefined : {display: 'none'}}>
-            <img src={''} alt={'Logo'}/>
-            <SidebarLink to="/profile" value="PROFILE"/>
-            <SidebarLink to="/quest" value="QUEST"/>
-            <SidebarLink to="/shop" value="SHOP"/>
-        </div>
+        <SidebarPresentational
+            visible={(useLocation().pathname === '/createProfile') ? {display: 'none'} : undefined}
+            imgSrc={''}
+        />
     );
 }
 
