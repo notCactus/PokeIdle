@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import React, { Component } from 'react';
 import Sidebar from './sidebar/sidebar';
 import Profile from './profile/profile';
+import CreateProfile from './createProfile/createProfile';
 import './App.css';
 
 class PokeHeader extends Component{
@@ -31,6 +32,7 @@ function App() {
               <Profile rosterView={props.match.params.rosterView}/>
             }
         />
+        <Route path="/createProfile" component={CreateProfile}/>
       </div>
     </div>
   );
