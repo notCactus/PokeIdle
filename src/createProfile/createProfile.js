@@ -83,8 +83,9 @@ class CreateProfile extends Component {
         })
 
         Promise.all(promise).then((result) => {
-            this.state.randStarters = result;
-            this.setState({apiStarter: "DONE"});
+            this.setState({
+                apiStarter: "DONE",
+                randStarters: result});
         });
     }
 
@@ -111,6 +112,7 @@ class CreateProfile extends Component {
                 <img src={`https://avatars.dicebear.com/v2/gridy/${this.state.username}.svg`} alt="profile"/>
                 <input type="text" placeholder="Enter your username..." onInput={this.profileChange}/>
                 {this.showStarters()}
+                <button>START</button>
             </div>
         );
     }
