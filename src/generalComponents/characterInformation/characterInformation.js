@@ -7,7 +7,7 @@ class CharacterInformation extends Component{
     return (
       <div className="CharacterInformation">
         <h3>{this.props.name}</h3>
-        <Bar current="" max="" width="100" height="20"/>
+        <Bar current="" max="" width="200px" height="15px"/>
         <Bar current="" max="" width="" height=""/>
       </div>
     );

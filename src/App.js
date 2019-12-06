@@ -1,5 +1,6 @@
 import { Route } from "react-router-dom";
 import React, { Component } from 'react';
+import Sidebar from './sidebar/sidebar';
 import Profile from './profile/profile';
 import './App.css';
 
@@ -22,12 +23,15 @@ function App() {
   return (
     <div className="App">
       <PokeHeader/>
-      <Route
-          exact path="/profile"
-          render = { () =>
-            <Profile/>
-          }
-      />
+      <div>
+        <Sidebar/>
+        <Route
+            exact path="/profile"
+            render = { (props) =>
+              <Profile rosterView={props.match.params.rosterView}/>
+            }
+        />
+      </div>
     </div>
   );
 } export default App;

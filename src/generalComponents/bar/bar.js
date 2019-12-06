@@ -3,15 +3,16 @@ import './bar.css';
 
 function barVisuals({width, height}) {
   return {
-    width: `{$width}px`,
-    height: `{$height}px`,
+    width: width,
+    height: height,
+    border: '1px solid red',
   }
 }
 
 function fillerVisuals({color, width}) {
   return {
     color: color,
-    width: `{$width}%`,
+    width: width,
   };
 }
 
