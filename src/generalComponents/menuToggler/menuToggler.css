@@ -1,0 +1,22 @@
+.MenuToggler > #options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MenuToggler > #options > div{
+  padding: 1em;
+}
+
+.MenuToggler > #options > div:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.MenuToggler > #menuItems {
+  display: flex;
+  height: calc(100% - 54px); /*height of options*/
+  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+
+}

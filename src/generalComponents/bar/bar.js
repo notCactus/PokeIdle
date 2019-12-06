@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './bar.css';
 
-function barVisuals({width, height}) {
+function barVisuals({width, height, color}) {
   return {
     width: width,
     height: height,
-    border: '1px solid red',
+    border: `1px solid ${color}`,
   }
 }
 
