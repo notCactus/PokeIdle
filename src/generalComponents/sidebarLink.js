@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom"
+import React from 'react';
+import { Link, useLocation } from "react-router-dom"
 
-class SidebarLink extends Component {
-    render() {
-        return (
-            <Link to={this.props.to} value={this.props.value} 
-                className={(this.props.view === this.props.value) ? 'selectedView' : undefined}>{this.props.value}
-            </Link>
-        );
-    }
+function SidebarLink({to, value}){
+    return (
+        <Link to={to} value={value} 
+            className={(to === useLocation().pathname) ? 'selectedView' : undefined}>{value}
+        </Link>
+    );
 }
 
 export default SidebarLink;
