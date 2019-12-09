@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './menuToggler.css';
 
-function style({width, height}){
+function style({width, height, padding, margin}){
   return {
     width: width,
     height: height,
+    /*padding: padding,*/
+    margin: margin,
   };
 }
 

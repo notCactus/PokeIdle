@@ -3,7 +3,6 @@
   background:
   linear-gradient(to top left,transparent 48%,black 51%) right/15.5% 100% no-repeat,
   linear-gradient(black,black) left/85% 100% no-repeat;
-  /*clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);*/
 }
 .ProfileOverview > .Avatar {
   position: relative;
