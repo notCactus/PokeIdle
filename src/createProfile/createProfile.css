@@ -4,6 +4,12 @@
     align-items: center;
 }
 
+.createProfile .pImgAndUsername{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .createProfile img{
     width: 150px;
     height: auto;

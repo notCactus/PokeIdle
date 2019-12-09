@@ -1,121 +1,73 @@
 import React, { Component } from "react";
+import UserCreator from './userCreator';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import username from '../reducers/username';
+import starterPokemon from '../reducers/starterPokemon';
+import {getPokemon} from '../api/api';
+
 import './createProfile.css';
 
-// A helper function for API requests.
-function processResponse(response) {
-    if (response.ok) {
-      return response.json();
-    }
-    throw response;
+function reducer(state = {}, action) {
+    return {
+        username: username(state.username, action),
+        starters: starterPokemon(state.starters, action),
+    };
+  }
+  
+const store= createStore(reducer);
+
+// Helper function for getting the random starters
+function rollStarters(){
+
+    let starters = [0,0,0];
+    const min = 1;
+    const max = 7;
+
+    // All available starter pokemon
+    let allStarters = {
+        1: [1, 152, 252, 387, 495, 650, 722], /* grass */
+        2: [4, 155, 255, 390, 498, 653, 725], /* fire */
+        3: [7, 158, 258, 393, 501, 656, 728], /* water */
+    };
+    
+    starters = starters.map(() => {
+        return Math.floor(min + Math.random() * (max - min));
+    });
+    
+    return starters.map((num, i) => {
+        return allStarters[i+1][num-1];
+    });
+}
+
+// Sets random starters
+function setStarters(){
+    let starterIds = rollStarters();
+
+    let allStarters = starterIds.map(async(id) => {
+        return await getPokemon(id);
+    });
+
+    Promise.all(allStarters)
+    .then((starters) => store.dispatch({type: 'SET_STARTERS', starters: starters}));
 }
 
 class CreateProfile extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            username: 'pokemon',
-            randStartersNum: this.rollStarters(),
-            randStarters: [],
-            apiStarter: "LOADING",
-        };
-
-        this.profileChange = this.profileChange.bind(this);
-    }
-
     componentDidMount(){
-        this.setStarters();
-    }
-
-    componentDidUpdate(){
-        
-    }
-
-    // Changes the avatar when the user types the username.
-    // Uses debouncing.
-    profileChange(e){
-
-        let username = e.target.value;
-
-        clearTimeout(this.searching);
-        this.searching = setTimeout(() => {
-                this.setState({username: username});
-        }, 300);
-    }
-
-    // Rolls a random starter pokemon.
-    rollStarters(){
-        let starters = [0,0,0];
-        const min = 1;
-        const max = 7;
-        let allStarters = {
-            1: [1, 152, 252, 387, 495, 650, 722], /* grass */
-            2: [4, 155, 255, 390, 498, 653, 725], /* fire */
-            3: [7, 158, 256, 393, 501, 656, 728], /* water */
-        };
-        
-        starters = starters.map(() => {
-            return Math.floor(min + Math.random() * (max - min));
-        });
-        
-        return starters.map((num, i) => {
-            return allStarters[i+1][num-1];
-        });
-    }
-
-    // Fetch a pokemon based off ID.
-    fetchPokemon(pokemonId){
-        return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-        .then(processResponse)
-        .catch(console.error);
-    }
-
-    // Input an array with pokemons and return images.
-    getPokemonImages(pokemons) {
-        return pokemons.map((pokemon) => {
-            return (<img key={pokemon.id} src={pokemon.sprites.front_default} alt={pokemon.name} />);
-        });
-    }
-
-    // Sets the state of the random stater pokemon and API call status.
-    setStarters(){
-        let promise = this.state.randStartersNum.map(async (id) => {
-            return await this.fetchPokemon(id);
-        })
-
-        Promise.all(promise).then((result) => {
-            this.setState({
-                apiStarter: "DONE",
-                randStarters: result});
-        });
-    }
-
-    // Show images of the starter pokemons.
-    showStarters(){
-        if(this.state.apiStarter === "DONE"){
-            return (
-                <div className="starters">
-                    {this.getPokemonImages(this.state.randStarters)}
-                </div>
-            );
-        }else {
-            return (
-                <div className="starters">
-                    <img src="./loading.gif" alt="Loading..."/>
-                </div>
-            );
-        }
+        setStarters();
     }
 
     render () {
         return (
             <div className="createProfile">
-                <img src={`https://avatars.dicebear.com/v2/gridy/${this.state.username}.svg`} alt="profile"/>
-                <input type="text" placeholder="Enter your username..." onInput={this.profileChange}/>
-                {this.showStarters()}
+                <Provider store={store}>
+                    <UserCreator/>
+                </Provider>
                 <button>START</button>
             </div>
         );
     }
 }
 
-export default CreateProfile;
+export default CreateProfile;    
