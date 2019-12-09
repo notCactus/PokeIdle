@@ -1,0 +1,9 @@
+.shop {
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+}
+
+.shop .MenuToggler {
+    background-color: white;
+}

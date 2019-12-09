@@ -5,6 +5,7 @@ import Quest from './quest/quest';
 import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
+import Shop from './shop/shop';
 import './App.css';
 
 function App() {
@@ -20,12 +21,16 @@ function App() {
           }
         />
         <Route path="/createProfile" component={CreateProfile}/>
+<<<<<<< HEAD
         <Route
           exact path="/quest"
           render = { (props) =>
             <Quest/>
           }
         />
+=======
+        <Route path="/shop" component={Shop}/>
+>>>>>>> b5f6fd4be098bec2e721ee63cc074d95a88b89dc
       </div>
     </div>
   );
