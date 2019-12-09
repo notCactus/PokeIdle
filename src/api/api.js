@@ -9,16 +9,16 @@ const getFromPokeapi = async (category, id) => {
     .catch(console.error);
 }
 
-function getPokemon(id) { 
+export function getPokemon(id) { 
     return getFromPokeapi('pokemon', id);
 }
 
-function getItem(id) { 
+export function getItem(id) { 
     return getFromPokeapi('item', id);
 }
 
-function getEvolution(id) { 
+export function getEvolution(id) { 
     return getFromPokeapi('evolution-chain', id);
 }
 
-export default {getPokemon, getItem, getEvolution}
+export default {getPokemon, getItem, getEvolution};

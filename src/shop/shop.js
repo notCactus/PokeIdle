@@ -1,5 +1,6 @@
 import React from 'react';
 import ShopPresentational from './shopPresentational';
+import {getItem} from '../api/api';
 import './shop.css';
 
 const menus = {
@@ -18,6 +19,7 @@ const menus = {
 };
 
 function Shop(){
+console.log(getItem(1).name);
     return (
         <div className="shop">
             <ShopPresentational
