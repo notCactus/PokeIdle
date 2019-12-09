@@ -5,7 +5,7 @@ import SidebarPresentational from './sidebarPresentational';
 function Sidebar() {
     return (
         <SidebarPresentational
-            visible={(useLocation().pathname === '/createProfile') ? {display: 'none'} : undefined}
+            visibility={(useLocation().pathname === '/createProfile') ? {display: 'none'} : undefined}
             imgSrc={''}
         />
     );

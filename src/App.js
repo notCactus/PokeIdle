@@ -4,6 +4,7 @@ import Profile from './profile/profile';
 import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
+import Shop from './shop/shop';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           }
         />
         <Route path="/createProfile" component={CreateProfile}/>
+        <Route path="/shop" component={Shop}/>
       </div>
     </div>
   );
