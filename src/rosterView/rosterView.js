@@ -29,7 +29,7 @@ class RosterView extends Component {
       <div className='RosterView'>
         <MenuToggler
           active="activeRoster"
-          default="activeRoster"
+          fallback="activeRoster"
           menus={this.menuProps(this.state.roster,this.state.pcRoster)}
           width="100%"
           height="100%"

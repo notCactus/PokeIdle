@@ -21,7 +21,7 @@ class MenuToggler extends Component{
     super(props);
     this.state = {
       active: this.props.active,
-      default: this.props.default,
+      fallback: this.props.fallback,
     };
   }
 
@@ -35,7 +35,7 @@ class MenuToggler extends Component{
             if(show !== false)
               this.setState({
                 active: show,
-                default: this.props.default,
+                fallback: this.props.fallback,
               });
           }}
         >
@@ -60,6 +60,6 @@ class MenuToggler extends Component{
     if(this.props.menus[id] !== undefined)
       if(this.props.menus[id].items !== undefined)
         return this.props.menus[id].items.map((item, i) => <div key={i} className="menuItem">{item}</div>);
-    return this.props.menus[this.props.default].items
+    return this.props.menus[this.props.fallback].items
   }
 } export default MenuToggler;

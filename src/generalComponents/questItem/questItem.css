@@ -1,0 +1,20 @@
+.QuestItem {
+  display: flex;
+  justify-content: center;
+}
+
+.QuestItem > img {
+  flex: 0.2;
+}
+
+.QuestItem > h3 {
+  flex: 0.4;
+}
+
+.QuestItem > p {
+  flex: 0.3;
+}
+
+.QuestItem > button {
+flex: 0.1;
+}

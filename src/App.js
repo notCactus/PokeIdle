@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import React from 'react';
 import Profile from './profile/profile';
+import Quest from './quest/quest';
 import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
@@ -15,10 +16,16 @@ function App() {
         <Route
           exact path="/profile"
           render = { (props) =>
-            <Profile rosterView={props.match.params.rosterView}/>
+            <Profile/>
           }
         />
         <Route path="/createProfile" component={CreateProfile}/>
+        <Route
+          exact path="/quest"
+          render = { (props) =>
+            <Quest/>
+          }
+        />
       </div>
     </div>
   );
