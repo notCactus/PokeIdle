@@ -12,6 +12,10 @@
   opacity: 0.7;
 }
 
+.MenuToggler > #search {
+  text-align: center;
+}
+
 .MenuToggler > #menuItems {
   display: flex;
   height: calc(100% - 54px); /*height of options*/

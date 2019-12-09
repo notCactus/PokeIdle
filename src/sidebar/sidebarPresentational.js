@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarLink from '../generalComponents/sidebarLink.js';
+import SidebarLink from '../generalComponents/sidebarLink/sidebarLink.js';
 import './sidebar.css';
 
 function SidebarPresentational({visibility, imgSrc}) {

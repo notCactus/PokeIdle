@@ -5,13 +5,15 @@ import HeaderPresentational from './headerPresentational';
 function Header(){
     return(
         <HeaderPresentational
-            title={getTitle(useLocation().pathname)}
+            title={getTitle('/' + useLocation().pathname.split('/')[1])}
         />
       );
 }
 
 function getTitle(path){
     switch (path){
+        case '/createProfile':
+            return "CREATE PROFILE";
         case '/profile':
             return "PROFILE";
         case '/quest':

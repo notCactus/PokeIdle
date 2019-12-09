@@ -28,6 +28,11 @@ class MenuToggler extends Component{
   render() {
     return (
       <div className="MenuToggler" style={style(this.props)}>
+        {this.props.searchbar ? 
+        <div id="search">
+          <input type="text" placeholder="Search shop..."></input>
+          <button>Search</button>
+        </div> : undefined}
         <div
           id="options"
           onClick={e => {
