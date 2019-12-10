@@ -63,16 +63,28 @@ class Quest extends Component{
               questTitle="Killing Dittos"
               difficulty="easy"
               width="100%"
+              imgStyle={{width:"50px"}}
+              titleStyle={{width:"250px"}}
+              difficultyStyle={{width:"80px"}}
+              buttonStyle={{maxWidth: "60px"}}
             />,
             <QuestItem
               questTitle="Eating Magickarp"
               difficulty="easy"
               width="100%"
+              imgStyle={{width:"50px"}}
+              titleStyle={{width:"250px"}}
+              difficultyStyle={{width:"80px"}}
+              buttonStyle={{maxWidth: "60px"}}
             />,
             <QuestItem
               questTitle="Befriending Pokémon"
               difficulty="impossible"
               width="100%"
+              imgStyle={{width:"50px"}}
+              titleStyle={{width:"250px"}}
+              difficultyStyle={{width:"80px"}}
+              buttonStyle={{maxWidth: "60px"}}
             />],
         }
       };
