@@ -1,0 +1,8 @@
+div .clickable {
+    text-align: center;
+}
+
+div .clickable:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

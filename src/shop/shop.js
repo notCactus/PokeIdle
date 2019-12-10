@@ -32,65 +32,30 @@ const shopData = [
     }
 ]
 
-/*function menus() {
-    Promise.all(shopData.map(menu => 
-        Promise.all(menu.items.map(item => 
-            getItem(item)
-        ))
-    )).then(items => {
-        let menus = {};
-        shopData.forEach((menu, i) =>
-            menus[menu.name] = {menuIcon: menu.menuIcon, items: items[i].map(item => 
-                <ShopItem 
-                    //name={item.names.filter(name => name.language === 'en')[0].name}
-                    name={'Potion'}
-                    sprite={item.sprites.default}
-                    cost={item.cost}
-                    description={item.effect_entries[0].short_effect}
-                />
-            )}
-        );
-        setMenus(menus);
-    })
-}*/
 function Shop(){
-    //const [menus, setMenus] = useState();
-    //useEffect(() => {
-        /*return Promise.all(shopData.map(menu => 
+    const [menus, setMenus] = useState({medicine:{items:[]}, balls:{items:[]}, pokemon:{items:[]}});
+    useEffect(() => {
+        Promise.all(shopData.map(menu => 
             Promise.all(menu.items.map(item => 
                 getItem(item)
-            ))*/
-        return Promise.all(shopData[0].items.map(item => getItem(item)
+            ))
         )).then(items => {
-            let menus = {};
+            let menusTemp = {};
             shopData.forEach((menu, i) =>
-                menus[menu.name] = {menuIcon: menu.menuIcon, items: items[i].map(item => 
+                menusTemp[menu.name] = {menuIcon: menu.menuIcon, items: items[i].map(item => 
                     <ShopItem 
-                        //name={item.names.filter(name => name.language === 'en')[0].name}
-                        name={'Potion'}
+                        name={item.names.filter(name => name.language.name === 'en')[0].name}
                         sprite={item.sprites.default}
                         cost={item.cost}
                         description={item.effect_entries[0].short_effect}
                     />
                 )}
             );
-            return (
-                <div className="shop">
-                    <ShopPresentational
-                        active='medicine'
-                        fallback='medicine'
-                        width='80%'
-                        height='100%'
-                        menus={menus}
-                        searchbar={true}
-                    />
-                </div>
-            );
-            //setMenus({menus});
+            setMenus(menusTemp);
         })
-    //});
+    }, [setMenus]);
 
-    /*return (
+    return (
         <div className="shop">
             <ShopPresentational
                 active='medicine'
@@ -101,7 +66,7 @@ function Shop(){
                 searchbar={true}
             />
         </div>
-    );*/
+    );
 }
 
 export default Shop;

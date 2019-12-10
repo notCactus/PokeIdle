@@ -1,0 +1,34 @@
+#shopItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#shopItem h3 {
+    margin-bottom: 0;
+}
+
+#shopItem .generalDetails {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    align-items: center;
+}
+
+#shopItem .textDetails {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#shopItem .costDetails {
+    display: flex;
+    flex-direction: row;
+    height: 40%;
+}
+
+#shopItem img {
+    width: 60px;
+    height: 60px;
+}
