@@ -8,11 +8,22 @@ const CreateProfilePresentation=({username, onUsernameChange, starters})=>(
     </React.Fragment>
 );
 
+
+// Variable for debouncing
+let debounce;
+
 // Displays the profile and the username
 const ProfileImageAndUsername=({username, onUsernameChange}) => (
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
-        <input type="text" placeholder="Enter your username..." onInput={(e) => { onUsernameChange(e.target.value); }}/>
+        <input type="text" placeholder="Enter your username..." onInput={(e) => {
+            
+            let newName = e.target.value;
+
+            clearTimeout(debounce);
+            debounce = setTimeout(() => onUsernameChange(newName), 300)
+            
+            }}/>
     </div>
 );
 
@@ -20,9 +31,9 @@ const ProfileImageAndUsername=({username, onUsernameChange}) => (
 const ProfileStarters=({starters}) => (
     <div className="profileStarters">
         {
-        starters.map((pokemon) => {
+        (starters.length > 0) ? starters.map((pokemon) => {
             return (<img key={pokemon.id} src={pokemon.sprites.front_default} alt={pokemon.name} />);
-        })
+        }) : <img key="loading" src="./loading.gif" alt="loading pokemon..."/>
         }
     </div>
 );
