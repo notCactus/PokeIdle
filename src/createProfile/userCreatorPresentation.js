@@ -20,9 +20,9 @@ const ProfileImageAndUsername=({username, onUsernameChange}) => (
 const ProfileStarters=({starters}) => (
     <div className="profileStarters">
         {
-        starters.map((pokemon) => {
+        (starters.length > 0) ? starters.map((pokemon) => {
             return (<img key={pokemon.id} src={pokemon.sprites.front_default} alt={pokemon.name} />);
-        })
+        }) : <img key="loading" src="./loading.gif" alt="loading pokemon..."/>
         }
     </div>
 );
