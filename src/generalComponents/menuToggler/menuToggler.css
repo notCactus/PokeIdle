@@ -3,9 +3,6 @@
   justify-content: center;
   align-items: center;
 }
-.MenuToggler > #options > div{
-  padding: 1em;
-}
 
 .MenuToggler > #options > div:hover{
   cursor: pointer;
@@ -18,7 +15,6 @@
 
 .MenuToggler > #menuItems {
   display: flex;
-  height: calc(100% - 54px); /*height of options*/
   width: 100%;
   align-items: center;
   flex-direction: column;

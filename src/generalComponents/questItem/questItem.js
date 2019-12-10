@@ -8,9 +8,11 @@ function style({width}) {
 }
 
 class QuestItem extends Component{
+  componentDidMount() {
+  }
   render() {
     return (
-      <div className='QuestItem' style={style(this.props)}>
+      <div className="QuestItem" style={style(this.props)}>
         <img src="./loading.gif" alt="quest" style={this.props.imgStyle}/>
         <h3 style={this.props.titleStyle}>{this.props.questTitle}</h3>
         <p style={this.props.difficultyStyle}>{this.props.difficulty}</p>
