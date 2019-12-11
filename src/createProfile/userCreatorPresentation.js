@@ -1,10 +1,11 @@
 import React from "react";
 
-const CreateProfilePresentation=({username, onUsernameChange, starters})=>(
+const CreateProfilePresentation=({username, onUsernameChange, starters, onStarterClick})=>(
     <React.Fragment>
         <ProfileImageAndUsername username={username}
                                 onUsernameChange={onUsernameChange}/>
-        <ProfileStarters starters={starters}/>
+        <ProfileStarters starters={starters}
+        onStarterClick={onStarterClick}/>
     </React.Fragment>
 );
 
@@ -28,11 +29,23 @@ const ProfileImageAndUsername=({username, onUsernameChange}) => (
 );
 
 // Displays the starter pokemons.
-const ProfileStarters=({starters}) => (
+const ProfileStarters=({starters, onStarterClick}) => (
     <div className="profileStarters">
         {
         (starters.length > 0) ? starters.map((pokemon) => {
-            return (<img key={pokemon.id} src={pokemon.sprites.front_default} alt={pokemon.name} />);
+            return (<img key={pokemon.id} src={pokemon.sprites.front_default} alt={pokemon.name} onClick={
+                (e) => {
+                    onStarterClick(e.target.alt);
+                    e.currentTarget.classList.add("img-Selected");
+                    
+                    for(let i = 0; i < e.currentTarget.parentNode.children.length; i++){
+                        let child = e.currentTarget.parentNode.children[i];
+                        if(e.currentTarget.alt !== child.alt){
+                            child.classList.remove("img-Selected");
+                        }
+                    }
+                }
+            }/>);
         }) : <img key="loading" src="./loading.gif" alt="loading pokemon..."/>
         }
     </div>
