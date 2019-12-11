@@ -6,7 +6,7 @@ import './quest.css';
 
 
 class Quest extends Component{
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       redirect: false,
@@ -69,7 +69,7 @@ class Quest extends Component{
               difficulty="easy"
             />,
             <QuestItem
-              questTitle="Befriending Pokémon"
+              questTitle="Giving Pokémon Food"
               difficulty="impossible"
             />],
         }

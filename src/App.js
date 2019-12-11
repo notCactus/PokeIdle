@@ -31,7 +31,7 @@ function App() {
         <Route
           exact path="/quest/:id"
           render = { (props) =>
-            <QuestDetails/>
+            <QuestDetails questId={props.match.params.id}/>
           }
         />
         <Route path="/shop" component={Shop}/>
