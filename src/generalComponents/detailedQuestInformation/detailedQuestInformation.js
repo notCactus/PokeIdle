@@ -7,7 +7,7 @@ class DetailedQuestInformation extends Component{
     return (
       <div className="DetailedQuestInformation">
         <div>
-          <img/>
+          <img src="../loading.gif"/>
           <LinkButton text="back" linkTo="/quest"/>
         </div>
         <div>
