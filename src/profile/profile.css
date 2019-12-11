@@ -8,13 +8,13 @@
   margin-top: 1em;
 }
 
-.Profile .ProfileOverview {
+.Profile > .ProfileOverview {
   width: 60%;
   max-width: 555px;
   height: 15%;
 }
 
-.Profile .ProfileOverview > .Avatar {
+.Profile > .ProfileOverview > .Avatar {
   width: 40%;
   max-width: 130px;
   height: 110%;
@@ -36,14 +36,31 @@
 .Profile > .RosterView > .MenuToggler > #menuItems > .menuItem{
   margin: 0.2em;
 }
-.Profile > .RosterView > .MenuToggler > #menuItems > .menuItem .ProfileOverview{
-  width: 60%;
-  max-width: 555px;
+.Profile > .RosterView > .MenuToggler .ProfileOverview{
+  width: 40%;
+  max-width: 400px;
   height: 50px;
 }
 
-.Profile .ProfileOverview > .Avatar {
+.Profile > .ProfileOverview > .Avatar {
   position: relative;
   top: -20px;
   left: -20px;
+}
+.Profile > .RosterView .ProfileOverview > .Avatar {
+  display: flex;
+  width: 20%;
+}
+
+.Profile > .RosterView .ProfileOverview > .Avatar  img {
+  position: relative;
+  left: -32px;
+  top: -36px;
+  width: 121px;
+  height: 121px;
+}
+
+.Profile > .RosterView .ProfileOverview > .CharacterInformation .Bar {
+  margin-left: 1em;
+  margin-bottom: 0.1em;
 }

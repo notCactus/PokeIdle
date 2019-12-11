@@ -63,38 +63,16 @@ class Quest extends Component{
             <QuestItem
               questTitle="Killing Dittos"
               difficulty="easy"
-              width="100%"
-              {...this.queueItemStyle()}
             />,
             <QuestItem
               questTitle="Eating Magickarp"
               difficulty="easy"
-              width="100%"
-              {...this.queueItemStyle()}
             />,
             <QuestItem
               questTitle="Befriending Pokémon"
               difficulty="impossible"
-              width="100%"
-              {...this.queueItemStyle()}
             />],
         }
       };
-  }
-  queueItemStyle(){
-    return {
-      imgStyle:{
-        width:"50px"
-      },
-      titleStyle:{
-        width:"250px"
-      },
-      difficultyStyle:{
-        width:"80px"
-      },
-      buttonStyle:{
-        maxWidth: "60px"
-      }
-    }
   }
 } export default Quest;

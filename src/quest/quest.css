@@ -4,3 +4,17 @@
   width: 100%;
   height: 100%;
 }
+
+.Quest > .MenuToggler .QuestItem img{
+  width:50px;
+
+}
+.Quest > .MenuToggler .QuestItem h3{
+  width: 250px;
+}
+.Quest > .MenuToggler .QuestItem p{
+    width:80px;
+}
+.Quest > .MenuToggler .QuestItem button{
+    max-width: 60px;
+}
