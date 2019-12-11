@@ -7,3 +7,43 @@
 .Profile > .ProfileOverview {
   margin-top: 1em;
 }
+
+.Profile .ProfileOverview {
+  width: 60%;
+  max-width: 555px;
+  height: 15%;
+}
+
+.Profile .ProfileOverview > .Avatar {
+  width: 40%;
+  max-width: 130px;
+  height: 110%;
+}
+
+.Profile .ProfileOverview > .CharacterInformation {
+  width: 55%;
+  height: 100%;
+}
+
+.Profile > .RosterView > .MenuToggler{
+  width: 100%;
+}
+
+.Profile > .RosterView > .MenuToggler > #options > .option{
+  margin: 0.5em;
+}
+
+.Profile > .RosterView > .MenuToggler > #menuItems > .menuItem{
+  margin: 0.2em;
+}
+.Profile > .RosterView > .MenuToggler > #menuItems > .menuItem .ProfileOverview{
+  width: 60%;
+  max-width: 555px;
+  height: 50px;
+}
+
+.Profile .ProfileOverview > .Avatar {
+  position: relative;
+  top: -20px;
+  left: -20px;
+}

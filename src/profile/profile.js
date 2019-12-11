@@ -14,9 +14,6 @@ class Profile extends Component{
     return (
       <div className="Profile">
           <ProfileOverview
-            width="60%"
-            maxWidth="555px"
-            height="15%"
             image={this.state.image}
           />
           <RosterView/>

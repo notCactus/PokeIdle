@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import './menuToggler.css';
 
-function style({width, height, padding, margin}){
-  return {
-    width: width,
-    height: height,
-    /*padding: padding,*/
-    margin: margin,
-  };
-}
-
 function allowEvent(element) {
   if([...element.classList].includes('option')) return element.getAttribute('value');
   else if (element.id === 'options') return false;
@@ -27,7 +18,7 @@ class MenuToggler extends Component{
 
   render() {
     return (
-      <div className="MenuToggler" style={style(this.props)}>
+      <div className="MenuToggler">
         {this.props.searchbar ?
         <div id="search">
           <input type="text" placeholder="Search shop..."></input>

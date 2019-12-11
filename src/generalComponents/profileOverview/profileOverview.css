@@ -4,8 +4,3 @@
   linear-gradient(to top left,transparent 48%,black 51%) right/15.5% 100% no-repeat,
   linear-gradient(black,black) left/85% 100% no-repeat;
 }
-.ProfileOverview > .Avatar {
-  position: relative;
-  top: -20px;
-  left: -20px;
-}

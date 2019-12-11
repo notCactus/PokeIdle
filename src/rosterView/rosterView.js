@@ -15,9 +15,6 @@ class RosterView extends Component {
     this.state = {
       roster: dummyRoster.map(i =>
         <ProfileOverview
-          width="60%"
-          maxWidth="555px"
-          height="50px"
           image={'./loading.gif'}
         />),
       pcRoster: [],
@@ -31,10 +28,6 @@ class RosterView extends Component {
           active="activeRoster"
           fallback="activeRoster"
           menus={this.menuProps(this.state.roster,this.state.pcRoster)}
-          width="100%"
-          height="100%"
-          padding="1em"
-          margin="1em"
         />
       </div>
     );
@@ -44,9 +37,6 @@ class RosterView extends Component {
     Promise.all(dummyRoster.map(id => getPokemon(id)))
     .then(roster => roster.map(pokemon =>
       <ProfileOverview
-        width="60%"
-        maxWidth="555px"
-        height="50px"
         image={pokemon['sprites']['front_default']}
       />
     ))
