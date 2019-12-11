@@ -12,6 +12,10 @@ const mapDispatchToProps = (dispatch) => ({
     onUsernameChange: (newName) => dispatch ({
         type: 'SET_USERNAME',
         username: newName,
+    }),
+    onStarterClick: (starter) => dispatch ({
+        type: 'SET_STARTER',
+        starter: starter,
     })
 });
 
