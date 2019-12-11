@@ -8,6 +8,7 @@ const shopData = [
     {
         name: 'medicine',
         menuIcon:<span>Medicine</span>,
+        pokeMenu: false,
         items:[
             'potion',
             'super-potion',
@@ -17,6 +18,7 @@ const shopData = [
     {
         name: 'balls',
         menuIcon:<span>Balls</span>,
+        pokeMenu: false,
         items:[
             'poke-ball',
             'great-ball',
@@ -26,6 +28,7 @@ const shopData = [
     {
         name: 'pokemon',
         menuIcon:<span>Pokémon</span>,
+        pokeMenu: true,
         items:[
 
         ]
@@ -60,8 +63,6 @@ function Shop(){
             <ShopPresentational
                 active='medicine'
                 fallback='medicine'
-                width='80%'
-                height='100%'
                 menus={menus}
                 searchbar={true}
             />

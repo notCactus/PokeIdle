@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    height: 120px;
 }
 
 #shopItem h3 {
