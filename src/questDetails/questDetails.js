@@ -23,7 +23,8 @@ class QuestDetails extends Component{
       roster: dummyRoster.map(i =>
         <ProfileOverview
           image={'../loading.gif'}
-        />)
+        />),
+      questRoster: [],
     };
   }
   render() {
@@ -68,6 +69,8 @@ class QuestDetails extends Component{
       loading: this.state.loading,
       roster: this.state.roster,
     });
+    Promise.all(this.party.map(id => getPokemon(id)))
+    .then(party => this.setState({questRoster: party.map(pokemon => pokemon['name'])}));
   }
   popup(){
     if(this.state.popup)
@@ -75,7 +78,7 @@ class QuestDetails extends Component{
          title="Please confirm your party"
          exitFunction={this.exit}
          view={(
-           <ConfirmWindow toConfirm={`Is this your roster: ${this.party.map(id => id + " ")}`}/>
+           <ConfirmWindow toConfirm={`Is this your roster: ${this.state.questRoster.map(id => id + " ")}?`}/>
          )}
         />;
   }
