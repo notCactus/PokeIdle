@@ -17,7 +17,7 @@
 .Profile > .ProfileOverview > .Avatar {
   width: 40%;
   max-width: 130px;
-  height: 110%;
+  height: 120%;
 }
 
 .Profile .ProfileOverview > .CharacterInformation {
@@ -42,7 +42,7 @@
 .Profile > .ProfileOverview > .Avatar {
   position: relative;
   top: -20px;
-  left: -20px;
+  left: -25px;
 }
 @media screen and (max-width: 500px) {
   .Profile > .ProfileOverview {

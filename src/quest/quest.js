@@ -21,15 +21,6 @@ class Quest extends Component{
     );
   }
 
-  componentDidMount() {
-    const buttons = [...document.body
-    .children[1].children[0]
-    .children[1].children[1]
-    .firstElementChild.children[1]
-    .querySelectorAll('button')];
-    for(let k of buttons) this.addClickEvent(k);
-  }
-
   content(){
     if(!this.state.redirect)
       return <MenuToggler

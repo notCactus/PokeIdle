@@ -8,7 +8,9 @@
 .Quest .MenuToggler {
   width: 80%;
 }
-
+.Quest .MenuToggler  .menuItem{
+  margin: 0.2em;
+}
 .Quest .QuestItem {
   width: 100%;
 }
@@ -31,11 +33,17 @@
   margin: 0;
   font-weight: 400;
 }
-.Quest > .MenuToggler .QuestItem button{
+.Quest > .MenuToggler .QuestItem .LinkButton{
   max-width: 24%;
   min-width: 24%;
   max-height: 40px;
+  background-color: #52D158;
+  font-weight: bold;
 }
+.Quest > .MenuToggler .QuestItem .LinkButton .clickable{
+  color: white;
+}
+
 @media screen and (max-width: 500px) {
   .Quest > .MenuToggler .QuestItem p{
     text-align: center;

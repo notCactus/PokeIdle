@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LinkButton from '../linkButton/linkButton';
 import './questItem.css';
 
 
@@ -11,7 +12,7 @@ class QuestItem extends Component{
         <img src="./loading.gif" alt="quest" style={this.props.imgStyle}/>
         <h3>{this.props.questTitle}</h3>
         <p>{this.props.difficulty}</p>
-        <button>Details</button>
+        <LinkButton text="Details" linkTo={`/quest/${this.props.questTitle}`}/>
       </div>
     );
   }
