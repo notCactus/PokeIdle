@@ -34,3 +34,22 @@
   width: 100%;
   max-width: 400px;
 }
+.QuestDetails .Popup {
+  width: 300px;
+}
+.QuestDetails .Popup > div:nth-child(1){
+  background-color: red;
+  width: 300px;
+  color: white;
+}
+
+
+.QuestDetails .Popup > div:nth-child(1) h3:nth-of-type(2){
+  height: 25px;
+  width: 30px;
+  text-align: center;
+  background-color: black;
+}
+.QuestDetails .Popup > div:nth-child(1) h3{
+  margin: 0.3em;
+}

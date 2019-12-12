@@ -8,7 +8,7 @@ function getPokemon(id){
     .then(r => r.json());
 }
 
-const dummyRoster = [384, 43, 700];
+const dummyRoster = [1, 4, 7];
 class RosterView extends Component {
   constructor(props){
     super(props);
@@ -40,6 +40,7 @@ class RosterView extends Component {
       <ProfileOverview
         image={pokemon['sprites']['front_default']}
         name={pokemon['name']}
+        pokemonId={pokemon['id']}
       />
     ))
     .then(r => this.setState({roster: r, pcRoster: []}))

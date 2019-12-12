@@ -16,6 +16,7 @@ class RosterSelector extends Component{
         <ProfileOverview
           name={this.props.name}
           image={this.props.image}
+          pokemonId={this.props.pokemonId}
         />
         <div style={{backgroundColor: this.state.checked}}></div>
       </div>

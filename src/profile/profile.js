@@ -5,11 +5,13 @@ import createProfileStore from '../stores/createProfileStore';
 import trainerStore from '../stores/trainerStore';
 import Popup from '../generalComponents/popup/popup';
 import Clickable from '../generalComponents/clickable/clickable';
+import {getPokemon} from '../api/api';
 import './profile.css';
 
 class Profile extends Component{
   constructor(){
     super();
+    this.findPO = this.findPO.bind(this);
     this.exit = this.exit.bind(this);
     this.showRosterOption = this.showRosterOption.bind(this);
     this.state = {
@@ -38,20 +40,34 @@ class Profile extends Component{
          exitFunction={this.exit}
          view={(
            <div className="PcMover">
-             <Clickable text="Move to PC"/>
+             <p>{`Would you like to move ${this.state.clickedPokemon.name} to your PC?`}</p>
+             <Clickable text="Confirm"/>
            </div>)}
         />;
   }
   showRosterOption(e){
-    this.setState({
-      image: this.state.image,
-      popup: true,
-    })
+    const po = this.findPO(e.target)
+    if(po !== false)
+      getPokemon(po.dataset.pokemon)
+      .then(pokemon =>
+      this.setState({
+          image: this.state.image,
+          popup: true,
+          clickedPokemon: pokemon,
+        })
+      )
   }
   exit(){
     this.setState({
       image: this.state.image,
       popup: false,
     })
+  }
+  findPO(element){
+    while(![...element.classList].includes('menuItem')){
+      if([...element.classList].includes('ProfileOverview'))
+        return element;
+      element= element.parentElement
+    } return false;
   }
 } export default Profile;

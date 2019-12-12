@@ -12,7 +12,7 @@ function style({width, height, maxWidth, borderBend}) {
 class ProfileOverview extends Component {
   render(){
     return (
-      <div className="ProfileOverview" style={style(this.props)}>
+      <div className="ProfileOverview" data-pokemon={this.props.pokemonId} style={style(this.props)}>
         <Avatar
           image={this.props.image}
         />

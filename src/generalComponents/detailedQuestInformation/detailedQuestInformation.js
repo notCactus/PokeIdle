@@ -14,7 +14,7 @@ class DetailedQuestInformation extends Component{
         <div>
           <h3>{this.props.title}</h3>
           <p>{this.props.description}</p>
-          <Clickable text="Take quest"/>
+          <Clickable text={this.props.buttonText} onClick={this.props.questFunction}/>
         </div>
       </div>
     );
