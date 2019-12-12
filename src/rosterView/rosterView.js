@@ -38,6 +38,7 @@ class RosterView extends Component {
     .then(roster => roster.map(pokemon =>
       <ProfileOverview
         image={pokemon['sprites']['front_default']}
+        name={pokemon['name']}
       />
     ))
     .then(r => this.setState({roster: r, pcRoster: []}))
