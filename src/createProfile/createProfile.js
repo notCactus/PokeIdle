@@ -1,24 +1,11 @@
 import React, { Component } from "react";
 import UserCreator from './userCreator';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import username from '../reducers/createProfile/username';
-import starterPokemon from '../reducers/createProfile/starterPokemon';
-import chosenStarter from '../reducers/createProfile/chosenStarter'
 import {getPokemon} from '../api/api';
+import createProfileStore from '../stores/createProfileStore';
 
 import './createProfile.css';
-
-function reducer(state = {}, action) {
-    return {
-        username: username(state.username, action),
-        starters: starterPokemon(state.starters, action),
-        chosenStarter: chosenStarter(state.starter, action),
-    };
-  }
-  
-const store= createStore(reducer);
 
 // Helper function for getting the random starters
 function rollStarters(){
@@ -52,7 +39,7 @@ function setStarters(){
     });
 
     Promise.all(allStarters)
-    .then((starters) => store.dispatch({type: 'SET_STARTERS', starters: starters}));
+    .then((starters) => createProfileStore.dispatch({type: 'SET_STARTERS', starters: starters}));
 }
 
 class CreateProfile extends Component {
@@ -63,7 +50,7 @@ class CreateProfile extends Component {
     render () {
         return (
             <div className="createProfile">
-                <Provider store={store}>
+                <Provider store={createProfileStore}>
                     <UserCreator/>
                 </Provider>
                 <button>START</button>
