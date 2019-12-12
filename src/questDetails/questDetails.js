@@ -5,6 +5,7 @@ import DetailedQuestInformation from '../generalComponents/detailedQuestInformat
 import Clickable from '../generalComponents/clickable/clickable';
 import MenuToggler from '../generalComponents/menuToggler/menuToggler';
 import Popup from '../generalComponents/popup/popup';
+import ConfirmWindow from '../generalComponents/confirmWindow/confirmWindow';
 import {getPokemon} from '../api/api';
 import './questDetails.css';
 const dummyRoster = [1, 4, 7];
@@ -74,9 +75,7 @@ class QuestDetails extends Component{
          title="Please confirm your party"
          exitFunction={this.exit}
          view={(
-           <div>
-             Is this your roster? {this.party.map(id => id+" ")}
-           </div>
+           <ConfirmWindow toConfirm={`Is this your roster: ${this.party.map(id => id + " ")}`}/>
          )}
         />;
   }
