@@ -10,7 +10,7 @@ export default function stamina(state=0, action){
         return state;
 
     } else if (action.type === 'REMOVE_STAMINA'){
-        let staminaCalc = state -= action.stamina;
+        let staminaCalc = state - action.stamina;
 
         if(staminaCalc < 0) { // Returns the state if more stamina than available is used.
             return state;
