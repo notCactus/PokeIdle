@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
+import RosterSelector from '../generalComponents/rosterSelector/rosterSelector';
 import DetailedQuestInformation from '../generalComponents/detailedQuestInformation/detailedQuestInformation';
 import MenuToggler from '../generalComponents/menuToggler/menuToggler';
 import {getPokemon} from '../api/api';
@@ -8,8 +9,6 @@ const dummyRoster = [1, 4, 7];
 class QuestDetails extends Component{
   constructor(props){
     super(props);
-    this.makeLodingImgSmaller.bind(this);
-    this.resetImgSize.bind(this);
     this.state = {
       loading: true,
       roster: dummyRoster.map(i =>
@@ -41,7 +40,7 @@ class QuestDetails extends Component{
       this.makeLodingImgSmaller();
       Promise.all(dummyRoster.map(id => getPokemon(id)))
       .then(roster => roster.map(pokemon =>
-        <ProfileOverview
+        <RosterSelector
           name={pokemon['name']}
           image={pokemon['sprites']['front_default']}
         />

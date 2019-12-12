@@ -66,11 +66,11 @@ class Quest extends Component{
             />,
             <QuestItem
               questTitle="Eating Magickarp"
-              difficulty="easy"
+              difficulty="medium"
             />,
             <QuestItem
               questTitle="Giving Pokémon Food"
-              difficulty="impossible"
+              difficulty="hard"
             />],
         }
       };

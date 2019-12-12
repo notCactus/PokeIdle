@@ -5,16 +5,43 @@
   height: 100%;
 }
 
-.Quest > .MenuToggler .QuestItem img{
-  width:50px;
+.Quest .QuestItem {
+  width: 100%;
+}
 
+.Quest > .MenuToggler .QuestItem img{
+  min-width: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  align-self: center;
 }
 .Quest > .MenuToggler .QuestItem h3{
-  width: 250px;
+  padding-left: 0.3em;
+  min-width: 40%;
+  max-width: 40%;
+  margin: 0;
 }
 .Quest > .MenuToggler .QuestItem p{
-    width:80px;
+  text-align: center;
+  width:26%;
+  margin: 0;
+  font-weight: 400;
 }
 .Quest > .MenuToggler .QuestItem button{
-    max-width: 60px;
+  max-width: 24%;
+  min-width: 24%;
+  max-height: 40px;
+}
+@media screen and (max-width: 500px) {
+  .Quest > .MenuToggler .QuestItem p{
+    text-align: center;
+    width: 36%;
+    font-size: 70%;
+    font-weight: bold;
+  }
+  .Quest > .MenuToggler .QuestItem h3{
+    font-size: 70%;
+    min-width: 30%;
+    max-width: 30%;
+  }
 }

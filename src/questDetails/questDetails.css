@@ -29,3 +29,8 @@
   margin-right: auto;
   width: 60%;
 }
+
+.QuestDetails .RosterSelector {
+  width: 100%;
+  max-width: 400px;
+}

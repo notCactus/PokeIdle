@@ -30,7 +30,7 @@
   height: 50px;
 }
 
-.MenuToggler .ProfileOverview > .Avatar  img {
+.MenuToggler .ProfileOverview .Avatar  img {
   position: relative;
   left: -32px;
   top: -36px;
@@ -43,12 +43,12 @@
   height: 100%;
 }
 
-.MenuToggler .ProfileOverview > .CharacterInformation .Bar {
+.MenuToggler .ProfileOverview .CharacterInformation .Bar {
   margin-left: 1em;
   margin-bottom: 0.1em;
 }
 
-.MenuToggler .ProfileOverview > .Avatar {
+.MenuToggler .ProfileOverview .Avatar {
   display: flex;
   width: 20%;
 }
