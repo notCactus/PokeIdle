@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import {getPokemon} from '../api/api';
 import createProfileStore from '../stores/createProfileStore';
+import LinkButton from "../generalComponents/linkButton/linkButton";
 
 import './createProfile.css';
 
@@ -54,9 +55,7 @@ class CreateProfile extends Component {
                 <Provider store={createProfileStore}>
                     <UserCreator/>
                 </Provider>
-                <Link to="/profile">
-                <button>START</button>
-                </Link>
+                <LinkButton text="START" linkTo="/profile"/>
             </div>
         );
     }
