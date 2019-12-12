@@ -23,7 +23,7 @@ class RosterView extends Component {
 
   render() {
     return (
-      <div className='RosterView'>
+      <div className='RosterView' onClick={this.props.clickEvent}>
         <MenuToggler
           active="activeRoster"
           fallback="activeRoster"
