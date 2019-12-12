@@ -11,8 +11,11 @@ const dummyRoster = [1, 4, 7];
 class QuestDetails extends Component{
   constructor(props){
     super(props);
+    this.party = [];
+    this.onToggle = this.onToggle.bind(this);
     this.exit = this.exit.bind(this);
     this.showPopup = this.showPopup.bind(this);
+    this.popup = this.popup.bind(this);
     this.state = {
       loading: true,
       popup: false,
@@ -51,6 +54,7 @@ class QuestDetails extends Component{
           name={pokemon['name']}
           image={pokemon['sprites']['front_default']}
           pokemonId={pokemon['id']}
+          onToggle={this.onToggle}
         />
       ))
       .then(r => this.setState({loading: false, roster: r}))
@@ -62,13 +66,18 @@ class QuestDetails extends Component{
       popup: true,
       loading: this.state.loading,
       roster: this.state.roster,
-    })
+    });
   }
   popup(){
     if(this.state.popup)
       return <Popup
          title="Please confirm your party"
          exitFunction={this.exit}
+         view={(
+           <div>
+             Is this your roster? {this.party.map(id => id+" ")}
+           </div>
+         )}
         />;
   }
 
@@ -78,6 +87,24 @@ class QuestDetails extends Component{
       loading: this.state.loading,
       roster: this.state.roster,
     })
+  }
+
+  onToggle(e){
+    const idHolder = this.findPO(e.target);
+    if(idHolder !== false){
+      if(!this.party.includes(idHolder.dataset.pokemon))
+        this.party.push(idHolder.dataset.pokemon);
+      else this.party = this.party.filter(id => id != idHolder.dataset.pokemon);
+    }
+  }
+
+  // TODO: move this func to seperate document
+  findPO(element){
+    while(![...element.classList].includes('RosterSelector') && element !== null){
+      if([...element.classList].includes('ProfileOverview'))
+        return element;
+      element= element.parentElement
+    } return false;
   }
 
   menuProps(roster) {

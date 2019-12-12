@@ -63,8 +63,10 @@ class Profile extends Component{
       popup: false,
     })
   }
+  
+  // TODO: move this func to seperate document
   findPO(element){
-    while(![...element.classList].includes('menuItem')){
+    while(![...element.classList].includes('menuItem') && element !== null){
       if([...element.classList].includes('ProfileOverview'))
         return element;
       element= element.parentElement

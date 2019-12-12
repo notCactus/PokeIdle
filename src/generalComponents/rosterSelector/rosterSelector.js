@@ -22,11 +22,11 @@ class RosterSelector extends Component{
       </div>
     );
   }
-  selectToggle(){
+  selectToggle(e){
     if(this.state.checked === 'red')
       this.setState({checked: 'green'});
     else
       this.setState({checked: 'red'});
-
+    this.props.onToggle(e);
   }
 } export default RosterSelector;
