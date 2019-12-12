@@ -22,3 +22,51 @@
 .App > div:nth-of-type(2) > div:nth-of-type(2){
   height: 85%;
 }
+
+/***GLOBAL RULES FOR ProfileOverview IN MenuToggler***/
+.MenuToggler .ProfileOverview{
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+}
+
+.MenuToggler .ProfileOverview > .Avatar  img {
+  position: relative;
+  left: -32px;
+  top: -36px;
+  width: 121px;
+  height: 121px;
+}
+
+.MenuToggler .CharacterInformation {
+  width: 55%;
+  height: 100%;
+}
+
+.MenuToggler .ProfileOverview > .CharacterInformation .Bar {
+  margin-left: 1em;
+  margin-bottom: 0.1em;
+}
+
+.MenuToggler .ProfileOverview > .Avatar {
+  display: flex;
+  width: 20%;
+}
+
+.MenuToggler .ProfileOverview h3 {
+  margin: 0.05em;
+  margin-left: 16px;
+  padding: 0;
+  color: white;
+  font-size: 50%;
+}
+
+.MenuToggler .menuItem{
+  margin: 0.2em;
+}
+
+@media screen and (max-width: 500px) {
+  .App .MenuToggler {
+    width: 90%;
+  }
+}

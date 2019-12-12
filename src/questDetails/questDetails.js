@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
 import DetailedQuestInformation from '../generalComponents/detailedQuestInformation/detailedQuestInformation';
 import MenuToggler from '../generalComponents/menuToggler/menuToggler';
-//import getPokemon from '../api/api';
+import {getPokemon} from '../api/api';
 import './questDetails.css';
-function getPokemon(id){
-  return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    .then(r => r.json());
-}
 const dummyRoster = [1, 4, 7];
 class QuestDetails extends Component{
   constructor(props){
@@ -46,6 +42,7 @@ class QuestDetails extends Component{
       Promise.all(dummyRoster.map(id => getPokemon(id)))
       .then(roster => roster.map(pokemon =>
         <ProfileOverview
+          name={pokemon['name']}
           image={pokemon['sprites']['front_default']}
         />
       ))
