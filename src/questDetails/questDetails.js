@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
+import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
 import DetailedQuestInformation from '../generalComponents/detailedQuestInformation/detailedQuestInformation';
+import MenuToggler from '../generalComponents/menuToggler/menuToggler';
+//import getPokemon from '../api/api';
 import './questDetails.css';
-
+function getPokemon(id){
+  return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    .then(r => r.json());
+}
+const dummyRoster = [1, 4, 7];
 class QuestDetails extends Component{
+  constructor(props){
+    super(props);
+    this.makeLodingImgSmaller.bind(this);
+    this.resetImgSize.bind(this);
+    this.state = {
+      loading: true,
+      roster: dummyRoster.map(i =>
+        <ProfileOverview
+          image={'../loading.gif'}
+        />)
+    };
+  }
   render() {
     return (
       <div className="QuestDetails">
@@ -10,9 +29,58 @@ class QuestDetails extends Component{
           icon=""
           difficulty=""
           title={this.props.questId}
-          description=""
+          description="Detta ska komma from en store"
+        />
+      <MenuToggler
+          fallback="availible"
+          active="availible"
+          menus={this.menuProps(this.state.roster)}
         />
       </div>
     );
   }
+
+  componentDidMount() {
+    if(this.state.loading){
+      this.makeLodingImgSmaller();
+      Promise.all(dummyRoster.map(id => getPokemon(id)))
+      .then(roster => roster.map(pokemon =>
+        <ProfileOverview
+          image={pokemon['sprites']['front_default']}
+        />
+      ))
+      .then(r => this.setState({loading: false, roster: r}))
+      .then(this.resetImgSize);
+    }
+  }
+
+  menuProps(roster) {
+    return{
+        availible: {
+          menuIcon: <span>Availible</span>,
+          items: roster,
+        }
+      };
+  }
+
+  makeLodingImgSmaller(){
+    let imgs = document.body.querySelectorAll('.QuestDetails .ProfileOverview > .Avatar  img');
+    [...imgs].forEach(img => {
+      img.style.width = '50px';
+      img.style.height = '50px';
+      img.style.top = '0px';
+      img.style.left = '0px';
+    })
+  }
+
+  resetImgSize(){
+    let imgs = document.body.querySelectorAll('.QuestDetails .ProfileOverview > .Avatar  img');
+    [...imgs].forEach(img => {
+      img.style.removeProperty('width');
+      img.style.removeProperty('height');
+      img.style.removeProperty('top');
+      img.style.removeProperty('left');
+    })
+  }
+
 } export default QuestDetails;
