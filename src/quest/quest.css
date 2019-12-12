@@ -5,6 +5,10 @@
   height: 100%;
 }
 
+.Quest .MenuToggler {
+  width: 80%;
+}
+
 .Quest .QuestItem {
   width: 100%;
 }
