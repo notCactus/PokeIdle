@@ -82,4 +82,7 @@
     width: 80%;
     height: 13%;
   }
+  .Profile .Popup > div:nth-child(1){
+    width: 100%;
+  }
 }

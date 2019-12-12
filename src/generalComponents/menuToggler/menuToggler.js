@@ -37,7 +37,7 @@ class MenuToggler extends Component{
         >
           {this.menuOptions()}
         </div>
-        <div id="menuItems">
+        <div id="menuItems" onClick={this.props.menuItemClickEvent}>
           {this.menuItems(this.state.active)}
         </div>
       </div>

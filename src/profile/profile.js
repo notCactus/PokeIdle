@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
 import RosterView from '../rosterView/rosterView';
 import createProfileStore from '../stores/createProfileStore';
+import trainerStore from '../stores/trainerStore';
 import Popup from '../generalComponents/popup/popup';
 import Clickable from '../generalComponents/clickable/clickable';
 import './profile.css';
@@ -22,6 +23,7 @@ class Profile extends Component{
       <div className="Profile">
           <ProfileOverview
             name={createProfileStore.getState().username}
+            level={trainerStore.getState().lvl}
             image={this.state.image}
           />
         <RosterView clickEvent={this.showRosterOption}/>

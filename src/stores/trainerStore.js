@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 
-import currency from '../reducers/trainer/username';
+import currency from '../reducers/trainer/currency';
 import items from '../reducers/trainer/items';
 import lvl from '../reducers/trainer/lvl';
 import pcRoster from '../reducers/trainer/pcRoster';
@@ -19,7 +19,7 @@ function reducer(state = {}, action) {
         xp: xp(state.xp, action),
     };
   }
-  
+
 const trainerStore = createStore(reducer);
 
 export default trainerStore;

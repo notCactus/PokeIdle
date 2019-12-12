@@ -23,6 +23,15 @@
   height: 85%;
 }
 
+.App .PokeHeader {
+  text-align: center;
+}
+
+/****GLOBAL RULES FOR CharacterInformation***/
+.CharacterInformation > div:nth-of-type(1) h3:nth-child(2){
+  margin-left: auto;
+}
+
 /***GLOBAL RULES FOR ProfileOverview IN MenuToggler***/
 .MenuToggler .ProfileOverview{
   width: 100%;

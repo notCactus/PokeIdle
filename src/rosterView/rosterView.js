@@ -8,7 +8,7 @@ function getPokemon(id){
     .then(r => r.json());
 }
 
-const dummyRoster = [1, 4, 7];
+const dummyRoster = [384, 43, 700];
 class RosterView extends Component {
   constructor(props){
     super(props);
@@ -23,10 +23,11 @@ class RosterView extends Component {
 
   render() {
     return (
-      <div className='RosterView' onClick={this.props.clickEvent}>
+      <div className='RosterView'>
         <MenuToggler
           active="activeRoster"
           fallback="activeRoster"
+          menuItemClickEvent={this.props.clickEvent}
           menus={this.menuProps(this.state.roster,this.state.pcRoster)}
         />
       </div>
