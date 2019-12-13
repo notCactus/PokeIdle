@@ -10,8 +10,8 @@ function reducer(state = {}, action) {
         starters: starterPokemon(state.starters, action),
         chosenStarter: chosenStarter(state.starter, action),
     };
-  }
-  
+}
+
 
 const createProfileStore = createStore(reducer);
 

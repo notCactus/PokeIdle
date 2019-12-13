@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { Link } from "react-router-dom";
 
 import {getPokemon} from '../api/api';
-import createProfileStore from '../stores/createProfileStore';
+import store from '../stores/store';
 import LinkButton from "../generalComponents/linkButton/linkButton";
 
 import './createProfile.css';
@@ -22,11 +22,11 @@ function rollStarters(){
         2: [4, 155, 255, 390, 498, 653, 725], /* fire */
         3: [7, 158, 258, 393, 501, 656, 728], /* water */
     };
-    
+
     starters = starters.map(() => {
         return Math.floor(min + Math.random() * (max - min));
     });
-    
+
     return starters.map((num, i) => {
         return allStarters[i+1][num-1];
     });
@@ -39,9 +39,8 @@ function setStarters(){
     let allStarters = starterIds.map(async(id) => {
         return await getPokemon(id);
     });
-
     Promise.all(allStarters)
-    .then((starters) => createProfileStore.dispatch({type: 'SET_STARTERS', starters: starters}));
+    .then((starters) => store.dispatch({type: 'SET_STARTERS', starters: starters}));
 }
 
 class CreateProfile extends Component {
@@ -52,7 +51,7 @@ class CreateProfile extends Component {
     render () {
         return (
             <div className="createProfile">
-                <Provider store={createProfileStore}>
+                <Provider store={store}>
                     <UserCreator/>
                 </Provider>
                 <LinkButton text="START" linkTo="/profile"/>
@@ -61,4 +60,4 @@ class CreateProfile extends Component {
     }
 }
 
-export default CreateProfile;    
+export default CreateProfile;

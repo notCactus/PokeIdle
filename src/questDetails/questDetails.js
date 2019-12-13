@@ -78,7 +78,7 @@ class QuestDetails extends Component{
          title="Please confirm your party"
          exitFunction={this.exit}
          view={(
-           <ConfirmWindow toConfirm={`Is this your roster: ${this.state.questRoster.map(id => id + " ")}?`}/>
+           <ConfirmWindow toConfirm={`Is this your roster:${this.state.questRoster.map(id => " "+id)}?`}/>
          )}
         />;
   }

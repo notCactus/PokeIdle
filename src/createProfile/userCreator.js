@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        username: state.username,
-        starters: state.starters,
+        username: state.createProfile.username,
+        starters: state.createProfile.starters,
     }
 }
 

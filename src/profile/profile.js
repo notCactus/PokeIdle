@@ -11,7 +11,7 @@ import './profile.css';
 class Profile extends Component{
   constructor(){
     super();
-    this.findPO = this.findPO.bind(this);
+    this.showPopup = this.findPO.bind(this);
     this.exit = this.exit.bind(this);
     this.showRosterOption = this.showRosterOption.bind(this);
     this.state = {
@@ -63,7 +63,7 @@ class Profile extends Component{
       popup: false,
     })
   }
-  
+
   // TODO: move this func to seperate document
   findPO(element){
     while(![...element.classList].includes('menuItem') && element !== null){

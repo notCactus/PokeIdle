@@ -14,8 +14,8 @@ function reducer(state = {}, action) {
         pokemonQuestId: pokemonQuestId(state.pokemonQuestId, action),
         pokemonXp: pokemonXp(state.pokemonXp, action),
     };
-  }
-  
+}
+
 const pokemonStore = createStore(reducer);
 
 export default pokemonStore;
