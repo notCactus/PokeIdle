@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import UserCreator from './userCreator';
-import { Provider } from 'react-redux';
-import { Link } from "react-router-dom";
 
 import {getPokemon} from '../api/api';
 import store from '../stores/store';
@@ -51,9 +49,7 @@ class CreateProfile extends Component {
     render () {
         return (
             <div className="createProfile">
-                <Provider store={store}>
                     <UserCreator/>
-                </Provider>
                 <LinkButton text="START" linkTo="/profile"/>
             </div>
         );

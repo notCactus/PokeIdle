@@ -13,43 +13,58 @@ import FirebaseTest from './firebaseTest/firebaseTest';
 import { AuthProvider } from './firebaseTest/Auth';
 import PrivateRoute from './firebaseTest/privateRoute';
 
-import store from './stores/store';
-
 import './App.css';
+
+// Imports for the store
+import { createStore } from 'redux';
+
+import {pokemon} from './reducers/pokemon/pokemonStore';
+import {trainer} from './reducers/trainer/trainerStore';
+import createProfile from './reducers/createProfile/createProfileStore';
+
+function reducer(state = {}, action) {
+    return {
+        pokemon: pokemon(state.pokemon, action),
+        trainer: trainer(state.trainer, action),
+        createProfile: createProfile(state.createProfile, action),
+    };
+}
+
+const store = createStore(reducer);
 
 function App() {
   return (
     <AuthProvider>
-    <div className="App">
-      <Sidebar/>
-      <div>
-        <Header/>
-        <Provider store={store}>
-          <Route
-            exact path="/profile"
-            render = { (props) =>
-              <Profile/>
-            }
-          />
+      <Provider store={store}>
+        <div className="App">
+          <Sidebar/>
+          <div>
+            <Header/>
+              <Route
+                exact path="/profile"
+                render = { (props) =>
+                  <Profile/>
+                }
+              />
+            <Route path="/createProfile" component={CreateProfile}/>
+            <Route
+              exact path="/quest"
+              render = { (props) =>
+                <Quest/>
+              }
+            />
+            <Route
+              exact path="/quest/:id"
+              render = { (props) =>
+                <QuestDetails questId={props.match.params.id}/>
+              }
+            />
+            <Route path="/shop" component={Shop}/>
+            <Route path="/firebaseTest" component={FirebaseTest}/>
+            <PrivateRoute path="/private" component={FirebaseTest}/>{/* Private route test (has to be logged in to access.) */}
+          </div>
+        </div>
       </Provider>
-        <Route path="/createProfile" component={CreateProfile}/>
-        <Route
-          exact path="/quest"
-          render = { (props) =>
-            <Quest/>
-          }
-        />
-        <Route
-          exact path="/quest/:id"
-          render = { (props) =>
-            <QuestDetails questId={props.match.params.id}/>
-          }
-        />
-        <Route path="/shop" component={Shop}/>
-        <Route path="/firebaseTest" component={FirebaseTest}/>
-        <PrivateRoute path="/private" component={FirebaseTest}/>{/* Private route test (has to be logged in to access.) */}
-      </div>
-    </div>
     </AuthProvider>
   );
 } export default App;
