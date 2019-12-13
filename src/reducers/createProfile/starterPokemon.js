@@ -1,4 +1,4 @@
-export default function username(state=[], action){
+export default function starterPokemon(state=[], action){
     if (action.type === 'SET_STARTERS') {
         return action.starters;
     } else {

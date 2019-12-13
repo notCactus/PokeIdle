@@ -26,7 +26,7 @@ class ProfilePresentation extends Component{
             level={this.props.lvl}
             image={this.state.image}
           />
-        <RosterView clickEvent={this.showRosterOption}/>
+        <RosterView roster={[].concat(this.props.starter)} clickEvent={this.showRosterOption}/>
           {this.popup()}
       </div>
     );

@@ -16,6 +16,10 @@ const mapDispatchToProps = (dispatch) => ({
     onStarterClick: (starter) => dispatch ({
         type: 'SET_STARTER',
         starter: starter,
+    }),
+    addToRoster: (member) => dispatch ({
+      type: 'ADD_TO_ROSTER',
+      pokemon: member,
     })
 });
 
