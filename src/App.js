@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import { Provider } from 'react-redux';
 import React from 'react';
 import Profile from './profile/profile';
 import Quest from './quest/quest';
@@ -12,6 +13,8 @@ import FirebaseTest from './firebaseTest/firebaseTest';
 import { AuthProvider } from './firebaseTest/Auth';
 import PrivateRoute from './firebaseTest/privateRoute';
 
+import store from './stores/store';
+
 import './App.css';
 
 function App() {
@@ -21,12 +24,14 @@ function App() {
       <Sidebar/>
       <div>
         <Header/>
-        <Route
-          exact path="/profile"
-          render = { (props) =>
-            <Profile/>
-          }
-        />
+        <Provider store={store}>
+          <Route
+            exact path="/profile"
+            render = { (props) =>
+              <Profile/>
+            }
+          />
+      </Provider>
         <Route path="/createProfile" component={CreateProfile}/>
         <Route
           exact path="/quest"
