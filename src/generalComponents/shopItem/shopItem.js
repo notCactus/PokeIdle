@@ -1,10 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import Popup from '../popup/popup';
 import Clickable from '../clickable/clickable';
+import ConfirmButton from '../confirmWindow/confirmWindow';
 import './shopItem.css';
 
 function ShopItem({name, sprite, cost, description}){
 
     const [amount, setAmount] = useState(1);
+    const [popup, setPopup] = useState();
+
+    const showPopup = () => {
+        setPopup(
+            <Popup
+                title={"Transaction"}
+                exitFunction={() => setPopup()}
+                view={
+                    <ConfirmButton
+                        toConfirm={`Would you like to buy ${amount} ${name}(s) for $${cost * amount}?`}
+                        confirmFunction={() => {}}
+                    />
+                }
+            />
+        );
+    }
 
     useEffect(() => {
         setAmount(1);
@@ -19,11 +37,12 @@ function ShopItem({name, sprite, cost, description}){
                     <p>{description}</p>
                 </div>
             </div>
-            <div className="costDetails">
+            {cost ? <div className="costDetails">
                 <p>{`$${cost}`}</p>
-                <Clickable text="Buy" style={{width:"50px", height:"30px"}} onClick={()=>{}}/>
-                <input type="number" min="1" value={amount} onChange={e => setAmount(e.target.value)}/>
-            </div>
+                <Clickable text="Buy" style={{width:"50px", height:"30px"}} onClick={showPopup}/>
+                <input type="number" min="1" max="999" value={amount} onChange={e => setAmount(e.target.value)}/>
+            </div> : undefined}
+            {popup}
         </div>
     );
 }

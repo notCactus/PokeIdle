@@ -6,4 +6,9 @@
 
 .shop .MenuToggler {
     background-color: white;
+    width: 80%;
+}
+
+.shop .MenuToggler .option {
+    margin: 1em;
 }

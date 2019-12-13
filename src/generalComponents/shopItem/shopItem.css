@@ -1,9 +1,11 @@
 #shopItem {
     display: flex;
+    background-color: lightskyblue;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     height: 120px;
+    border-bottom: blue solid 1px;
 }
 
 #shopItem h3 {
@@ -13,7 +15,6 @@
 #shopItem .generalDetails {
     display: flex;
     flex-direction: row;
-    width: 30%;
     align-items: center;
 }
 
@@ -23,13 +24,59 @@
     height: 100%;
 }
 
+#shopItem .textDetails p {
+    max-width: 80%;
+}
+
 #shopItem .costDetails {
     display: flex;
-    flex-direction: row;
-    height: 40%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#shopItem .costDetails p, #shopItem .costDetails input, #shopItem .costDetails div {
+    margin: 0 1em 0 0;
 }
 
 #shopItem img {
     width: 60px;
     height: 60px;
 }
+
+#shopItem input {
+    width: 40px;
+    height: 20px;
+}
+
+#shopItem .clickable {
+    background-color: blue;
+    color: white;
+}
+
+#shopItem .Popup > div:nth-child(1){
+    background-color: blue;
+    width: 300px;
+    color: white;
+  }
+  #shopItem .Popup .ConfirmWindow {
+    background-color: white;
+    color: black;
+    border-color: blue;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-right-style: solid;
+  }
+  
+  #shopItem .Popup .ConfirmWindow .clickable {
+    background-color: gray;
+    color: white;
+    width: 70px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #shopItem .Popup > div:nth-child(1) h3:nth-of-type(2){
+    height: 25px;
+    width: 30px;
+    text-align: center;
+    background-color: black;
+  }
