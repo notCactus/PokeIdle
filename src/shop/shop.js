@@ -35,28 +35,33 @@ const shopData = [
     }
 ]
 
+function createMenu(items){
+    let menusTemp = {};
+    shopData.forEach((menu, i) =>
+        menusTemp[menu.name] = {menuIcon: menu.menuIcon, items: items ? items[i].map(item => 
+            <ShopItem 
+                name={item.names.filter(name => name.language.name === 'en')[0].name}
+                sprite={item.sprites.default}
+                cost={item.cost}
+                description={item.effect_entries[0].short_effect}
+            /> 
+        ) : [<ShopItem name={'Loading...'} sprite={'./loading.gif'}/>]}
+    );
+    return menusTemp;
+}
+
 function Shop(){
-    const [menus, setMenus] = useState({medicine:{items:[]}, balls:{items:[]}, pokemon:{items:[]}});
+    const [menus, setMenus] = useState(createMenu());
+
     useEffect(() => {
         Promise.all(shopData.map(menu => 
             Promise.all(menu.items.map(item => 
                 getItem(item)
             ))
         )).then(items => {
-            let menusTemp = {};
-            shopData.forEach((menu, i) =>
-                menusTemp[menu.name] = {menuIcon: menu.menuIcon, items: items[i].map(item => 
-                    <ShopItem 
-                        name={item.names.filter(name => name.language.name === 'en')[0].name}
-                        sprite={item.sprites.default}
-                        cost={item.cost}
-                        description={item.effect_entries[0].short_effect}
-                    />
-                )}
-            );
-            setMenus(menusTemp);
+            setMenus(createMenu(items));
         })
-    }, [setMenus]);
+    }, []);
 
     return (
         <div className="shop">
