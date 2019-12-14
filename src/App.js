@@ -46,7 +46,9 @@ function App() {
                   <Profile/>
                 }
               />
-            <Route path="/createProfile" component={CreateProfile}/>
+            <Route path="/createProfile"
+            render = {(props) => <CreateProfile/>}
+            />
             <Route
               exact path="/quest"
               render = { (props) =>
