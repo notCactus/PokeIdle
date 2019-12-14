@@ -2,72 +2,56 @@ import React, { useState, useEffect } from 'react';
 import ShopPresentational from './shopPresentational';
 import {getItem} from '../api/api';
 import ShopItem from '../generalComponents/shopItem/shopItem';
+import app from '../base'
 import './shop.css';
 
-const shopData = [
-    {
-        name: 'medicine',
-        menuIcon:<span>Medicine</span>,
-        pokeMenu: false,
-        items:[
-            'potion',
-            'super-potion',
-            'hyper-potion'
-        ]
-    },
-    {
-        name: 'balls',
-        menuIcon:<span>Balls</span>,
-        pokeMenu: false,
-        items:[
-            'poke-ball',
-            'great-ball',
-            'ultra-ball'
-        ]
-    },
-    {
-        name: 'pokemon',
-        menuIcon:<span>Pokémon</span>,
-        pokeMenu: true,
-        items:[
+function firstMenu(menus){
+    for (const menu in menus)
+        return menu;
+}
 
-        ]
+function createMenu(items, shopData){
+    if (items){
+        let menusTemp = {};
+        shopData.forEach((menu, i) =>
+            menusTemp[menu.name] = {menuIcon: <img src={'./' +  menu.menuIcon} alt={menu.name}/>, items: items[i].map(item => 
+                <ShopItem 
+                    name={item.names.filter(name => name.language.name === 'en')[0].name}
+                    sprite={item.sprites.default}
+                    cost={item.cost}
+                    description={item.effect_entries[0].short_effect}
+                /> 
+            )}
+        );
+        return menusTemp;
+    } else {
+        return {loading:{items:[<ShopItem name={'Loading...'} sprite={'./loading.gif'}/>]}};
     }
-]
-
-function createMenu(items){
-    let menusTemp = {};
-    shopData.forEach((menu, i) =>
-        menusTemp[menu.name] = {menuIcon: menu.menuIcon, items: items ? items[i].map(item => 
-            <ShopItem 
-                name={item.names.filter(name => name.language.name === 'en')[0].name}
-                sprite={item.sprites.default}
-                cost={item.cost}
-                description={item.effect_entries[0].short_effect}
-            /> 
-        ) : [<ShopItem name={'Loading...'} sprite={'./loading.gif'}/>]}
-    );
-    return menusTemp;
 }
 
 function Shop(){
     const [menus, setMenus] = useState(createMenu());
 
     useEffect(() => {
-        Promise.all(shopData.map(menu => 
-            Promise.all(menu.items.map(item => 
-                getItem(item)
-            ))
-        )).then(items => {
-            setMenus(createMenu(items));
+        let retrievedShop;
+        app.database().ref('/shop').once('value').then(shopData => {
+            retrievedShop = shopData.val();
+            Promise.all(retrievedShop.map(menu => 
+                Promise.all(menu.items.map(item => 
+                    getItem(item)
+                ))
+            )).then(items => {
+                setMenus(createMenu(items, retrievedShop));
+            })
         })
     }, []);
 
+    const defMenu = firstMenu(menus);
     return (
         <div className="shop">
             <ShopPresentational
-                active='medicine'
-                fallback='medicine'
+                active={defMenu}
+                fallback={defMenu}
                 menus={menus}
                 searchbar={true}
             />

@@ -1,5 +1,6 @@
 var firebase = require('firebase/app');
 require('firebase/auth');
+require('firebase/database');
 
 var app =  firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_KEY,

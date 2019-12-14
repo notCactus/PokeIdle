@@ -6,7 +6,7 @@ function Sidebar() {
     return (
         <SidebarPresentational
             visibility={(useLocation().pathname === '/createProfile') ? {display: 'none'} : undefined}
-            imgSrc={''}
+            imgSrc={'./logo.png'}
         />
     );
 }
