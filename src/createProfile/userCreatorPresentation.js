@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useCallback} from 'react';
+import {withRouter} from 'react-router';
+import app from '../base';
 
 const CreateProfilePresentation=({username, onUsernameChange, starters, onStarterClick})=>(
     <React.Fragment>
@@ -9,12 +11,12 @@ const CreateProfilePresentation=({username, onUsernameChange, starters, onStarte
     </React.Fragment>
 );
 
-
 // Variable for debouncing
 let debounce;
 
 // Displays the profile and the username
-const ProfileImageAndUsername=({username, onUsernameChange}) => (
+const ProfileImageAndUsername=({username, onUsernameChange}) => {
+    return (
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
         <input type="text" placeholder="Enter your username..." onInput={(e) => {
@@ -24,9 +26,46 @@ const ProfileImageAndUsername=({username, onUsernameChange}) => (
             clearTimeout(debounce);
             debounce = setTimeout(() => onUsernameChange(newName), 300)
             
-            }}/>
+        }}/>
+        <SignUpWithRouter/>
     </div>
-);
+)};
+
+// Handles sign up.
+const SignUp = ({history}) => {
+    const handleSignUp = useCallback(async event => {
+        event.preventDefault();
+        const {email, password} = event.target.elements;
+        try {
+            await app
+                .auth()
+                .createUserWithEmailAndPassword(email.value, password.value);
+            history.push("/firebaseTest"); // Pushes the state "/firebaseTest" to history. (change this later)
+        } catch (error) {
+            alert(error);
+        }
+    }, [history]);
+
+    // Change this for how the render should look
+    return (
+        <div className="signUp">
+            <form onSubmit={handleSignUp}>
+                <label>
+                    Email: 
+                    <input name="email" type="email" placeholder="Email"/>
+                </label>
+                <label>
+                    Password: 
+                    <input name="password" type="password" placeholder="Password"/>
+                </label>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    )
+}
+
+// So that withRouter is used.
+const SignUpWithRouter = withRouter(SignUp);
 
 // Displays the starter pokemons.
 const ProfileStarters=({starters, onStarterClick}) => (

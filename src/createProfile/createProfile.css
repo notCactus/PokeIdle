@@ -19,3 +19,8 @@
     width: 112px;
     border: 3px solid black;
 }
+
+.createProfile .signUp form{
+    display: flex;
+    flex-direction: column;
+}

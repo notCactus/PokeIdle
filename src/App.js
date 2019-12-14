@@ -8,10 +8,11 @@ import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
 import Shop from './shop/shop';
+import LoginPresentation from './login/loginPresentation';
 
 import FirebaseTest from './firebaseTest/firebaseTest';
-import { AuthProvider } from './firebaseTest/Auth';
-import PrivateRoute from './firebaseTest/privateRoute';
+import { AuthProvider } from './Auth';
+import PrivateRoute from './privateRoute';
 
 import './App.css';
 
@@ -64,6 +65,7 @@ function App() {
             <Route path="/shop" component={Shop}/>
             <Route path="/firebaseTest" component={FirebaseTest}/>
             <PrivateRoute path="/private" component={FirebaseTest}/>{/* Private route test (has to be logged in to access.) */}
+            <Route path="/login" component={LoginPresentation}/>
           </div>
         </div>
       </Provider>

@@ -13,7 +13,7 @@ function Header(){
 function getTitle(path){
     switch (path){
         case '/createProfile':
-            return "CREATE PROFILE";
+            return "CHOOSE YOUR POKEMON!";
         case '/profile':
             return "PROFILE";
         case '/quest':

@@ -6,6 +6,9 @@ import LinkButton from "../generalComponents/linkButton/linkButton";
 
 import './createProfile.css';
 
+// Only for testing
+import SignOutButton from '../generalComponents/signOutButton/signOutButton';
+
 // Helper function for getting the random starters
 function rollStarters(){
 
@@ -55,6 +58,10 @@ class CreateProfilePresentation extends Component {
             <div className="createProfile">
                     <UserCreator/>
                 <LinkButton text="START" linkTo="/profile"/>
+                <p>OR</p>
+                <LinkButton text="Login" linkTo="/login"/>
+                <p>FOR TESTING:</p>
+                <SignOutButton/>
             </div>
         );
     }
