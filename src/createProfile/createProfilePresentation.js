@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import UserCreator from './userCreator';
 
 import {getPokemon} from '../api/api';
-import store from '../stores/store';
 import LinkButton from "../generalComponents/linkButton/linkButton";
 
 import './createProfile.css';
@@ -39,7 +38,6 @@ function setStarters(setStartersInStore){
     });
     
     Promise.all(allStarters)
-    .then((s) =>{console.log(s);return s;})
     .then((starters) => setStartersInStore(starters));
 }
 
@@ -50,7 +48,6 @@ class CreateProfilePresentation extends Component {
 
     componentDidMount(){
         setStarters(this.props.setStarters);
-        this.props.onUsernameChange("POTATIS");
     }
 
     render () {
