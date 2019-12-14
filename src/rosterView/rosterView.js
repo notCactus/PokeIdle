@@ -15,7 +15,6 @@ class RosterView extends Component {
     let t = this.props.roster;
     if(t < 1)
       t = dummyRoster;
-    debugger;
     this.state = {
       temp: t,
       roster: t.map(i =>
