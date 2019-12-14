@@ -16,7 +16,7 @@ function ShopItem({name, sprite, cost, description}){
                 exitFunction={() => setPopup()}
                 view={
                     <ConfirmButton
-                        toConfirm={`Would you like to buy ${amount} ${name}(s) for $${cost * amount}?`}
+                        toConfirm={`Would you like to buy ${amount} ${name}(s) for ${cost.amount * amount} ${cost.currency}s?`}
                         confirmFunction={() => {}}
                     />
                 }
@@ -38,7 +38,7 @@ function ShopItem({name, sprite, cost, description}){
                 </div>
             </div>
             {cost ? <div className="costDetails">
-                <p>{`$${cost}`}</p>
+                <p>{`${cost.amount} ${cost.currency}s`}</p>
                 <Clickable text="Buy" style={{width:"50px", height:"30px"}} onClick={showPopup}/>
                 <input type="number" min="1" max="999" value={amount} onChange={e => setAmount(e.target.value)}/>
             </div> : undefined}

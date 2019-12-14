@@ -9,6 +9,14 @@
     width: 80%;
 }
 
+.shop .MenuToggler #options {
+    height: 12%;
+}
+
+.shop .MenuToggler #menuItems {
+    height: 88%;
+}
+
 .shop .MenuToggler .option {
     margin: 1em;
 }

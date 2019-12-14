@@ -13,6 +13,10 @@ export function getPokemon(id) {
     return getFromPokeapi('pokemon', id);
 }
 
+export function getSpecies(id) {
+    return getFromPokeapi('pokemon-species', id);
+}
+
 export function getItem(id) { 
     return getFromPokeapi('item', id);
 }
@@ -21,4 +25,4 @@ export function getEvolution(id) {
     return getFromPokeapi('evolution-chain', id);
 }
 
-export default {getPokemon, getItem, getEvolution};
+export default {getPokemon, getSpecies, getItem, getEvolution};

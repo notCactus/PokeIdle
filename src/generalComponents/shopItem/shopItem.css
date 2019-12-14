@@ -32,6 +32,7 @@
     display: flex;
     margin-top: auto;
     margin-bottom: auto;
+    max-width: 40%;
 }
 #shopItem .costDetails p, #shopItem .costDetails input, #shopItem .costDetails div {
     margin: 0 1em 0 0;
