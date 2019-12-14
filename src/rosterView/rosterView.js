@@ -12,8 +12,13 @@ const dummyRoster = [1, 4, 7];
 class RosterView extends Component {
   constructor(props){
     super(props);
+    let t = this.props.roster;
+    if(t < 1)
+      t = dummyRoster;
+    debugger;
     this.state = {
-      roster: this.props.roster.map(i =>
+      temp: t,
+      roster: t.map(i =>
         <ProfileOverview
           image={'./loading.gif'}
         />),
@@ -35,7 +40,7 @@ class RosterView extends Component {
   }
 
   componentDidMount() {
-    Promise.all(this.props.roster.map(id => getPokemon(id)))
+    Promise.all(this.state.temp.map(id => getPokemon(id)))
     .then(roster => roster.map(pokemon =>
       <ProfileOverview
         image={pokemon['sprites']['front_default']}
