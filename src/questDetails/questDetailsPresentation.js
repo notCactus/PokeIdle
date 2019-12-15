@@ -114,8 +114,8 @@ class QuestDetailsPresentation extends Component{
         name={pokemon.id}
         level={pokemon.lvl}
         xp={pokemon.xp}
+        maxXp={pokemon.requiredXp(pokemon.lvl)}
         pokemonId={pokemon.id}
-        maxXp={pokemon.requiredXp}
         onToggle={this.onToggle}
       />
     );

@@ -17,6 +17,9 @@ class RosterSelector extends Component{
           name={this.props.name}
           image={this.props.image}
           pokemonId={this.props.pokemonId}
+          xp={this.props.xp}
+          maxXp={this.props.maxXp}
+          level={this.props.level}
         />
         <div style={{backgroundColor: this.state.checked}}></div>
       </div>
