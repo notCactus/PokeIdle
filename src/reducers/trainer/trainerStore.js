@@ -16,6 +16,6 @@ export const trainer = (state = {}, action) => {
       roster: roster(state.roster, action),
       stamina: stamina(state.stamina, action),
       xp: xp(state.xp, action),
-      maxXp: maxXp(state.maxXp, action),
+      maxXp: maxXp(state.lvl, action),
   };
 }

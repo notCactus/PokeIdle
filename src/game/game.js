@@ -9,7 +9,6 @@ const UPDATE_TIME = 1000;
 const XP_GAIN_PER_UPDATE = 1;
 
 const game = (store) => {
-  console.log('loop');
   passiveTrainerXp(
     () => store.dispatch({type: 'ADD_XP', xp: XP_GAIN_PER_UPDATE}),
     () => store.getState().trainer.xp,
@@ -20,7 +19,7 @@ const game = (store) => {
 
 const passiveTrainerXp = (addXp, xp, maxXp, addLevel) => {
   addXp();
-  console.log(`Current: ${xp()}, requiered: ${maxXp()}`);
+  //console.log(`Current: ${xp()}, requiered: ${maxXp()}`);
   if(xp() >= maxXp())
     addLevel();
 }

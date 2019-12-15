@@ -46,8 +46,9 @@ function setStarters(setStartersInStore){
 
 //Gives starter to trainer
 function starterToTrainer(cb, id){
-  getPokemon(id)
-  .then(pokemon => cb(pokemon));
+  if(id !== "")
+    getPokemon(id)
+    .then(pokemon => cb(pokemon));
 }
 
 class CreateProfilePresentation extends Component {
