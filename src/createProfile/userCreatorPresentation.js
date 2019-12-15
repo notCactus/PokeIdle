@@ -37,9 +37,14 @@ const SignUp = ({history}) => {
         event.preventDefault();
         const {email, password} = event.target.elements;
         try {
-            await app
+            let newUser = await app
                 .auth()
                 .createUserWithEmailAndPassword(email.value, password.value);
+            // Add a new document to the database.
+            app.firestore().collection('pokemon').add({
+                name:'s',
+                dfsdf: 'fs131esf',
+            })
             history.push("/firebaseTest"); // Pushes the state "/firebaseTest" to history. (change this later)
         } catch (error) {
             alert(error);

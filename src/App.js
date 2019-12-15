@@ -23,6 +23,8 @@ import {pokemon} from './reducers/pokemon/pokemonStore';
 import {trainer} from './reducers/trainer/trainerStore';
 import createProfile from './reducers/createProfile/createProfileStore';
 
+import app from './base';
+
 function reducer(state = {}, action) {
     return {
         pokemon: pokemon(state.pokemon, action),
@@ -33,9 +35,20 @@ function reducer(state = {}, action) {
 
 const store = createStore(reducer);
 
+function testing() {
+  app.auth().onAuthStateChanged(user => {
+    if(user){
+      console.log(user);
+    } else {
+      console.log("USER HAS/IS LOGGED OUT.");
+    }
+    });
+}
+
 function App() {
   return (
     <AuthProvider>
+      {testing() /* for testing, shows logged in user info */}
       <Provider store={store}>
         <div className="App">
           <Sidebar/>

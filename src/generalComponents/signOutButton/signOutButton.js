@@ -1,15 +1,12 @@
 import React from 'react';
 import app from '../../base';
-/*
-function signOutButton() {
-    return(
-        <button onClick={() => app.auth().signOut()}>Sign out</button>
-    );
-}*/
 
 const SignOutButton = () => {
     return(
-        <button onClick={() => app.auth().signOut()}>Sign out</button>
+        <button onClick={() => {
+            app.auth().signOut()
+            alert("You have signed out.")
+            }}>Sign out</button>
     );
 };
 
