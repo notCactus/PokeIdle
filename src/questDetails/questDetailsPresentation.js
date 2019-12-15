@@ -56,7 +56,11 @@ class QuestDetailsPresentation extends Component{
       loading: this.state.loading,
       roster: this.state.rosterView,
     });
-    this.setState({questRoster: this.props.roster.map(pokemon => pokemon['id'])});
+    this.setState({questRoster: this.props.roster.filter(pokemon =>
+      this.party.includes(pokemon['id'])
+    )
+    .map(pokemon => pokemon.id)
+    });
   }
   popup(){
     if(this.state.popup)
@@ -110,6 +114,7 @@ class QuestDetailsPresentation extends Component{
         name={pokemon.id}
         level={pokemon.lvl}
         xp={pokemon.xp}
+        pokemonId={pokemon.id}
         maxXp={pokemon.requiredXp}
         onToggle={this.onToggle}
       />
