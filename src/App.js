@@ -10,6 +10,8 @@ import CreateProfile from './createProfile/createProfile';
 import Shop from './shop/shop';
 import LoginPresentation from './login/loginPresentation';
 
+import app from'./base';
+
 import FirebaseTest from './firebaseTest/firebaseTest';
 import { AuthProvider } from './Auth';
 import PrivateRoute from './privateRoute';
