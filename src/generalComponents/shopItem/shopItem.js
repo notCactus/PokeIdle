@@ -39,8 +39,10 @@ function ShopItem({name, sprite, cost, description}){
             </div>
             {cost ? <div className="costDetails">
                 <p>{`${cost.amount} ${cost.currency}s`}</p>
-                <Clickable text="Buy" style={{width:"50px", height:"30px"}} onClick={showPopup}/>
-                <input type="number" min="1" max="999" value={amount} onChange={e => setAmount(e.target.value)}/>
+                <div>
+                    <input type="number" min="1" max="999" value={amount} onChange={e => setAmount(e.target.value)}/>
+                    <Clickable text="Buy" style={{width:"50px", height:"30px"}} onClick={showPopup}/>
+                </div>
             </div> : undefined}
             {popup}
         </div>
