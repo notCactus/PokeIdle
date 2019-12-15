@@ -10,6 +10,8 @@ import CreateProfile from './createProfile/createProfile';
 import Shop from './shop/shop';
 import LoginPresentation from './login/loginPresentation';
 
+import app from'./base';
+
 import FirebaseTest from './firebaseTest/firebaseTest';
 import { AuthProvider } from './Auth';
 import PrivateRoute from './privateRoute';
@@ -31,9 +33,90 @@ function reducer(state = {}, action) {
     };
 }
 
+function writeToDB(){
+
+  /*let test = app.firestore().collection('shop').doc('2');
+  debugger;
+  app.firestore().collection('shop').doc('0').set(
+    {
+      name:'medicine',
+      menuIcon:'shop_medicine.png',
+      pokeMenu:false,
+      items:[
+        'potion',
+        'super-potion',
+        'hyper-potion'
+      ]
+    }
+  );
+  app.firestore().collection('shop').doc('1').set(
+    {
+      name:'balls',
+      menuIcon:'shop_balls.png',
+      pokeMenu:false,
+      items:[
+        'poke-ball',
+        'great-ball',
+        'ultra-ball'
+      ]
+    }
+  );
+  app.firestore().collection('shop').doc('2').set(
+    {
+      name:'pokemon',
+      menuIcon:'shop_pokemon.png',
+      pokeMenu:true,
+      items:[
+        'pikachu',
+        'shroomish',
+        'latios',
+        'kangaskhan',
+        'tyranitar'
+      ]
+    }
+  );
+  app.firestore().collection('shop').doc('menus').set(
+    {
+      0:{
+        name:'medicine',
+        menuIcon:'shop_medicine.png',
+        pokeMenu:false,
+        items:[
+          'potion',
+          'super-potion',
+          'hyper-potion'
+        ]
+      },
+      1:{
+        name:'balls',
+        menuIcon:'shop_balls.png',
+        pokeMenu:false,
+        items:[
+          'poke-ball',
+          'great-ball',
+          'ultra-ball'
+        ]
+      },
+      2:{
+        name:'pokemon',
+        menuIcon:'shop_pokemon.png',
+        pokeMenu:true,
+        items:[
+          'pikachu',
+          'shroomish',
+          'latios',
+          'kangaskhan',
+          'tyranitar'
+        ]
+      }
+    }
+  );*/
+}
+
 const store = createStore(reducer);
 
 function App() {
+  writeToDB();
   return (
     <AuthProvider>
       <Provider store={store}>

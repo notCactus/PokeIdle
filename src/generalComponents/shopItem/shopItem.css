@@ -25,27 +25,34 @@
 }
 
 #shopItem .textDetails p {
-    max-width: 80%;
+    max-width: 200px;
 }
 
 #shopItem .costDetails {
     display: flex;
+    flex-wrap: wrap;
     margin-top: auto;
     margin-bottom: auto;
     max-width: 40%;
 }
-#shopItem .costDetails p, #shopItem .costDetails input, #shopItem .costDetails div {
+#shopItem .costDetails p {
     margin: 0 1em 0 0;
 }
 
+#shopItem .costDetails > div {
+    margin: 0 1em 0 0;
+    display: flex;
+}
+
 #shopItem img {
-    width: 60px;
-    height: 60px;
+    width: 10vw;
+    max-width: 60px;
+    max-height: 60px;
 }
 
 #shopItem input {
     width: 40px;
-    height: 20px;
+    height: 25px;
 }
 
 #shopItem .clickable {

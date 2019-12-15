@@ -5,6 +5,26 @@ import ShopItem from '../generalComponents/shopItem/shopItem';
 import app from '../base'
 import './shop.css';
 
+/* Kanske flytta denna metod till en separat fil som skriver till databasen? */
+function updateMenuItems(menuNo) {
+    const POKE_AMOUNT = 807;
+    let taken = [];
+    let randPoke;
+    let randPokes = [];
+    for (let i = 0; i < 10; i++){
+        do {
+            randPoke = Math.floor(Math.random() * (POKE_AMOUNT + 1))
+        } while (taken[randPoke]);
+        taken[randPoke] = true;
+        randPokes.push(randPoke);
+    }
+    const menu = app.firestore().collection('shop').doc(`${menuNo}`);
+    menu.get().then(doc => {
+        doc.items = randPokes;
+        menu.set(doc);
+    });
+  }
+
 function firstMenu(menus){
     for (const menu in menus)
         return menu;
@@ -19,7 +39,7 @@ function getPokeCost(pokemon){
         cost.amount = Math.floor(1000 / cr);
     } else if (bst < 500) {
         cost.currency = 'Great Ball';
-        cost.amount = Math.floor(500 / cr);
+        cost.amount = Math.floor(400 / cr);
     } else {
         cost.currency = 'Ultra Ball';
         cost.amount = Math.floor(300 / cr);
@@ -57,15 +77,15 @@ function Shop(){
     const [menus, setMenus] = useState(createMenu());
 
     useEffect(() => {
-        let retrievedShop;
-        app.database().ref('/shop').once('value').then(shopData => {
-            retrievedShop = shopData.val();
-            Promise.all(retrievedShop.map(menu => 
+        let retreivedShop =[];
+        app.firestore().collection('shop').get().then(docs => {
+            docs.forEach(doc => retreivedShop.push(doc.data()));
+            Promise.all(retreivedShop.map(menu => 
                 Promise.all(menu.items.map(item => 
                     menu.pokeMenu ? Promise.all([getPokemon(item), getSpecies(item)]) : getItem(item)
                 ))
             )).then(items => {
-                setMenus(createMenu(items, retrievedShop));
+                setMenus(createMenu(items, retreivedShop));
             })
         })
     }, []);
