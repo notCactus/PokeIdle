@@ -1,5 +1,6 @@
 var firebase = require('firebase/app');
 require('firebase/auth');
+require('firebase/firestore');
 require('firebase/database');
 require('firebase/firestore');
 

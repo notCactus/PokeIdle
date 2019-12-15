@@ -39,12 +39,22 @@ function reducer(state = {}, action) {
 
 const store = createStore(reducer);
 
+function testing() {
+  app.auth().onAuthStateChanged(user => {
+    if(user){
+      console.log(user);
+    } else {
+      console.log("USER HAS/IS LOGGED OUT.");
+    }
+    });
+}
 //Contains interval id of the game
 const game = startGame(store);
 
 function App() {
   return (
     <AuthProvider>
+      {testing() /* for testing, shows logged in user info */}
       <Provider store={store}>
         <div className="App">
           <Sidebar/>

@@ -1,5 +1,6 @@
 import ProfilePresentation from './profilePresentation';
 import { connect } from 'react-redux';
+
 const mapStateToProps = (state) => {
     return {
         username: state.createProfile.username,
