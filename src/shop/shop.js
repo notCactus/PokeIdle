@@ -5,6 +5,13 @@ import ShopItem from '../generalComponents/shopItem/shopItem';
 import app from '../base'
 import './shop.css';
 
+/*
+    TODO:
+    Visa hur mycket pengar och pokebollar spelaren har
+    Fixa transaction
+    Updatera med random pokemon varje dag?
+*/
+
 /* Kanske flytta denna metod till en separat fil som skriver till databasen? */
 function updateMenuItems(menuNo) {
     const POKE_AMOUNT = 807;
@@ -51,19 +58,21 @@ function createMenu(items, shopData){
     if (items){
         let menusTemp = {};
         shopData.forEach((menu, i) =>
-            menusTemp[menu.name] = {menuIcon: <img src={'./' +  menu.menuIcon} alt={menu.name}/>, items: items[i].map(item => 
+            menusTemp[menu.name] = {menuIcon: <img src={'./' +  menu.menuIcon} alt={menu.name}/>, items: items[i].map((item, j) => 
                 menu.pokeMenu ?
                 <ShopItem
                     name={item[1].names.filter(name => name.language.name === 'en')[0].name}
                     sprite={item[0].sprites.front_default}
                     cost={getPokeCost(item)}
                     description={'Type: ' + item[0].types.map(type => type.type.name)}
+                    key={j}
                 /> :
                 <ShopItem 
                     name={item.names.filter(name => name.language.name === 'en')[0].name}
                     sprite={item.sprites.default}
                     cost={{amount: item.cost, currency:'coin'}}
                     description={item.effect_entries[0].short_effect}
+                    key={j}
                 />
             )}
         );

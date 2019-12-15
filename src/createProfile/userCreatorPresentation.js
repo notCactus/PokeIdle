@@ -25,11 +25,15 @@ const ProfileImageAndUsername=({starters, username, onUsernameChange, chosenStar
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
         <input type="text" placeholder="Enter your username..." onInput={(e) => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> d69fd20f4a89577ae087db269f10ebb0e8ef1385
             let newName = e.target.value;
 
             clearTimeout(debounce);
             debounce = setTimeout(() => onUsernameChange(newName), 300)
-            
+
         }}/>
         <SignUp chosenStarter={chosenStarter}
                 starters={starters}
@@ -92,10 +96,30 @@ const SignUp = ({username, chosenStarter, starters}) => {
         }
     });
 
+<<<<<<< HEAD
     if(redirectState === 'redirect'){
         console.log("REDIRECT!!!");
         return(<Redirect to="/profile"/>);
     }else {
+=======
+    // Change this for how the render should look
+    return (
+        <div className="signUp">
+            <form onSubmit={handleSignUp}>
+                <label>
+                    Email:
+                    <input name="email" type="email" placeholder="Email"/>
+                </label>
+                <label>
+                    Password:
+                    <input name="password" type="password" placeholder="Password"/>
+                </label>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    )
+}
+>>>>>>> d69fd20f4a89577ae087db269f10ebb0e8ef1385
 
         // Change this for how the render should look
         return (
@@ -126,7 +150,7 @@ const ProfileStarters=({starters, onStarterClick, chosenStarter}) => (
                     onStarterClick(e.target.alt);
 
                     e.currentTarget.classList.add("img-Selected");
-                    
+
                     for(let i = 0; i < e.currentTarget.parentNode.children.length; i++){
                         let child = e.currentTarget.parentNode.children[i];
                         if(e.currentTarget.alt !== child.alt){

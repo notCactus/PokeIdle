@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Popup from '../popup/popup';
 import Clickable from '../clickable/clickable';
 import ConfirmButton from '../confirmWindow/confirmWindow';
+import ItemDetails from '../itemDetails/itemDetails';
 import './shopItem.css';
 
 function ShopItem({name, sprite, cost, description}){
@@ -30,13 +31,11 @@ function ShopItem({name, sprite, cost, description}){
 
     return (
         <div id="shopItem">
-            <div className="generalDetails">
-                <img src={sprite} alt={name}/>
-                <div className="textDetails">
-                    <h3>{name}</h3>
-                    <p>{description}</p>
-                </div>
-            </div>
+            <ItemDetails
+                name={name}
+                sprite={sprite}
+                description={description}
+            />
             {cost ? <div className="costDetails">
                 <p>{`${cost.amount} ${cost.currency}s`}</p>
                 <div>

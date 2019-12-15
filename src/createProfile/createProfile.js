@@ -1,4 +1,4 @@
-import CreateProfilePresentaion from './createProfilePresentation';
+import CreateProfilePresentation from './createProfilePresentation';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -28,6 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
     }),
 });
 
-const CreateProfile = connect(mapStateToProps, mapDispatchToProps)(CreateProfilePresentaion);
+const CreateProfile = connect(mapStateToProps, mapDispatchToProps)(CreateProfilePresentation);
 
 export default CreateProfile;

@@ -25,7 +25,13 @@ import {pokemon} from './reducers/pokemon/pokemonStore';
 import {trainer} from './reducers/trainer/trainerStore';
 import createProfile from './reducers/createProfile/createProfileStore';
 
+<<<<<<< HEAD
 import { withRouter } from 'react-router-dom';
+=======
+import startGame from './game/game';
+
+
+>>>>>>> d69fd20f4a89577ae087db269f10ebb0e8ef1385
 
 function reducer(state = {}, action) {
     return {
@@ -37,6 +43,7 @@ function reducer(state = {}, action) {
 
 const store = createStore(reducer);
 
+<<<<<<< HEAD
 function testing() {
   app.auth().onAuthStateChanged(user => {
     if(user){
@@ -46,6 +53,10 @@ function testing() {
     }
     });
 }
+=======
+//Contains interval id of the game
+const game = startGame(store);
+>>>>>>> d69fd20f4a89577ae087db269f10ebb0e8ef1385
 
 function App() {
   return (
