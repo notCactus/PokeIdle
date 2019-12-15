@@ -1,0 +1,29 @@
+#inventoryItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: black solid 1px;
+}
+
+#inventoryItem .generalDetails, #inventoryItem #quantityDetails {
+    display: flex;
+}
+
+#inventoryItem .generalDetails img {
+    width: 5vw;
+    height: 5vw;
+}
+
+#inventoryItem .generalDetails h3 {
+    color: black;
+}
+
+#inventoryItem #quantityDetails p {
+    margin: auto 0.5em auto 0;
+}
+
+#inventoryItem #quantityDetails .clickable {
+    margin: auto 1em auto 0;
+    background-color:#687D69;
+    color:white;
+}

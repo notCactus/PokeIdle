@@ -6,26 +6,26 @@
 }
 .Profile .Popup > .popupContent{
   background-color: red;
+  border: red solid 2px;
   width: 300px;
-  color: white;
 }
 .Profile .Popup > .popupContent h3{
   margin: 0.2em;
+  color: white;
 }
-.Profile .Popup .PcMover p {
+.Profile .Popup .ConfirmWindow p {
  padding: 0.5em;
 }
-.Profile .Popup .PcMover {
+.Profile .Popup .ConfirmWindow {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f6d7b0;
   width: 100%;
   height: 120px;
 }
 
-.Profile .Popup .PcMover .clickable {
+.Profile .Popup .ConfirmWindow .clickable {
   background-color: #687D69;
   color: white;
   width: 80px;
@@ -65,12 +65,30 @@
   margin-right: auto;
 }
 
-.Profile .RosterView .MenuToggler > #options > .option{
+.Profile .MenuToggler > #options > .option{
   margin: 0.5em;
 }
 
-.Profile .RosterView .MenuToggler > #menuItems > .menuItem{
+.Profile .MenuToggler > #menuItems > .menuItem{
   margin: 0.2em;
+}
+
+.Profile .Popup .MenuToggler {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Profile .ConfirmWindow > p {
+  margin: 1em;
+}
+
+.Profile .Popup .MenuToggler > #options {
+  background-color: pink;
+}
+
+.Profile .Popup .MenuToggler > #menuItems {
+  background-color: white;
 }
 
 .Profile > .ProfileOverview h3 {

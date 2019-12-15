@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
 import RosterView from '../rosterView/rosterView';
 import Popup from '../generalComponents/popup/popup';
-import Clickable from '../generalComponents/clickable/clickable';
 import {getPokemon} from '../api/api';
+import PokeOptions from '../generalComponents/pokeOptions/pokeOptions';
 import './profile.css';
 
 class ProfilePresentation extends Component{
@@ -36,11 +36,9 @@ class ProfilePresentation extends Component{
       return <Popup
          title="What would you like to do?"
          exitFunction={this.exit}
-         view={(
-           <div className="PcMover">
-             <p>{`Would you like to move ${this.state.clickedPokemon.name} to your PC?`}</p>
-             <Clickable text="Confirm"/>
-           </div>)}
+         view={
+           <PokeOptions pokeName={this.state.clickedPokemon.name}/>
+         }
         />;
   }
   showRosterOption(e){
