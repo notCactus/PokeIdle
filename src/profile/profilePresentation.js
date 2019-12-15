@@ -3,6 +3,7 @@ import ProfileOverview from '../generalComponents/profileOverview/profileOvervie
 import RosterView from '../rosterView/rosterView';
 import Popup from '../generalComponents/popup/popup';
 import Clickable from '../generalComponents/clickable/clickable';
+import ConfirmWindow from '../generalComponents/confirmWindow/confirmWindow';
 import {getPokemon} from '../api/api';
 import './profile.css';
 
@@ -26,7 +27,7 @@ class ProfilePresentation extends Component{
             level={this.props.lvl}
             image={this.state.image}
           />
-        <RosterView roster={[].concat(this.props.starter)} clickEvent={this.showRosterOption}/>
+        <RosterView clickEvent={this.showRosterOption}/>
           {this.popup()}
       </div>
     );
@@ -37,11 +38,8 @@ class ProfilePresentation extends Component{
          title="What would you like to do?"
          exitFunction={this.exit}
          view={(
-           <div className="PcMover">
-             <p>{`Would you like to move ${this.state.clickedPokemon.name} to your PC?`}</p>
-             <Clickable text="Confirm"/>
-           </div>)}
-        />;
+           <ConfirmWindow toConfirm={`Would you like to move ${this.state.clickedPokemon.name} to your PC?`}/>
+         )}/>;
   }
   showRosterOption(e){
     const po = this.findPO(e.target)

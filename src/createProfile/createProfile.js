@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
     return {
         username: state.createProfile.username,
         starters: state.createProfile.starters,
+        chosenStarter: state.createProfile.chosenStarter,
     }
 }
 

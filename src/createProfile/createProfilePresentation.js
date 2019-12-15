@@ -35,13 +35,19 @@ function rollStarters(){
 // Sets random starters
 function setStarters(setStartersInStore){
     let starterIds = rollStarters();
-    
+
     let allStarters = starterIds.map(async(id) => {
         return await getPokemon(id);
     });
-    
+
     Promise.all(allStarters)
     .then((starters) => setStartersInStore(starters));
+}
+
+//Gives starter to trainer
+function starterToTrainer(cb, id){
+  getPokemon(id)
+  .then(pokemon => cb(pokemon));
 }
 
 class CreateProfilePresentation extends Component {
@@ -57,7 +63,7 @@ class CreateProfilePresentation extends Component {
         return (
             <div className="createProfile">
                     <UserCreator/>
-                <LinkButton text="START" linkTo="/profile"/>
+                <LinkButton text="START" linkTo="/profile" onClick={() => starterToTrainer(this.props.addToRoster, this.props.chosenStarter)}/>
                 <p>OR</p>
                 <LinkButton text="Login" linkTo="/login"/>
                 <p>FOR TESTING:</p>

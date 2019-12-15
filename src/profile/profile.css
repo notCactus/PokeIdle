@@ -84,6 +84,46 @@
   top: -20px;
   left: -25px;
 }
+.Profile .Popup {
+  width: 300px;
+}
+.Profile .Popup > div:nth-child(1){
+  background-color: #1fc8db;
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  width: 300px;
+  color: white;
+}
+.Profile .Popup .ConfirmWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  height: 100px;
+  border-color: #1fc8db;
+  border-left-style: solid;
+  border-bottom-style: solid;
+  border-right-style: solid;
+}
+
+.Profile .Popup .ConfirmWindow .clickable {
+  background-color: #1fc8db;
+  color: white;
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Profile .Popup > div:nth-child(1) h3:nth-of-type(2){
+  height: 25px;
+  width: 30px;
+  text-align: center;
+  background-color: black;
+}
+.Profile .Popup > div:nth-child(1) h3{
+  margin: 0.3em;
+}
 @media screen and (max-width: 500px) {
   .Profile > .ProfileOverview {
     width: 80%;
