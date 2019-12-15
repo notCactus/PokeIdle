@@ -6,6 +6,6 @@ export default function createProfile(state = {}, action){
     return {
         username: username(state.username, action),
         starters: starterPokemon(state.starters, action),
-        chosenStarter: chosenStarter(state.starter, action),
+        chosenStarter: chosenStarter(state.chosenStarter, action),
     };
 }

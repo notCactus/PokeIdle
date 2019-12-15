@@ -25,7 +25,7 @@ import {pokemon} from './reducers/pokemon/pokemonStore';
 import {trainer} from './reducers/trainer/trainerStore';
 import createProfile from './reducers/createProfile/createProfileStore';
 
-import app from './base';
+import { withRouter } from 'react-router-dom';
 
 function reducer(state = {}, action) {
     return {
