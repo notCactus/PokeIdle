@@ -56,6 +56,7 @@ class RosterViewPresentation extends Component {
         level={pokemon.lvl}
         xp={pokemon.xp}
         maxXp={pokemon.requiredXp}
+        pokemonId={pokemon.id}
       />
     );
   }

@@ -56,8 +56,7 @@ class QuestDetailsPresentation extends Component{
       loading: this.state.loading,
       roster: this.state.rosterView,
     });
-    Promise.all(this.party.map(id => getPokemon(id)))
-    .then(party => this.setState({questRoster: party.map(pokemon => pokemon['name'])}));
+    this.setState({questRoster: this.props.roster.map(pokemon => pokemon['id'])});
   }
   popup(){
     if(this.state.popup)
@@ -106,12 +105,13 @@ class QuestDetailsPresentation extends Component{
   }
   createRosterItems(r){
     return r.map((pokemon, i) =>
-      <ProfileOverview
+      <RosterSelector
         image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
         name={pokemon.id}
         level={pokemon.lvl}
         xp={pokemon.xp}
         maxXp={pokemon.requiredXp}
+        onToggle={this.onToggle}
       />
     );
   }
