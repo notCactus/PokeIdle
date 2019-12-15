@@ -5,6 +5,7 @@ import pcRoster from './pcRoster';
 import roster from './roster';
 import stamina from './stamina';
 import xp from './xp';
+import maxXp from './maxXp';
 
 export const trainer = (state = {}, action) => {
   return {
@@ -15,5 +16,6 @@ export const trainer = (state = {}, action) => {
       roster: roster(state.roster, action),
       stamina: stamina(state.stamina, action),
       xp: xp(state.xp, action),
+      maxXp: maxXp(state.lvl, action),
   };
 }

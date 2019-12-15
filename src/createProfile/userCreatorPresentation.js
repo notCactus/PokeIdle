@@ -20,12 +20,12 @@ const ProfileImageAndUsername=({username, onUsernameChange}) => {
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
         <input type="text" placeholder="Enter your username..." onInput={(e) => {
-            
+
             let newName = e.target.value;
 
             clearTimeout(debounce);
             debounce = setTimeout(() => onUsernameChange(newName), 300)
-            
+
         }}/>
         <SignUpWithRouter/>
     </div>
@@ -51,11 +51,11 @@ const SignUp = ({history}) => {
         <div className="signUp">
             <form onSubmit={handleSignUp}>
                 <label>
-                    Email: 
+                    Email:
                     <input name="email" type="email" placeholder="Email"/>
                 </label>
                 <label>
-                    Password: 
+                    Password:
                     <input name="password" type="password" placeholder="Password"/>
                 </label>
                 <button type="submit">Sign Up</button>
@@ -76,7 +76,7 @@ const ProfileStarters=({starters, onStarterClick}) => (
                 (e) => {
                     onStarterClick(e.target.alt);
                     e.currentTarget.classList.add("img-Selected");
-                    
+
                     for(let i = 0; i < e.currentTarget.parentNode.children.length; i++){
                         let child = e.currentTarget.parentNode.children[i];
                         if(e.currentTarget.alt !== child.alt){

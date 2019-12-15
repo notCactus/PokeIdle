@@ -24,9 +24,11 @@ class ProfilePresentation extends Component{
           <ProfileOverview
             name={this.props.username}
             level={this.props.lvl}
+            xp={this.props.trainerXp}
+            maxXp={this.props.trainerMaxXp}
             image={this.state.image}
           />
-        <RosterView roster={[].concat(this.props.starter)} clickEvent={this.showRosterOption}/>
+        <RosterView clickEvent={this.showRosterOption}/>
           {this.popup()}
       </div>
     );
