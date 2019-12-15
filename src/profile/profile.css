@@ -119,10 +119,6 @@
   background-color: white;
   color: black;
   height: 100px;
-  border-color: #1fc8db;
-  border-left-style: solid;
-  border-bottom-style: solid;
-  border-right-style: solid;
 }
 
 .Profile .Popup .ConfirmWindow .clickable {

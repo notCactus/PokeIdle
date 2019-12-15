@@ -5,6 +5,10 @@
     border-bottom: black solid 1px;
 }
 
+#inventoryItem p {
+    color: black;
+}
+
 #inventoryItem .generalDetails, #inventoryItem #quantityDetails {
     display: flex;
 }
