@@ -11,7 +11,12 @@ class CharacterInformation extends Component{
           <h3>Lv. {this.props.level}</h3>
         </div>
         <Bar current="" max="" color="green" width="90%" height="15px"/>
-        <Bar current="" max="" color="blue" width="80%" height="10px"/>
+        <Bar
+          current={this.props.xo}
+          max={this.props.xp}
+          color="blue" 
+          width="80%"
+          height="10px"/>
       </div>
     );
   }

@@ -25,6 +25,10 @@ import {pokemon} from './reducers/pokemon/pokemonStore';
 import {trainer} from './reducers/trainer/trainerStore';
 import createProfile from './reducers/createProfile/createProfileStore';
 
+//import startGame from './game/game';
+
+
+
 function reducer(state = {}, action) {
     return {
         pokemon: pokemon(state.pokemon, action),
@@ -34,6 +38,9 @@ function reducer(state = {}, action) {
 }
 
 const store = createStore(reducer);
+
+//Contains interval id of the game
+//const game = startGame(store);
 
 function App() {
   return (

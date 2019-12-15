@@ -41,7 +41,7 @@ function setStarters(setStartersInStore){
     });
 
     Promise.all(allStarters)
-    .then((starters) => setStartersInStore(starters));
+    .then((starters) => setStartersInStore(starters))
 }
 
 //Gives starter to trainer
