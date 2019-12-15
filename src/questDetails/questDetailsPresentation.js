@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
 import RosterSelector from '../generalComponents/rosterSelector/rosterSelector';
 import DetailedQuestInformation from '../generalComponents/detailedQuestInformation/detailedQuestInformation';
-import Clickable from '../generalComponents/clickable/clickable';
 import MenuToggler from '../generalComponents/menuToggler/menuToggler';
 import Popup from '../generalComponents/popup/popup';
 import ConfirmWindow from '../generalComponents/confirmWindow/confirmWindow';
@@ -86,7 +84,7 @@ class QuestDetailsPresentation extends Component{
     if(idHolder !== false){
       if(!this.party.includes(idHolder.dataset.pokemon))
         this.party.push(idHolder.dataset.pokemon);
-      else this.party = this.party.filter(id => id != idHolder.dataset.pokemon);
+      else this.party = this.party.filter(id => id !== idHolder.dataset.pokemon);
     }
   }
 

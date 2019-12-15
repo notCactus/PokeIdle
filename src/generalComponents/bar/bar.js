@@ -9,13 +9,6 @@ function barVisuals({width, height, color}) {
   }
 }
 
-function fillerVisuals({color, width}) {
-  return {
-    color: color,
-    width: width,
-  };
-}
-
 class Bar extends Component{
   constructor(props){
     super(props);

@@ -9,11 +9,7 @@ export default function items(state=[], action){
 
     } else if (action.type === 'REMOVE_ITEMS'){
         // Items are removed based on item ID.
-        return state.filter((i) => {
-            if(i.id != action.item.id){
-                return i;
-            }
-        });
+        return state.filter((i) => i.id !== action.item.id);
 
     } else{
         return state;

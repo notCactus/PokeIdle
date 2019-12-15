@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Clickable from '../clickable/clickable';
 import { Link } from "react-router-dom"
 import './linkButton.css';

@@ -10,11 +10,7 @@ export default function roster(state=[], action){
         }
         return state;
     } else if (action.type === 'REMOVE_FROM_ROSTER'){
-        return state.filter((p) => {
-            if(p.id != action.pokemon.id){
-                return p;
-            }
-        });
+        return state.filter((p) => p.id !== action.pokemon.id);
     } else{
         return state;
     }

@@ -49,7 +49,7 @@ function testing() {
     });
 }
 //Contains interval id of the game
-const game = startGame(store);
+startGame(store);
 
 function App() {
   return (

@@ -59,10 +59,6 @@ function starterToTrainer(cb, id){
 }
 
 class CreateProfilePresentation extends Component {
-    constructor(props){
-        super(props);
-    }
-
     componentDidMount(){
         setStarters(this.props.setStarters);
     }
