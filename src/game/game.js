@@ -15,6 +15,7 @@ const game = (store) => {
     () => store.getState().trainer.maxXp,
     () => store.dispatch({type: 'ADD_LVL', lvl: 1})
   );
+  passivePokemonXp(() => store.getState().roster);
 }
 
 const passiveTrainerXp = (addXp, xp, maxXp, addLevel) => {
@@ -22,4 +23,7 @@ const passiveTrainerXp = (addXp, xp, maxXp, addLevel) => {
   //console.log(`Current: ${xp()}, requiered: ${maxXp()}`);
   if(xp() >= maxXp())
     addLevel();
+}
+const passivePokemonXp = (pokemon) => {
+
 }

@@ -16,12 +16,15 @@ class QuestDetailsPresentation extends Component{
     this.exit = this.exit.bind(this);
     this.showPopup = this.showPopup.bind(this);
     this.popup = this.popup.bind(this);
+      this.fetchImages = this.fetchImages.bind(this);
     this.state = {
+      rosterImages: [],
       popup: false,
       questRoster: [],
     };
   }
   render() {
+    this.fetchImages();
     return (
       <div className="QuestDetails">
         <DetailedQuestInformation
@@ -40,8 +43,13 @@ class QuestDetailsPresentation extends Component{
         {this.popup()}
       </div>
     );
-  }
-
+    }  fetchImages(){
+        if (this.state.rosterImages.length < 1 && this.props.roster.length > 0)
+          Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id)))
+          .then(roster => this.setState({
+            rosterImages: roster.map(pokemon => pokemon['sprites']['front_default'])
+          }));
+      }
   showPopup(){
     this.setState({
       popup: true,
@@ -97,12 +105,13 @@ class QuestDetailsPresentation extends Component{
       };
   }
   createRosterItems(r){
-    return r.map(pokemon =>
-      <RosterSelector
-        name={pokemon['name']}
-        image={pokemon['sprites']['front_default']}
-        pokemonId={pokemon['id']}
-        onToggle={this.onToggle}
+    return r.map((pokemon, i) =>
+      <ProfileOverview
+        image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
+        name={pokemon.id}
+        level={pokemon.lvl}
+        xp={pokemon.xp}
+        maxXp={pokemon.requiredXp}
       />
     );
   }

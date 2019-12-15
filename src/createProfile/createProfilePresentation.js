@@ -48,7 +48,14 @@ function setStarters(setStartersInStore){
 function starterToTrainer(cb, id){
   if(id !== "")
     getPokemon(id)
-    .then(pokemon => cb(pokemon));
+    .then(pokemon => cb({
+      id: pokemon.name,
+      lvl: 1,
+      xp: 1,
+      requiredXp: (lvl) => Math.pow(10,lvl),
+      hp: 10,
+      questId: "",
+    }));
 }
 
 class CreateProfilePresentation extends Component {
