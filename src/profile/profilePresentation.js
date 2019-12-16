@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
 import RosterView from '../rosterView/rosterView';
-import Popup from '../generalComponents/popup/popup';
+/*import Popup from '../generalComponents/popup/popup';
 import {getPokemon} from '../api/api';
-import PokeOptions from '../generalComponents/pokeOptions/pokeOptions';
+import PokeOptions from '../generalComponents/pokeOptions/pokeOptions';*/
 import './profile.css';
 
 class ProfilePresentation extends Component{
   constructor(props){
     super(props);
-    this.showPopup = this.findPO.bind(this);
+    /*this.showPopup = this.findPO.bind(this);
     this.exit = this.exit.bind(this);
-    this.showRosterOption = this.showRosterOption.bind(this);
+    this.showRosterOption = this.showRosterOption.bind(this);*/
     this.state = {
       image:
       `https://avatars.dicebear.com/v2/gridy/${this.props.username}.svg`,
-      popup: false,
+      /*popup: false,*/
     }
   }
   render(){
@@ -30,40 +30,12 @@ class ProfilePresentation extends Component{
             stamina={this.props.trainerStamina}
             maxStamina={this.props.trainerMaxStamina}
           />
-        <RosterView clickEvent={this.showRosterOption}/>
-          {this.popup()}
-      </div>
+        <RosterView /*clickEvent={this.showRosterOption}/>
+          {this.popup()}*/
+      /></div>
     );
   }
-  popup(){
-    if(this.state.popup)
-      return <Popup
-         title="What would you like to do?"
-         exitFunction={this.exit}
-         view={
-           <PokeOptions pokeName={this.state.clickedPokemon.name}/>
-         }
-        />;
-  }
-  showRosterOption(e){
-    const po = this.findPO(e.target)
-    if(po !== false)
-      getPokemon(po.dataset.pokemon)
-      .then(pokemon =>
-      this.setState({
-          image: this.state.image,
-          popup: true,
-          clickedPokemon: pokemon,
-        })
-      )
-  }
-  exit(){
-    this.setState({
-      image: this.state.image,
-      popup: false,
-    })
-  }
-
+/*
   // TODO: move this func to seperate document
   findPO(element){
     while(![...element.classList].includes('menuItem') && element !== null){
@@ -71,5 +43,5 @@ class ProfilePresentation extends Component{
         return element;
       element= element.parentElement
     } return false;
-  }
+  }*/
 } export default ProfilePresentation;
