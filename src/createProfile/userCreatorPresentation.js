@@ -60,28 +60,29 @@ const SignUp = ({username, chosenStarter, starters}) => {
                 .auth()
                 .createUserWithEmailAndPassword(email.value, password.value)
                 .then((result) => {
+                    // for debugging
                     console.log("RESULT:");
                     console.log(result);
-                    // Add a new document to the database.
-                    app.firestore().collection('pokemon').add({
+
+                    // Add a new trainer to the database.
+                    app.firestore().collection('trainer').doc(result.user.uid).set({
+                        username: username,
+                        uid: result.user.uid,
+                        lvl: 1,
+                        maxStamina: 20,
+                        stamina: 20,
+                        xp: 0,
+                        currency: 0,
+                    });
+
+                    // Adds the starter to the trainer.
+                    app.firestore().collection('trainer').doc(result.user.uid).collection("pc").doc(chosenStarter).set({
                         name: chosenStarter,
                         id: starterObject.id,
                         uid: result.user.uid,
                         hp: starterObject.stats[5].base_stat,
                         lvl: 1,
                         questId: '',
-                        xp: 0,
-                        inRoster: false,
-                    });
-                    return result;
-                })
-                .then((result) => {
-                    // Add a new document to the database.
-                    app.firestore().collection('trainer').add({
-                        username: username,
-                        uid: result.user.uid,
-                        lvl: 1,
-                        stamina: 20,
                         xp: 0,
                     });
 
@@ -94,7 +95,6 @@ const SignUp = ({username, chosenStarter, starters}) => {
     });
 
     if(redirectState === 'redirect'){
-        console.log("REDIRECT!!!");
         return(<Redirect to="/profile"/>);
     }else {
 
