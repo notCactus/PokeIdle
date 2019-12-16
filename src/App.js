@@ -12,8 +12,6 @@ import LoginPresentation from './login/loginPresentation';
 
 import app from'./base';
 
-import FirebaseTest from './firebaseTest/firebaseTest';
-import { AuthProvider } from './Auth';
 import PrivateRoute from './privateRoute';
 
 import './App.css';
@@ -52,7 +50,6 @@ function App() {
 
   if(status !== "loading"){
     return (
-      <AuthProvider>
         <Provider store={store}>
           <div className="App">
             <Sidebar/>
@@ -80,17 +77,13 @@ function App() {
                 }
               />
               <PrivateRoute path="/shop" component={Shop}/>
-              <Route path="/firebaseTest" component={FirebaseTest}/>
-              <PrivateRoute path="/private" component={FirebaseTest}/>
               <Route path="/login" component={LoginPresentation}/>
             </div>
           </div>
         </Provider>
-      </AuthProvider>
     );
   } else {
     return (
-      <AuthProvider>
         <Provider store={store}>
           <div className="App">
             <div>
@@ -98,12 +91,10 @@ function App() {
               <Route path="/createProfile"
               render = {(props) => <CreateProfile/>}
               />
-              <Route path="/firebaseTest" component={FirebaseTest}/>
               <Route path="/login" component={LoginPresentation}/>
             </div>
           </div>
         </Provider>
-      </AuthProvider>
     );
   }
 } export default App;

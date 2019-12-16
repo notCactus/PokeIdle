@@ -1,7 +1,6 @@
-import React, {useCallback, useContext} from 'react';
+import React, {useCallback} from 'react';
 import {withRouter, Redirect} from 'react-router';
 import app from '../base';
-import {AuthContext} from '../Auth';
 
 import './login.css';
 
@@ -22,20 +21,20 @@ const Login = ({history}) => {
                 await app
                     .auth()
                     .signInWithEmailAndPassword(email.value, password.value);
-                history.push("/createProfile"); // This should be changed to something else in production.
+                history.push("/profile");
             } catch (error) {
                 alert(error);
             }
         }, [history]
     );
 
-    const {currentUser} = useContext(AuthContext);
+    let currentUser = app.auth().currentUser;
 
     // Redirects once the user has logged in.
     if(currentUser) {
         return <Redirect to="/profile"/>;
     }
-
+    
     return (
         <div>
             <h1>Log in</h1>
