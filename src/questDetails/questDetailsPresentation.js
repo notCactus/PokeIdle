@@ -122,6 +122,7 @@ class QuestDetailsPresentation extends Component{
         maxXp={pokemon.requiredXp(pokemon.lvl)}
         pokemonId={pokemon.id}
         onToggle={this.onToggle}
+        toggle={this.state.party.length < this.props.quest.rosterCapacity}
       />
     );
   }

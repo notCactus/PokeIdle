@@ -12,7 +12,7 @@ class RosterSelector extends Component{
   }
   render() {
     return (
-      <div className="RosterSelector" onClick={this.selectToggle}>
+      <div className="RosterSelector" onClick={(e) => this.selectToggle(e, this.props.toggle)}>
         <ProfileOverview
           name={this.props.name}
           image={this.props.image}
@@ -25,8 +25,8 @@ class RosterSelector extends Component{
       </div>
     );
   }
-  selectToggle(e){
-    if(this.state.checked === 'red')
+  selectToggle(e, toggle){
+    if(toggle && this.state.checked === 'red')
       this.setState({checked: 'green'});
     else
       this.setState({checked: 'red'});

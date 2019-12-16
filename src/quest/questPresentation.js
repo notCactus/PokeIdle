@@ -47,14 +47,17 @@ class QuestPresentation extends Component{
               <QuestItem
                 questTitle="Killing Dittos"
                 difficulty="easy"
+                linkTo="/quest"
               />,
               <QuestItem
                 questTitle="Eating Magickarp"
                 difficulty="medium"
+                linkTo="/quest"
               />,
               <QuestItem
                 questTitle="Giving Pokémon Food"
                 difficulty="hard"
+                linkTo="/quest"
               />],
           }
         };
