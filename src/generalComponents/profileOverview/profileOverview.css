@@ -4,3 +4,88 @@
   linear-gradient(to top left,transparent 48%,black 51%) right/15.5% 100% no-repeat,
   linear-gradient(black,black) left/85% 100% no-repeat;
 }
+
+.ProfileOverview .Popup > .popupContent{
+  background-color: red;
+  border: red solid 2px;
+  width: 300px;
+}
+.ProfileOverview .Popup > .popupContent h3{
+  margin: 0.2em;
+  color: white;
+}
+.ProfileOverview .Popup .ConfirmWindow p {
+ padding: 0.5em;
+}
+.ProfileOverview .Popup .ConfirmWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+}
+
+.ProfileOverview .Popup .ConfirmWindow .clickable {
+  background-color: #687D69;
+  color: white;
+  width: 80px;
+}
+
+.ProfileOverview .Popup > div:nth-child(1) h3:nth-of-type(2){
+  height: 25px;
+  width: 30px;
+  text-align: center;
+  background-color: black;
+}
+
+.ProfileOverview .Popup .MenuToggler {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ProfileOverview .Popup .MenuToggler > #options {
+  background-color: pink;
+}
+
+.ProfileOverview .Popup .MenuToggler > #menuItems {
+  background-color: white;
+}
+
+.ProfileOverview .Popup {
+  width: 300px;
+}
+.ProfileOverview .Popup > div:nth-child(1){
+  background-color: #1fc8db;
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  width: 300px;
+  color: white;
+}
+.ProfileOverview .Popup .ConfirmWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  height: 100px;
+}
+
+.ProfileOverview .Popup .ConfirmWindow .clickable {
+  background-color: #1fc8db;
+  color: white;
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ProfileOverview .Popup > div:nth-child(1) h3:nth-of-type(2){
+  height: 25px;
+  width: 30px;
+  text-align: center;
+  background-color: black;
+}
+.ProfileOverview .Popup > div:nth-child(1) h3{
+  margin: 0.3em;
+}

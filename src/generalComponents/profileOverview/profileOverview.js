@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import Avatar from '../avatar/avatar';
 import CharacterInformation from '../characterInformation/characterInformation';
 import Popup from '../popup/popup';
@@ -11,67 +11,43 @@ function style({width, height, maxWidth, borderBend}) {
     height: height,
   }
 }
-class ProfileOverview extends Component {
+/*class ProfileOverview extends Component {
   constructor(props){
     super(props);
     this.state = {
       popup: false
     }
-  }
+  }*/
+function ProfileOverview({pokemonId, width, height, maxWidth, canClick, image, name, health, level, xp, maxXp, stamina, maxStamina, inRoster, index}){
 
-  render(){
-    return (
-      <div className="ProfileOverview" data-pokemon={this.props.pokemonId} style={style(this.props)} onClick={this.props.canClick ? () => this.showPopup() : undefined}>
-        <Avatar
-          image={this.props.image}
-        />
-        <CharacterInformation
-          name={this.props.name}
-          health={this.props.health}
-          level={this.props.level}
-          xp={this.props.xp}
-          maxXp={this.props.maxXp}
-          stamina={this.props.stamina}
-          maxStamina={this.props.maxStamina}
-        />
-        {this.state.popup ? this.popup() : undefined}
-      </div>
-    );
-  }
+  const [popup, setPopup] = useState();
 
-  popup(){
-    if(this.state.popup)
+  const popupElem = () =>{
+    if(popup)
       return <Popup
          title="What would you like to do?"
-         exitFunction={this.exit}
+         exitFunction={() => setPopup()}
          view={
-           <PokeOptions roster={this.props.inRoster} index={this.props.index}/>
+           <PokeOptions roster={inRoster} index={index}/>
          }
         />;
-  }
-  /*showRosterOption(e){
-    const po = this.findPO(e.target)
-    if(po !== false)
-      getPokemon(po.dataset.pokemon)
-      .then(pokemon =>
-      this.setState({
-          image: this.state.image,
-          popup: true,
-          clickedPokemon: pokemon,
-        })
-      )
-  }*/
-  exit(){
-    this.setState({
-      popup: false,
-    })
-  }
-
-  showPopup(){
-    this.setState({
-      popup: true,
-    })
-  }
-
-
+  };
+    return (
+      <div className="ProfileOverview" data-pokemon={pokemonId} style={style({width: width, height: height, maxWidth: maxWidth})}
+        onClick={canClick ? e => {if(e.target.id !== 'closePopup') setPopup(true)} : undefined}>
+        <Avatar
+          image={image}
+        />
+        <CharacterInformation
+          name={name}
+          health={health}
+          level={level}
+          xp={xp}
+          maxXp={maxXp}
+          stamina={stamina}
+          maxStamina={maxStamina}
+        />
+        {popupElem()}
+      </div>
+    );
 } export default ProfileOverview;
