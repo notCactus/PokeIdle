@@ -1,4 +1,4 @@
-export default function stamina(state=0, action){
+export default function stamina(state=10, action){
     if (action.type === 'SET_STAMINA') {
         return action.stamina;
     } else if (action.type === 'ADD_STAMINA'){

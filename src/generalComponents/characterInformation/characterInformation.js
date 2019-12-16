@@ -10,7 +10,13 @@ class CharacterInformation extends Component{
           <h3>{this.props.name}</h3>
           <h3>Lv. {this.props.level}</h3>
         </div>
-        <Bar color="green" width="90%" height="15px"/>
+        <Bar
+          current={this.props.stamina}
+          max={this.props.maxStamina} 
+          color="green"
+          width="90%"
+          height="15px"
+        />
         <Bar
           current={this.props.xp}
           max={this.props.maxXp}

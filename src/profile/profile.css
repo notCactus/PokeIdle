@@ -45,6 +45,7 @@
   width: 60%;
   max-width: 555px;
   height: 15%;
+  min-height: 80px;
   max-height: 92px;
 }
 
@@ -61,6 +62,8 @@
 
 .Profile .MenuToggler{
   width: 60%;
+  max-height: 98%;
+  overflow: hidden;
   margin-left: auto;
   margin-right: auto;
 }
@@ -71,6 +74,14 @@
 
 .Profile .MenuToggler > #menuItems > .menuItem{
   margin: 0.2em;
+}
+
+.Profile .RosterView #menuItems {
+ max-height: calc(100% - 38px);
+}
+
+.Profile .RosterView .MenuToggler {
+  height: 95%;
 }
 
 .Profile .Popup .MenuToggler {

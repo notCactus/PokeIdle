@@ -82,4 +82,23 @@
   .App .MenuToggler {
     width: 90%;
   }
+  .App{
+    flex-direction: column-reverse;
+  }
+  .App .sidebar {
+    flex-direction: row;
+    height: 10%;
+    width: 100%;
+    border-right: none;
+    border-top: 3px black solid;
+    justify-content: center;
+    align-items: center;
+  }
+  .App .sidebar a{
+    margin-top: 0;
+  }
+
+  .App .sidebar > * {
+    margin: 1em;
+  }
 }

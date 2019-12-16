@@ -27,6 +27,8 @@ class ProfilePresentation extends Component{
             xp={this.props.trainerXp}
             maxXp={this.props.trainerMaxXp}
             image={this.state.image}
+            stamina={this.props.trainerStamina}
+            maxStamina={this.props.trainerMaxStamina}
           />
         <RosterView clickEvent={this.showRosterOption}/>
           {this.popup()}

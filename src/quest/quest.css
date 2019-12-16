@@ -48,11 +48,11 @@
   .Quest > .MenuToggler .QuestItem p{
     text-align: center;
     width: 36%;
-    font-size: 70%;
+    font-size: 90%;
     font-weight: bold;
   }
   .Quest > .MenuToggler .QuestItem h3{
-    font-size: 70%;
+    font-size: 90%;
     min-width: 30%;
     max-width: 30%;
   }

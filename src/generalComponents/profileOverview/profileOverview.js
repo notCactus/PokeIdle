@@ -22,6 +22,8 @@ class ProfileOverview extends Component {
           level={this.props.level}
           xp={this.props.xp}
           maxXp={this.props.maxXp}
+          stamina={this.props.stamina}
+          maxStamina={this.props.maxStamina}
         />
       </div>
     );
