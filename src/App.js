@@ -44,12 +44,12 @@ function testing() {
     if(user){
       console.log(user);
     } else {
-      console.log("USER HAS/IS LOGGED OUT.");
+      console.log("USER IS NOT LOGGED IN.");
     }
     });
 }
 //Contains interval id of the game
-startGame(store);
+const game = startGame(store);
 
 function App() {
   return (
@@ -60,7 +60,7 @@ function App() {
           <Sidebar/>
           <div>
             <Header/>
-              <Route
+              <PrivateRoute
                 exact path="/profile"
                 render = { (props) =>
                   <Profile/>
@@ -69,21 +69,21 @@ function App() {
             <Route path="/createProfile"
             render = {(props) => <CreateProfile/>}
             />
-            <Route
+            <PrivateRoute
               exact path="/quest"
               render = { (props) =>
                 <Quest/>
               }
             />
-            <Route
+            <PrivateRoute
               exact path="/quest/:id"
               render = { (props) =>
                 <QuestDetails questId={props.match.params.id}/>
               }
             />
-            <Route path="/shop" component={Shop}/>
+            <PrivateRoute path="/shop" component={Shop}/>
             <Route path="/firebaseTest" component={FirebaseTest}/>
-            <PrivateRoute path="/private" component={FirebaseTest}/>{/* Private route test (has to be logged in to access.) */}
+            <PrivateRoute path="/private" component={FirebaseTest}/>
             <Route path="/login" component={LoginPresentation}/>
           </div>
         </div>
