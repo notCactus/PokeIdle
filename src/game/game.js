@@ -28,6 +28,7 @@ const game = (store) => {
     () => store.getState().quest.allQuests,
     (pokemon) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', ids: pokemon}),
     (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
+    () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl})
   )
 }
 
@@ -50,7 +51,7 @@ const passivePokemonXp = (pokemon, setRoster) => {
   );
 }
 
-const quest = (activeQuests, roster, allQuests, returnPokemon, removeFromActive) => {
+const quest = (activeQuests, roster, allQuests, returnPokemon, removeFromActive, updateQuestAvailiblity) => {
   //Checks if quest set up is done
   const toSet = activeQuests().filter(quest =>
     questWithRoster[quest] === undefined
@@ -66,6 +67,7 @@ const quest = (activeQuests, roster, allQuests, returnPokemon, removeFromActive)
     setTimeout(() => {
       returnPokemon(questWithRoster[quest]);
       removeFromActive(quest);
+      updateQuestAvailiblity();
       delete questWithRoster[quest];
     },allQuests().find(q => q.name === quest).time*1000)
   });

@@ -21,7 +21,7 @@ class QuestDetailsPresentation extends Component{
       rosterImages: [], //Once images of pokemon have been fetched they are stored here
       questRoster: [], //Contains picked pokemon as objects
       party: [], //Contains id of picked pokemon
-      redirectCondition: false,
+      redirectCondition: this.props.questId !== this.props.quest.name,
       popup: false,
     };
   }
