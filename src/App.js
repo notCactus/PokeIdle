@@ -23,6 +23,7 @@ import { createStore } from 'redux';
 
 import {pokemon} from './reducers/pokemon/pokemonStore';
 import {trainer} from './reducers/trainer/trainerStore';
+import {quest} from './reducers/quest/questStore';
 import createProfile from './reducers/createProfile/createProfileStore';
 
 import startGame from './game/game';
@@ -34,6 +35,7 @@ function reducer(state = {}, action) {
         pokemon: pokemon(state.pokemon, action),
         trainer: trainer(state.trainer, action),
         createProfile: createProfile(state.createProfile, action),
+        quest: quest(state.quest, action),
     };
 }
 

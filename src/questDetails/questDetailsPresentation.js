@@ -27,9 +27,9 @@ class QuestDetailsPresentation extends Component{
       <div className="QuestDetails">
         <DetailedQuestInformation
           icon=""
-          difficulty=""
+          difficulty={this.props.quest.difficulty}
           title={this.props.questId}
-          description="Detta ska komma från en store"
+          description={this.props.quest.description}
           buttonText="Take quest"
           questFunction={this.showPopup}
         />
