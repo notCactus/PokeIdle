@@ -3,42 +3,13 @@ import {Route, Redirect} from 'react-router-dom';
 import { AuthContext } from "./Auth";
 import app from './base';
 
-const PrivateRoute = ({ component: RouteComponent, redirectTo = "/createProfile", ...rest }) => {
-    //const {currentUser} = useContext(AuthContext);
+const PrivateRoute = ({ component: RouteComponent, render: renderFunction, redirectTo = "/createProfile", ...rest }) => {
 
-    var currentUser = app.auth().currentUser;
+    let currentUser = app.auth().currentUser;
+    console.log(renderFunction);
+    //console.log(RouteComponentRender);
 
-    return (
-      <Route
-        {...rest}
-        render={routeProps =>
-          !!currentUser ? (
-            <RouteComponent {...routeProps} />
-          ) : (
-            <Redirect to={redirectTo} />
-          )
-        }
-      />
-    );
-  };
-
-/*const PrivateRoute = ({ component: RouteComponent, redirectTo = "/createProfile",...rest }) => {
-    //const {currentUser} = useContext(AuthContext);
-
-    const [status, setStatus] = useState('waiting');
-
-    let currentUser = null;
-
-    getCurrentUser()
-    .then((currUser) => {
-        currentUser = currUser;
-        console.log(currUser);
-    })
-    .then(()=>{
-        setStatus('done');
-    });
-
-    if(status === 'done'){
+    if(typeof RouteComponent !== 'undefined'){
         return (
             <Route
               {...rest}
@@ -50,10 +21,19 @@ const PrivateRoute = ({ component: RouteComponent, redirectTo = "/createProfile"
                 )
               }
             />
-          );
+        );
     } else {
-        return(<React.Fragment></React.Fragment>);
+        return (
+            <Route
+              {...rest}
+              render={(props)=>
+                !!currentUser ? (renderFunction(props)) : (<Redirect to={redirectTo} />)
+              }
+            />
+        );
     }
-  };*/
+
+    
+  };
 
 export default PrivateRoute;
