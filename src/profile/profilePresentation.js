@@ -38,7 +38,7 @@ class ProfilePresentation extends Component{
 /*
   // TODO: move this func to seperate document
   findPO(element){
-    while(![...element.classList].includes('menuItem') && element !== null){
+    while(element !== null && ![...element.classList].includes('menuItem') ){
       if([...element.classList].includes('ProfileOverview'))
         return element;
       element= element.parentElement

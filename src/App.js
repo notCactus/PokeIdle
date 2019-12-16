@@ -12,8 +12,6 @@ import LoginPresentation from './login/loginPresentation';
 
 import app from'./base';
 
-import FirebaseTest from './firebaseTest/firebaseTest';
-import { AuthProvider } from './Auth';
 import PrivateRoute from './privateRoute';
 
 import './App.css';
@@ -23,6 +21,7 @@ import { createStore } from 'redux';
 
 import {pokemon} from './reducers/pokemon/pokemonStore';
 import {trainer} from './reducers/trainer/trainerStore';
+import {quest} from './reducers/quest/questStore';
 import createProfile from './reducers/createProfile/createProfileStore';
 
 import startGame from './game/game';
@@ -34,6 +33,7 @@ function reducer(state = {}, action) {
         pokemon: pokemon(state.pokemon, action),
         trainer: trainer(state.trainer, action),
         createProfile: createProfile(state.createProfile, action),
+        quest: quest(state.quest, action),
     };
 }
 
@@ -52,7 +52,6 @@ function App() {
 
   if(status !== "loading"){
     return (
-      <AuthProvider>
         <Provider store={store}>
           <div className="App">
             <Sidebar/>
@@ -80,17 +79,13 @@ function App() {
                 }
               />
               <PrivateRoute path="/shop" component={Shop}/>
-              <Route path="/firebaseTest" component={FirebaseTest}/>
-              <PrivateRoute path="/private" component={FirebaseTest}/>
               <Route path="/login" component={LoginPresentation}/>
             </div>
           </div>
         </Provider>
-      </AuthProvider>
     );
   } else {
     return (
-      <AuthProvider>
         <Provider store={store}>
           <div className="App">
             <div>
@@ -98,12 +93,10 @@ function App() {
               <Route path="/createProfile"
               render = {(props) => <CreateProfile/>}
               />
-              <Route path="/firebaseTest" component={FirebaseTest}/>
               <Route path="/login" component={LoginPresentation}/>
             </div>
           </div>
         </Provider>
-      </AuthProvider>
     );
   }
 } export default App;

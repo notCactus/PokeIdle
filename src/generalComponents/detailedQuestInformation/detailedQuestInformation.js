@@ -14,6 +14,11 @@ class DetailedQuestInformation extends Component{
         <div>
           <h3>{this.props.title}</h3>
           <p>{this.props.description}</p>
+          <div>
+            <p>{this.props.difficulty}</p>
+            <p>Time: {this.props.time}</p>
+            <p>{this.props.rosterAmount}/{this.props.rosterCapacity}</p>
+          </div>
           <Clickable text={this.props.buttonText} onClick={this.props.questFunction}/>
         </div>
       </div>

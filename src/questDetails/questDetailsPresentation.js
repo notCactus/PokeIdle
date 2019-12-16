@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import  { Redirect } from 'react-router-dom'
 import RosterSelector from '../generalComponents/rosterSelector/rosterSelector';
 import DetailedQuestInformation from '../generalComponents/detailedQuestInformation/detailedQuestInformation';
 import MenuToggler from '../generalComponents/menuToggler/menuToggler';
@@ -9,29 +10,36 @@ import './questDetails.css';
 class QuestDetailsPresentation extends Component{
   constructor(props){
     super(props);
-    this.party = [];
     this.onToggle = this.onToggle.bind(this);
     this.exit = this.exit.bind(this);
     this.showPopup = this.showPopup.bind(this);
     this.popup = this.popup.bind(this);
-      this.fetchImages = this.fetchImages.bind(this);
+    this.fetchImages = this.fetchImages.bind(this);
+    this.confrimQuest = this.confrimQuest.bind(this);
+    this.redirect = this.redirect.bind(this);
     this.state = {
-      rosterImages: [],
+      rosterImages: [], //Once images of pokemon have been fetched they are stored here
+      questRoster: [], //Contains picked pokemon as objects
+      party: [], //Contains id of picked pokemon
+      redirectCondition: this.props.questId !== this.props.quest.name,
       popup: false,
-      questRoster: [],
     };
   }
   render() {
     this.fetchImages();
     return (
       <div className="QuestDetails">
+        {this.redirect()}
         <DetailedQuestInformation
           icon=""
-          difficulty=""
+          difficulty={this.props.quest.difficulty}
           title={this.props.questId}
-          description="Detta ska komma från en store"
+          time={this.props.quest.time}
+          description={this.props.quest.description}
           buttonText="Take quest"
           questFunction={this.showPopup}
+          rosterAmount={this.state.party.length}
+          rosterCapacity={this.props.quest.rosterCapacity}
         />
         <MenuToggler
           fallback="availible"
@@ -41,21 +49,27 @@ class QuestDetailsPresentation extends Component{
         {this.popup()}
       </div>
     );
-    }  fetchImages(){
-        if (this.state.rosterImages.length < 1 && this.props.roster.length > 0)
-          Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id)))
-          .then(roster => this.setState({
-            rosterImages: roster.map(pokemon => pokemon['sprites']['front_default'])
-          }));
-      }
+    }
+    redirect(){
+      if(this.state.redirectCondition)
+        return <Redirect to="/quest"/>
+    }
+
+    fetchImages(){
+      if (this.state.rosterImages.length < 1 && this.props.roster.length > 0)
+        Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id)))
+        .then(roster => this.setState({
+          rosterImages: roster.map(pokemon => pokemon['sprites']['front_default'])
+        }));
+    }
   showPopup(){
     this.setState({
       popup: true,
       loading: this.state.loading,
       roster: this.state.rosterView,
     });
-    this.setState({questRoster: this.props.roster.filter(pokemon =>
-      this.party.includes(pokemon['id'])
+    this.setState({questRoster: this.props.roster.filter((pokemon, i) =>
+      this.state.party.includes(i+"")
     )
     .map(pokemon => pokemon.id)
     });
@@ -66,7 +80,10 @@ class QuestDetailsPresentation extends Component{
          title="Please confirm your party"
          exitFunction={this.exit}
          view={(
-           <ConfirmWindow toConfirm={`Is this your roster:${this.state.questRoster.map(id => " "+id)}?`}/>
+           <ConfirmWindow
+             toConfirm={`Is this your roster:${this.state.questRoster.map(id => " "+id)}?`}
+             confirmFunction={this.confrimQuest}
+            />
          )}
         />;
   }
@@ -82,9 +99,13 @@ class QuestDetailsPresentation extends Component{
   onToggle(e){
     const idHolder = this.findPO(e.target);
     if(idHolder !== false){
-      if(!this.party.includes(idHolder.dataset.pokemon))
-        this.party.push(idHolder.dataset.pokemon);
-      else this.party = this.party.filter(id => id !== idHolder.dataset.pokemon);
+      if(!this.state.party.includes(idHolder.dataset.pokemon))
+        this.setState({
+          party: this.state.party.concat(idHolder.dataset.pokemon),
+        });
+      else this.setState({
+        party: this.state.party.filter(id => id !== idHolder.dataset.pokemon),
+      });
     }
   }
 
@@ -106,16 +127,29 @@ class QuestDetailsPresentation extends Component{
       };
   }
   createRosterItems(r){
-    return r.map((pokemon, i) =>
+    return r.filter(pokemon => pokemon.questId === '')
+    .map((pokemon, i) =>
       <RosterSelector
+        key={i}
         image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
         name={pokemon.id}
         level={pokemon.lvl}
         xp={pokemon.xp}
         maxXp={pokemon.requiredXp(pokemon.lvl)}
-        pokemonId={pokemon.id}
+        pokemonId={i}
         onToggle={this.onToggle}
+        toggle={this.state.party.length < this.props.quest.rosterCapacity}
       />
     );
+  }
+  confrimQuest(){
+    this.exit();
+    if(this.state.party.length > 0){
+      this.props.sendPokemonToQuest(this.state.party, this.props.questId);
+      this.props.addActiveQuest(this.props.questId);
+      this.setState({
+        redirectCondition: true,
+      });
+    }
   }
 } export default QuestDetailsPresentation;
