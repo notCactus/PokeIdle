@@ -11,7 +11,7 @@ class RosterViewPresentation extends Component {
     this.createRosterItems = this.createRosterItems.bind(this);
     this.state = {
       rosterImages: [],
-      pcRoster: [],
+      /*pcRoster: [],*/
     }
   }
 
@@ -23,7 +23,7 @@ class RosterViewPresentation extends Component {
           active="activeRoster"
           fallback="activeRoster"
           menuItemClickEvent={this.props.clickEvent}
-          menus={this.menuProps(this.props.roster, this.state.pcRoster)}
+          menus={this.menuProps(this.props.roster, this.props.pcRoster)}
         />
       </div>
     );
@@ -39,16 +39,16 @@ class RosterViewPresentation extends Component {
     return{
         activeRoster: {
           menuIcon: <span>Active</span>,
-          items: this.createRosterItems(roster),
+          items: this.createRosterItems(roster, true),
         },
         pcRoster: {
           menuIcon: <span>PC</span>,
-          items: pcRoster,
+          items: this.createRosterItems(pcRoster, false),
         }
       };
   }
 
-  createRosterItems(r){
+  createRosterItems(r, inRoster){
     return r.map((pokemon, i) =>
       <ProfileOverview
         image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
@@ -57,6 +57,9 @@ class RosterViewPresentation extends Component {
         level={pokemon.lvl}
         maxXp={pokemon.requiredXp(pokemon.lvl)}
         pokemonId={pokemon.id}
+        inRoster={inRoster}
+        index={i}
+        canClick={true}
       />
     );
   }
