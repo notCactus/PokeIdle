@@ -9,13 +9,13 @@ import './questDetails.css';
 class QuestDetailsPresentation extends Component{
   constructor(props){
     super(props);
-    this.party = [];
     this.onToggle = this.onToggle.bind(this);
     this.exit = this.exit.bind(this);
     this.showPopup = this.showPopup.bind(this);
     this.popup = this.popup.bind(this);
-      this.fetchImages = this.fetchImages.bind(this);
+    this.fetchImages = this.fetchImages.bind(this);
     this.state = {
+      party: [],
       rosterImages: [],
       popup: false,
       questRoster: [],
@@ -29,9 +29,12 @@ class QuestDetailsPresentation extends Component{
           icon=""
           difficulty={this.props.quest.difficulty}
           title={this.props.questId}
+          time={this.props.quest.time}
           description={this.props.quest.description}
           buttonText="Take quest"
           questFunction={this.showPopup}
+          rosterAmount={this.state.party.length}
+          rosterCapacity={this.props.quest.rosterCapacity}
         />
         <MenuToggler
           fallback="availible"
@@ -55,7 +58,7 @@ class QuestDetailsPresentation extends Component{
       roster: this.state.rosterView,
     });
     this.setState({questRoster: this.props.roster.filter(pokemon =>
-      this.party.includes(pokemon['id'])
+      this.state.party.includes(pokemon['id'])
     )
     .map(pokemon => pokemon.id)
     });
@@ -82,9 +85,13 @@ class QuestDetailsPresentation extends Component{
   onToggle(e){
     const idHolder = this.findPO(e.target);
     if(idHolder !== false){
-      if(!this.party.includes(idHolder.dataset.pokemon))
-        this.party.push(idHolder.dataset.pokemon);
-      else this.party = this.party.filter(id => id !== idHolder.dataset.pokemon);
+      if(!this.state.party.includes(idHolder.dataset.pokemon))
+        this.setState({
+          party: this.state.party.concat(idHolder.dataset.pokemon),
+        });
+      else this.setState({
+        party: this.state.party.filter(id => id !== idHolder.dataset.pokemon),
+      });
     }
   }
 
