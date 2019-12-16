@@ -1,6 +1,5 @@
 var firebase = require('firebase/app');
 require('firebase/auth');
-require('firebase/firestore');
 require('firebase/database');
 require('firebase/firestore');
 
@@ -14,4 +13,4 @@ var app =  firebase.initializeApp({
     appId: process.env.REACT_APP_FIREBASE_APP_ID
   });
 
-  export default app;
+export default app;
