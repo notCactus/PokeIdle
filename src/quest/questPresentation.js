@@ -38,8 +38,7 @@ class QuestPresentation extends Component{
       .then(snap =>{
         c.props.setAllQuests(snap.docs.map(v => v.data()))
         c .props.setAvailibleQuests(c.props.lvl);
-      }
-      );
+      });
   }
 
   menuProps(quests) {

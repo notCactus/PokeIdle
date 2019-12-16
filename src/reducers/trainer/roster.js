@@ -16,7 +16,13 @@ export default function roster(state=[], action){
         if(action.ids.includes(pokemon.id))
           pokemon.questId = action.quest;
         return pokemon;
-      })
+      });
+    } else if (action.type === 'RETURN_POKEMON_FROM_QUEST') {
+      return state.map(pokemon =>{
+        if(action.ids.includes(pokemon.id))
+          pokemon.questId = "";
+        return pokemon;
+      });
     } else{
         return state;
     }

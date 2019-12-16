@@ -4,6 +4,6 @@ export default function activeQuests(state = [], action){
   else if(action.type === "ADD_ACTIVE_QUEST")
     return state.concat(action.quest);
   else if(action.type === 'REMOVE_ACTIVE_QUEST')
-    return state.filter(quest => quest.name !== action.questName);
+    return state.filter(quest => quest !== action.quest);
   else return state;
 }
