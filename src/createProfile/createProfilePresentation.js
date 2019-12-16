@@ -67,7 +67,7 @@ class CreateProfilePresentation extends Component {
         return (
             <div className="createProfile">
                     <UserCreator/>
-                <LinkButton text="START" linkTo="/profile" onClick={() => starterToTrainer(this.props.addToRoster, this.props.chosenStarter)}/>
+                <LinkButton text="ADD TO ROSTER TEST BUTTON" linkTo="/profile" onClick={() => starterToTrainer(this.props.addToRoster, this.props.chosenStarter)}/>
                 <p>OR</p>
                 <LinkButton text="Login" linkTo="/login"/>
                 <p>FOR TESTING:</p>
