@@ -56,6 +56,13 @@ const SignUp = ({username, chosenStarter, starters, onStarterClick}) => {
                 await app
                     .auth()
                     .createUserWithEmailAndPassword(email.value, password.value)
+                    .then((r) => {
+                        r.user.updateProfile({
+                            displayName: username,
+                        });
+                        return r;
+                        
+                    })
                     .then((result) => {
 
                         // Add a new trainer to the database.
