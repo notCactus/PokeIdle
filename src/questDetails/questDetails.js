@@ -7,15 +7,16 @@ const mapStateToProps = (state) => {
     }
 }
 
-/*const mapDispatchToProps = (dispatch) => ({
-    onUsernameChange: (newName) => dispatch ({
-        type: 'SET_USERNAME',
-        username: newName,
+const mapDispatchToProps = (dispatch) => ({
+    sendPokemonToQuest: (roster, questName) => dispatch ({
+        type: 'SEND_POKEMON_TO_QUEST',
+        ids: [...roster],
+        quest: questName,
     }),
-    onStarterClick: (starter) => dispatch ({
-        type: 'SET_STARTER',
-        starter: starter,
-    })
-});*/
-const QuestDetails = connect(mapStateToProps/*, mapDispatchToProps*/)(QuestDetailsPresentation);
+    addActiveQuest: (name) => dispatch ({
+      type: 'ADD_ACTIVE_QUEST',
+      quest: name,
+    }),
+});
+const QuestDetails = connect(mapStateToProps, mapDispatchToProps)(QuestDetailsPresentation);
 export default QuestDetails;

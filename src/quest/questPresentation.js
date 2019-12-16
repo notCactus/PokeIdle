@@ -9,11 +9,11 @@ class QuestPresentation extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      quests: [],
       redirect: false,
-      redirectTo: "",
+      loadedQuests: false,
     }
     this.menuProps = this.menuProps.bind(this);
+    this.getAllQuests(this);
   }
 
   render() {
@@ -22,49 +22,30 @@ class QuestPresentation extends Component{
         <MenuToggler
           active="quests"
           fallback="quests"
-          menus={this.menuProps()}
+          menus={this.menuProps(this.props.availibleQuests)}
           width="100%"
           height="80%"
         />
       </div>
     );
   }
-
   componentDidMount() {
-    app.firestore().collection('quest').get()
-    .then(snap => this.setState({
-        quests: snap.docs.map(v => v.data())
-        .filter((value, key) => key <= this.props.lvl),
-      })
-    );
+    this.props.setAvailibleQuests(this.props.lvl);
+  }
+  getAllQuests(c){
+    if(c.props.availibleQuests.length < 1)
+      app.firestore().collection('quest').get()
+      .then(snap =>{
+        c.props.setAllQuests(snap.docs.map(v => v.data()))
+        c .props.setAvailibleQuests(c.props.lvl);
+      }
+      );
   }
 
-  menuProps() {
-    if(this.state.quests.length < 1)
-      return{
-          quests: {
-            items: [
-              <QuestItem
-                questTitle="Killing Dittos"
-                difficulty="easy"
-                linkTo="/quest"
-              />,
-              <QuestItem
-                questTitle="Eating Magickarp"
-                difficulty="medium"
-                linkTo="/quest"
-              />,
-              <QuestItem
-                questTitle="Giving Pokémon Food"
-                difficulty="hard"
-                linkTo="/quest"
-              />],
-          }
-        };
-      else
+  menuProps(quests) {
         return {
           quests: {
-            items: this.state.quests.map(quest =>
+            items: quests.map(quest =>
               <QuestItem
                 questTitle={quest.name}
                 difficulty={quest.difficulty}
