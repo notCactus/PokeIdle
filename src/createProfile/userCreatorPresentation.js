@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import  { Redirect } from 'react-router-dom'
 import app from '../base';
 
@@ -40,7 +40,7 @@ const ProfileImageAndUsername=({onStarterClick, starters, username, onUsernameCh
 const SignUp = ({username, chosenStarter, starters, onStarterClick}) => {
     const [redirectState, setRedirectState] = useState('noRedirect');
 
-    const handleSignUp = useCallback(async event => {
+    const handleSignUp = (async (event) => {
         event.preventDefault();
 
         if(chosenStarter !== 'default' && username !== ''){

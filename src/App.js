@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import { Provider } from 'react-redux';
-import React from 'react';
+import React, {useState}  from 'react';
 import Profile from './profile/profile';
 import Quest from './quest/quest';
 import QuestDetails from './questDetails/questDetails';
@@ -12,8 +12,6 @@ import LoginPresentation from './login/loginPresentation';
 
 import app from'./base';
 
-import FirebaseTest from './firebaseTest/firebaseTest';
-import { AuthProvider } from './Auth';
 import PrivateRoute from './privateRoute';
 
 import './App.css';
@@ -41,55 +39,64 @@ function reducer(state = {}, action) {
 
 const store = createStore(reducer);
 
-function testing() {
-  app.auth().onAuthStateChanged(user => {
-    if(user){
-      console.log(user);
-    } else {
-      console.log("USER HAS/IS LOGGED OUT.");
-    }
-    });
-}
 //Contains interval id of the game
-startGame(store);
+const game = startGame(store);
 
 function App() {
-  return (
-    <AuthProvider>
-      {testing() /* for testing, shows logged in user info */}
-      <Provider store={store}>
-        <div className="App">
-          <Sidebar/>
-          <div>
-            <Header/>
-              <Route
-                exact path="/profile"
+  const [status, setStatus] = useState('loading');
+
+  const unsubscribe = app.auth().onAuthStateChanged(() => {
+    setStatus('done');
+    unsubscribe();
+    });
+
+  if(status !== "loading"){
+    return (
+        <Provider store={store}>
+          <div className="App">
+            <Sidebar/>
+            <div>
+              <Header/>
+                <PrivateRoute
+                  exact path="/profile"
+                  render = { (props) =>
+                    <Profile/>
+                  }
+                />
+              <Route path="/createProfile"
+              render = {(props) => <CreateProfile/>}
+              />
+              <PrivateRoute
+                exact path="/quest"
                 render = { (props) =>
-                  <Profile/>
+                  <Quest/>
                 }
               />
-            <Route path="/createProfile"
-            render = {(props) => <CreateProfile/>}
-            />
-            <Route
-              exact path="/quest"
-              render = { (props) =>
-                <Quest/>
-              }
-            />
-            <Route
-              exact path="/quest/:id"
-              render = { (props) =>
-                <QuestDetails questId={props.match.params.id}/>
-              }
-            />
-            <Route path="/shop" component={Shop}/>
-            <Route path="/firebaseTest" component={FirebaseTest}/>
-            <PrivateRoute path="/private" component={FirebaseTest}/>{/* Private route test (has to be logged in to access.) */}
-            <Route path="/login" component={LoginPresentation}/>
+              <PrivateRoute
+                exact path="/quest/:id"
+                render = { (props) =>
+                  <QuestDetails questId={props.match.params.id}/>
+                }
+              />
+              <PrivateRoute path="/shop" component={Shop}/>
+              <Route path="/login" component={LoginPresentation}/>
+            </div>
           </div>
-        </div>
-      </Provider>
-    </AuthProvider>
-  );
+        </Provider>
+    );
+  } else {
+    return (
+        <Provider store={store}>
+          <div className="App">
+            <div>
+              <Header/>
+              <Route path="/createProfile"
+              render = {(props) => <CreateProfile/>}
+              />
+              <Route path="/login" component={LoginPresentation}/>
+            </div>
+          </div>
+        </Provider>
+    );
+  }
 } export default App;
