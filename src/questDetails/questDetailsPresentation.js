@@ -68,8 +68,8 @@ class QuestDetailsPresentation extends Component{
       loading: this.state.loading,
       roster: this.state.rosterView,
     });
-    this.setState({questRoster: this.props.roster.filter(pokemon =>
-      this.state.party.includes(pokemon['id'])
+    this.setState({questRoster: this.props.roster.filter((pokemon, i) =>
+      this.state.party.includes(i+"")
     )
     .map(pokemon => pokemon.id)
     });
@@ -130,12 +130,13 @@ class QuestDetailsPresentation extends Component{
     return r.filter(pokemon => pokemon.questId === '')
     .map((pokemon, i) =>
       <RosterSelector
+        key={i}
         image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
         name={pokemon.id}
         level={pokemon.lvl}
         xp={pokemon.xp}
         maxXp={pokemon.requiredXp(pokemon.lvl)}
-        pokemonId={pokemon.id}
+        pokemonId={i}
         onToggle={this.onToggle}
         toggle={this.state.party.length < this.props.quest.rosterCapacity}
       />

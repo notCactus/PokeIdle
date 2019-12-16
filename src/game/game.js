@@ -26,7 +26,7 @@ const game = (store) => {
     () => store.getState().quest.activeQuests,
     () => store.getState().trainer.roster,
     () => store.getState().quest.allQuests,
-    (pokemon) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', ids: pokemon}),
+    (name) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', quest: name}),
     (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
     () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl})
   )
@@ -58,14 +58,9 @@ const quest = (activeQuests, roster, allQuests, returnPokemon, removeFromActive,
   );
 
   toSet.forEach(quest => {
-    questWithRoster[quest] =
-    roster()
-    .filter(pokemon =>
-      pokemon.questId === quest
-    )
-    .map(pokemon => pokemon.id);
+    questWithRoster[quest] = "set";
     setTimeout(() => {
-      returnPokemon(questWithRoster[quest]);
+      returnPokemon(quest);
       removeFromActive(quest);
       updateQuestAvailiblity();
       delete questWithRoster[quest];
