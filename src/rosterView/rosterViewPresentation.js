@@ -53,6 +53,8 @@ class RosterViewPresentation extends Component {
       <ProfileOverview
         image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
         name={pokemon.id}
+        stamina={pokemon.hp}
+        maxStamina={pokemon.maxHp(pokemon.lvl)}
         xp={pokemon.xp}
         level={pokemon.lvl}
         maxXp={pokemon.requiredXp(pokemon.lvl)}

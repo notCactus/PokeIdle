@@ -53,7 +53,8 @@ function starterToTrainer(cb, id){
       lvl: 1,
       xp: 1,
       requiredXp: (lvl) => Math.pow(10,lvl),
-      hp: 10,
+      hp: 4,
+      maxHp: (lvl) => lvl*4,
       questId: "",
     }));
 }

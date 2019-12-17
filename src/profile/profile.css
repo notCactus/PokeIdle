@@ -23,6 +23,29 @@
   height: 120%;
 }
 
+.Profile > .ProfileOverview > .CharacterInformation > .Bar {
+  margin: 0.2em;
+}
+.Profile > .ProfileOverview > .CharacterInformation > .Bar p{
+  padding-left: 1em;
+}
+.Profile > .ProfileOverview > .CharacterInformation > div:nth-of-type(2){
+  font-size: 10px;
+}
+.RosterView  .ProfileOverview > .CharacterInformation > .Bar p{
+  padding-left: 6px;
+}
+.Profile > .ProfileOverview > .CharacterInformation > div:nth-of-type(3){
+  font-size: 9px;
+}
+.RosterView .ProfileOverview > .CharacterInformation > div:nth-of-type(2){
+  font-size: 12px;
+}
+
+.RosterView  .ProfileOverview > .CharacterInformation > div:nth-of-type(3){
+  font-size: 10px;
+  margin-left: 12px;
+}
 .Profile .ProfileOverview > .CharacterInformation {
   width: 55%;
   height: 100%;

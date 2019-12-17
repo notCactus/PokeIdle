@@ -44,6 +44,7 @@ class QuestPresentation extends Component{
   menuProps(quests) {
         return {
           quests: {
+            menuIcon: <a>Availible</a>,
             items: quests.map(quest =>
               <QuestItem
                 questTitle={quest.name}
@@ -52,6 +53,10 @@ class QuestPresentation extends Component{
                 onClick={() => this.props.setSelectedQuest(quest)}
               />
             )
+          },
+          active: {
+            menuIcon: <a>Active</a>,
+            items: this.props.activeQuests.map(quest => <p>{quest}</p>),
           }
         };
   }

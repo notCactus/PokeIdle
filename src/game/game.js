@@ -1,4 +1,8 @@
 /***CONTAINS ALL CODE FOR THE GAME****/
+import quest from './quest';
+import passiveTrainerXp from './passiveTrainerXp';
+import passivePokemonXp from './passivePokemonXp';
+
 const startGame = (store) => {
   const gameLoop = setInterval(() => game(store), UPDATE_TIME);
   return gameLoop;
@@ -9,8 +13,6 @@ const UPDATE_TIME = 1000;
 const TRAINER_XP_GAIN_PER_UPDATE = 1;
 const POKEMON_XP_GAIN_PER_UPDATE = 2;
 
-let questWithRoster = {};
-
 const game = (store) => {
   passiveTrainerXp(
     () => store.dispatch({type: 'ADD_XP', xp: TRAINER_XP_GAIN_PER_UPDATE}),
@@ -19,8 +21,7 @@ const game = (store) => {
     () => store.dispatch({type: 'ADD_LVL', lvl: 1})
   );
   passivePokemonXp(
-    () => store.getState().trainer.roster,
-    (p) => store.dispatch({type: 'SET_ROSTER', pokemon: p})
+    () => store.dispatch({type: 'ADD_XP_TO_ROSTER', xp: POKEMON_XP_GAIN_PER_UPDATE}),
   );
   quest(
     () => store.getState().quest.activeQuests,
@@ -28,43 +29,11 @@ const game = (store) => {
     () => store.getState().quest.allQuests,
     (name) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', quest: name}),
     (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
-    () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl})
+    () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl}),
+    (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
+    (x, p) => {
+      store.dispatch({type: 'ADD_XP', xp: x,});
+      // TODO: store.dispatch({type: 'ADD_CURRENCY', currency: p,};
+    }
   )
-}
-
-const passiveTrainerXp = (addXp, xp, maxXp, addLevel) => {
-  addXp();
-  //console.log(`Current: ${xp()}, requiered: ${maxXp()}`);
-  if(xp() >= maxXp())
-    addLevel();
-}
-const passivePokemonXp = (pokemon, setRoster) => {
-  setRoster(
-    pokemon().map(p => {
-      p.xp += POKEMON_XP_GAIN_PER_UPDATE;
-      if(p.xp > p.requiredXp(p.lvl)){
-        p.xp = 1;
-        p.lvl += 1;
-      }
-      return p;
-    })
-  );
-}
-
-const quest = (activeQuests, roster, allQuests, returnPokemon, removeFromActive, updateQuestAvailiblity) => {
-  //Checks if quest set up is done
-  const toSet = activeQuests().filter(quest =>
-    questWithRoster[quest] === undefined
-  );
-
-  toSet.forEach(quest => {
-    questWithRoster[quest] = "set";
-    setTimeout(() => {
-      returnPokemon(quest);
-      removeFromActive(quest);
-      updateQuestAvailiblity();
-      delete questWithRoster[quest];
-    },allQuests().find(q => q.name === quest).time*1000)
-  });
-
 }

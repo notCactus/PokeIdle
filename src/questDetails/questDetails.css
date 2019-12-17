@@ -74,3 +74,15 @@
 .QuestDetails .Popup > div:nth-child(1) h3{
   margin: 0.3em;
 }
+.QuestDetails  .ProfileOverview > .CharacterInformation > .Bar p{
+  padding-left: 6px;
+}
+
+.QuestDetails .ProfileOverview > .CharacterInformation > div:nth-of-type(2){
+  font-size: 12px;
+}
+
+.QuestDetails  .ProfileOverview > .CharacterInformation > div:nth-of-type(3){
+  font-size: 10px;
+  margin-left: 12px;
+}
