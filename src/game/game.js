@@ -3,6 +3,7 @@ import quest from './quest';
 import passiveTrainerXp from './passiveTrainerXp';
 import passivePokemonXp from './passivePokemonXp';
 import passiveTrainerStamina from './passiveTrainerStamina';
+import passivePcRosterHealth from './passivePcRosterHealth';
 
 const startGame = (store) => {
   const gameLoop = setInterval(() => game(store), UPDATE_TIME);
@@ -15,6 +16,7 @@ const UPDATE_TIME = 1000;
 const TRAINER_XP_GAIN_PER_UPDATE = 1;
 const POKEMON_XP_GAIN_PER_UPDATE = 2;
 const STAMINA_REGENERATION = 1;
+const HEALTH_REGENERATION = 1;
 
 const game = (store) => {
   passiveTrainerXp(
@@ -34,14 +36,17 @@ const game = (store) => {
     (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
     () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl}),
     (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
-    (x, p) => {
+    (x, c) => {
       store.dispatch({type: 'ADD_XP', xp: x,});
-      // TODO: store.dispatch({type: 'ADD_CURRENCY', currency: p,};
+      // TODO: store.dispatch({type: 'ADD_CURRENCY', currency: c,};
     },
     (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
     (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),
   );
   passiveTrainerStamina(
     () => store.dispatch({type: 'ADD_STAMINA', stamina: STAMINA_REGENERATION}),
+  );
+  passivePcRosterHealth(
+    () => store.dispatch({type: 'PASSIVE_PC_HEALTH_REGEN', hp: HEALTH_REGENERATION}),
   );
 }

@@ -33,8 +33,7 @@ class ProfilePresentation extends Component{
             maxStamina={this.props.trainerMaxStamina}
           />
         <RosterView clickEvent={this.activatePopup}/>
-          {this.popup()}
-        />
+        {this.popup()}
       </div>
     );
   }

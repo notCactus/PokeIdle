@@ -12,7 +12,7 @@ function ProfileOverview({
 
     return (
       <div className="ProfileOverview" data-pokemon={pokemonId}
-        onClick={() => clickEvent()}>
+        onClick={() => clickEvent !== undefined ? clickEvent() : console.log('no func')}>
         <Avatar
           image={image}
         />

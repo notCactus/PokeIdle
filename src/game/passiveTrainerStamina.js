@@ -1,4 +1,4 @@
-const MINUTES = 1;//3600;
+const MINUTES = 60;
 const STAMINA_TIMEOUT = 10*MINUTES;
 let time = 0;
 
