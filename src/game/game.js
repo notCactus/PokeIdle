@@ -19,8 +19,7 @@ const game = (store) => {
     () => store.dispatch({type: 'ADD_LVL', lvl: 1})
   );
   passivePokemonXp(
-    () => store.getState().trainer.roster,
-    (p) => store.dispatch({type: 'SET_ROSTER', pokemon: p})
+    (x) => store.dispatch({type: 'ADD_XP_TO_ROSTER', xp: x}),
   );
   quest(
     () => store.getState().quest.activeQuests,
@@ -28,7 +27,8 @@ const game = (store) => {
     () => store.getState().quest.allQuests,
     (name) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', quest: name}),
     (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
-    () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl})
+    () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl}),
+    (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
   )
 }
 
@@ -38,33 +38,32 @@ const passiveTrainerXp = (addXp, xp, maxXp, addLevel) => {
   if(xp() >= maxXp())
     addLevel();
 }
-const passivePokemonXp = (pokemon, setRoster) => {
-  setRoster(
-    pokemon().map(p => {
-      p.xp += POKEMON_XP_GAIN_PER_UPDATE;
-      if(p.xp > p.requiredXp(p.lvl)){
-        p.xp = 1;
-        p.lvl += 1;
-      }
-      return p;
-    })
-  );
+const passivePokemonXp = (addXp) => {
+  addXp(POKEMON_XP_GAIN_PER_UPDATE);
 }
 
-const quest = (activeQuests, roster, allQuests, returnPokemon, removeFromActive, updateQuestAvailiblity) => {
+const quest = (activeQuests, roster,
+   allQuests, returnPokemon,
+    removeFromActive, updateQuestAvailiblity,
+    rosterReward) => {
   //Checks if quest set up is done
   const toSet = activeQuests().filter(quest =>
     questWithRoster[quest] === undefined
   );
 
   toSet.forEach(quest => {
+    const questDetails =
+    allQuests().find(q => q.name === quest)
     questWithRoster[quest] = "set";
     setTimeout(() => {
+      rosterReward(quest,
+        questDetails.basePokemonXp
+      );
       returnPokemon(quest);
       removeFromActive(quest);
       updateQuestAvailiblity();
       delete questWithRoster[quest];
-    },allQuests().find(q => q.name === quest).time*1000)
+    },questDetails.time*1000)
   });
 
 }

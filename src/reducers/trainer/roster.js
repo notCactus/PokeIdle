@@ -13,7 +13,7 @@ export default function roster(state=[], action){
         return state.filter((p, i) => i !== action.index);
     } else if(action.type === "SEND_POKEMON_TO_QUEST"){
       return state.map((pokemon, i) =>{
-        if(action.ids.includes(i))
+        if(action.ids.includes(i+""))
           pokemon.questId = action.quest;
         return pokemon;
       });
@@ -23,7 +23,22 @@ export default function roster(state=[], action){
           pokemon.questId = "";
         return pokemon;
       });
-    } else{
+    } else if (action.type === 'ADD_XP_TO_ROSTER_FROM_QUEST') {
+      return state.map(pokemon =>{
+        if(pokemon.questId === action.quest)
+          return addXpAndLevel(pokemon, action.xp);
+        return pokemon;
+      });
+    }else if (action.type === 'ADD_XP_TO_ROSTER') {
+      return state.map(pokemon => addXpAndLevel(pokemon, action.xp));
+    }else{
         return state;
     }
+}
+
+const addXpAndLevel = (pokemon, xp) => {
+  pokemon.xp += xp;
+  if(pokemon.xp >= pokemon.requiredXp(pokemon.lvl))
+    pokemon.lvl += 1;
+  return pokemon;
 }
