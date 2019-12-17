@@ -3,9 +3,12 @@ import { useLocation } from "react-router-dom";
 import SidebarPresentational from './sidebarPresentational';
 
 function Sidebar() {
+
+    let location = useLocation();
+
     return (
         <SidebarPresentational
-            visibility={(useLocation().pathname === '/createProfile') ? {display: 'none'} : undefined}
+            visibility={(location.pathname === '/createProfile' || location.pathname === '/login') ? {display: 'none'} : undefined}
             imgSrc={'./logo.png'}
         />
     );

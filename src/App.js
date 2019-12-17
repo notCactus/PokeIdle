@@ -8,7 +8,7 @@ import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
 import Shop from './shop/shop';
-import LoginPresentation from './login/loginPresentation';
+import Login from './login/login';
 
 import app from'./base';
 
@@ -79,7 +79,7 @@ function App() {
                 }
               />
               <PrivateRoute path="/shop" component={Shop}/>
-              <Route path="/login" component={LoginPresentation}/>
+              <Route path="/login" component={Login}/>
             </div>
           </div>
         </Provider>
@@ -93,7 +93,7 @@ function App() {
               <Route path="/createProfile"
               render = {(props) => <CreateProfile/>}
               />
-              <Route path="/login" component={LoginPresentation}/>
+              <Route path="/login" component={Login}/>
             </div>
           </div>
         </Provider>
