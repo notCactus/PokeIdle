@@ -5,15 +5,15 @@ import InventoryItem from '../inventoryItem/inventoryItem';
 import {getItem} from '../../api/api'
 import './pokeOptions.css';
 
-function PokeOptions({pokemon, itemlist, roster, onMoveToPC, onMoveToRoster}){
+function PokeOptions({pokemon, itemlist, roster, onMoveToPC, onMoveToRoster, confirmFunction}){
 
     const [items, setItems] = useState(<InventoryItem name={'Loading...'} sprite={'./loading.gif'}/>);
 
     useEffect(() => {
-          Promise.all(itemlist.map(item => 
+          Promise.all(itemlist.map(item =>
                   getItem(item.id)
-             )).then(items => 
-                  setItems(items.map((item, i) => 
+             )).then(items =>
+                  setItems(items.map((item, i) =>
                       <InventoryItem
                           name={item.names.filter(name => name.language.name === 'en')[0].name}
                          sprite={item.sprites.default}
@@ -34,7 +34,14 @@ function PokeOptions({pokemon, itemlist, roster, onMoveToPC, onMoveToRoster}){
                   items:[
                   <ConfirmButton
                     toConfirm={`Would you like to move ${pokemon.id} to your ` + (roster ? "PC" : "party" ) + "?"}
-                    confirmFunction={roster ? (() => onMoveToPC(pokemon)) : (() => onMoveToRoster(pokemon))}
+                    confirmFunction={() =>
+                      {
+                        roster ?
+                        onMoveToPC(pokemon) :
+                        onMoveToRoster(pokemon);
+                        confirmFunction()
+                      }
+                    }
                   />
                 ]},
                 item:{

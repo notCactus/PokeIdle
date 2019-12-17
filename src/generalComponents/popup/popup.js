@@ -8,7 +8,7 @@ class Popup extends Component{
         <div className="popupContent">
           <div>
             <h3>{this.props.title}</h3>
-            <h3 onClick={this.props.exitFunction}>X</h3>
+            <h3 id="closePopup" onClick={this.props.exitFunction}>X</h3>
           </div>
           <div>{this.props.view}</div>
         </div>

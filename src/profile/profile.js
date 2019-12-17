@@ -5,6 +5,8 @@ const mapStateToProps = (state) => {
     return {
         username: state.createProfile.username,
         lvl: state.trainer.lvl,
+        roster: state.trainer.roster,
+        pcRoster: state.trainer.pcRoster,
         trainerStamina: state.trainer.stamina,
         trainerMaxStamina: state.trainer.maxStamina,
         trainerXp: state.trainer.xp,

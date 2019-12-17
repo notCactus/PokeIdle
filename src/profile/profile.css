@@ -4,39 +4,7 @@
   width: 100%;
   align-items: center;
 }
-.Profile .Popup > .popupContent{
-  background-color: red;
-  border: red solid 2px;
-  width: 300px;
-}
-.Profile .Popup > .popupContent h3{
-  margin: 0.2em;
-  color: white;
-}
-.Profile .Popup .ConfirmWindow p {
- padding: 0.5em;
-}
-.Profile .Popup .ConfirmWindow {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 120px;
-}
 
-.Profile .Popup .ConfirmWindow .clickable {
-  background-color: #687D69;
-  color: white;
-  width: 80px;
-}
-
-.Profile .Popup > div:nth-child(1) h3:nth-of-type(2){
-  height: 25px;
-  width: 30px;
-  text-align: center;
-  background-color: black;
-}
 .Profile > .ProfileOverview {
   margin-top: 1em;
 }
@@ -54,6 +22,93 @@
   max-width: 130px;
   height: 120%;
 }
+
+.ProfileOverview .Popup > .popupContent{
+  background-color: red;
+  border: red solid 2px;
+  width: 300px;
+}
+.ProfileOverview .Popup > .popupContent h3{
+  margin: 0.2em;
+  color: white;
+}
+.ProfileOverview .Popup .ConfirmWindow p {
+ padding: 0.5em;
+}
+.ProfileOverview .Popup .ConfirmWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+}
+
+.ProfileOverview .Popup .ConfirmWindow .clickable {
+  background-color: #687D69;
+  color: white;
+  width: 80px;
+}
+
+.ProfileOverview .Popup > div:nth-child(1) h3:nth-of-type(2){
+  height: 25px;
+  width: 30px;
+  text-align: center;
+  background-color: black;
+}
+
+.Profile .Popup .MenuToggler {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Profile .Popup .MenuToggler > #options {
+  background-color: pink;
+}
+
+.Profile .Popup .MenuToggler > #menuItems {
+  background-color: white;
+}
+
+.Profile .Popup {
+  width: 300px;
+}
+.Profile .Popup > div:nth-child(1){
+  background-color: #1fc8db;
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  width: 300px;
+  color: white;
+}
+.Profile .Popup .ConfirmWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  height: 100px;
+}
+
+.Profile .Popup .ConfirmWindow .clickable {
+  background-color: #1fc8db;
+  color: white;
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Profile .Popup > div:nth-child(1) h3:nth-of-type(2){
+  height: 25px;
+  width: 30px;
+  text-align: center;
+  background-color: black;
+}
+.Profile .Popup > div:nth-child(1) h3{
+  margin: 0.3em;
+}
+
+
 
 .Profile > .ProfileOverview > .CharacterInformation > .Bar {
   margin: 0.2em;
@@ -107,22 +162,8 @@
   height: 95%;
 }
 
-.Profile .Popup .MenuToggler {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .Profile .ConfirmWindow > p {
   margin: 1em;
-}
-
-.Profile .Popup .MenuToggler > #options {
-  background-color: pink;
-}
-
-.Profile .Popup .MenuToggler > #menuItems {
-  background-color: white;
 }
 
 .Profile > .ProfileOverview h3 {
@@ -136,42 +177,7 @@
   top: -20px;
   left: -25px;
 }
-.Profile .Popup {
-  width: 300px;
-}
-.Profile .Popup > div:nth-child(1){
-  background-color: #1fc8db;
-  background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-  width: 300px;
-  color: white;
-}
-.Profile .Popup .ConfirmWindow {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  color: black;
-  height: 100px;
-}
 
-.Profile .Popup .ConfirmWindow .clickable {
-  background-color: #1fc8db;
-  color: white;
-  width: 70px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.Profile .Popup > div:nth-child(1) h3:nth-of-type(2){
-  height: 25px;
-  width: 30px;
-  text-align: center;
-  background-color: black;
-}
-.Profile .Popup > div:nth-child(1) h3{
-  margin: 0.3em;
-}
 @media screen and (max-width: 500px) {
   .Profile > .ProfileOverview {
     width: 80%;

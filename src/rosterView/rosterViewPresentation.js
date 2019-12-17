@@ -22,7 +22,6 @@ class RosterViewPresentation extends Component {
         <MenuToggler
           active="activeRoster"
           fallback="activeRoster"
-          menuItemClickEvent={this.props.clickEvent}
           menus={this.menuProps(this.props.roster, this.props.pcRoster)}
         />
       </div>
@@ -61,7 +60,7 @@ class RosterViewPresentation extends Component {
         pokemonId={pokemon.id}
         inRoster={inRoster}
         index={i}
-        canClick={true}
+        clickEvent={() => this.props.clickEvent(i, inRoster)}
       />
     );
   }
