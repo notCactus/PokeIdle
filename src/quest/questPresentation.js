@@ -37,7 +37,7 @@ class QuestPresentation extends Component{
       app.firestore().collection('quest').get()
       .then(snap =>{
         c.props.setAllQuests(snap.docs.map(v => v.data()))
-        c .props.setAvailibleQuests(c.props.lvl);
+        c.props.setAvailibleQuests(c.props.lvl);
       });
   }
 

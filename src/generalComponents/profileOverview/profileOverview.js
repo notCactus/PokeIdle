@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React from 'react';
 import Avatar from '../avatar/avatar';
 import CharacterInformation from '../characterInformation/characterInformation';
 import './profileOverview.css';
