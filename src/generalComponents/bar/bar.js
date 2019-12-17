@@ -24,7 +24,10 @@ class Bar extends Component{
   }
   fillBar(current, max){
     if(current !== undefined)
-      return (<div style={this.calcFill(current,max)}></div>);
+      return (
+        <div style={this.calcFill(current,max)}>
+          <p>{`${this.props.current}/${this.props.max}`}</p>
+        </div>);
   }
 
   calcFill(current, max){

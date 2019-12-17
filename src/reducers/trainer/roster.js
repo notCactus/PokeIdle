@@ -38,7 +38,10 @@ export default function roster(state=[], action){
 
 const addXpAndLevel = (pokemon, xp) => {
   pokemon.xp += xp;
-  if(pokemon.xp >= pokemon.requiredXp(pokemon.lvl))
+  if(pokemon.xp >= pokemon.requiredXp(pokemon.lvl)){
     pokemon.lvl += 1;
+    pokemon.hp += pokemon.maxHp(pokemon.lvl) - pokemon.maxHp(pokemon.lvl - 1);
+    if (pokemon.hp > pokemon.maxHp(pokemon.lvl)) pokemon.hp = pokemon.maxHp(pokemon.lvl);
+  }
   return pokemon;
 }

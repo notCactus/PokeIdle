@@ -16,6 +16,8 @@ class RosterSelector extends Component{
         <ProfileOverview
           name={this.props.name}
           image={this.props.image}
+          stamina={this.props.stamina}
+          maxStamina={this.props.maxStamina}
           pokemonId={this.props.pokemonId}
           xp={this.props.xp}
           maxXp={this.props.maxXp}

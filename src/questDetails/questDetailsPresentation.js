@@ -132,6 +132,8 @@ class QuestDetailsPresentation extends Component{
       <RosterSelector
         key={i}
         image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
+        stamina={pokemon.hp}
+        maxStamina={pokemon.maxHp(pokemon.lvl)}
         name={pokemon.id}
         level={pokemon.lvl}
         xp={pokemon.xp}
