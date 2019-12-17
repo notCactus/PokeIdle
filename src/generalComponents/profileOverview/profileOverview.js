@@ -14,6 +14,8 @@ function style({width, height, maxWidth, borderBend}) {
 class ProfileOverview extends Component {
   constructor(props){
     super(props);
+    this.showPopup = this.showPopup.bind(this);
+    this.exit = this.exit.bind(this);
     this.state = {
       popup: false
     }
@@ -21,7 +23,10 @@ class ProfileOverview extends Component {
 
   render(){
     return (
-      <div className="ProfileOverview" data-pokemon={this.props.pokemonId} style={style(this.props)} onClick={this.props.canClick ? () => this.showPopup() : undefined}>
+      <div className="ProfileOverview"
+          data-pokemon={this.props.pokemonId}
+          style={style(this.props)}
+          onClick={this.props.onClick}>
         <Avatar
           image={this.props.image}
         />
@@ -34,7 +39,7 @@ class ProfileOverview extends Component {
           stamina={this.props.stamina}
           maxStamina={this.props.maxStamina}
         />
-        {this.state.popup ? this.popup() : undefined}
+        {this.popup()}
       </div>
     );
   }

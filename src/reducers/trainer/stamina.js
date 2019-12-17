@@ -2,7 +2,7 @@ export default function stamina(state=11, action){
     if (action.type === 'SET_STAMINA') {
         return action.stamina;
     } else if (action.type === 'ADD_STAMINA'){
-        return state + action.stamina;
+        return Math.min(action.maxStamina(action.lvl), state + action.stamina);
     } else if (action.type === 'REMOVE_STAMINA'){
         const staminaCalc = state - action.stamina;
         if(staminaCalc < 0) // Returns the state if more stamina than available is used.

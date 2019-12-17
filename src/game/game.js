@@ -2,16 +2,19 @@
 import quest from './quest';
 import passiveTrainerXp from './passiveTrainerXp';
 import passivePokemonXp from './passivePokemonXp';
+import passiveTrainerStamina from './passiveTrainerStamina';
 
 const startGame = (store) => {
   const gameLoop = setInterval(() => game(store), UPDATE_TIME);
   return gameLoop;
 }
+
 export default startGame;
 
 const UPDATE_TIME = 1000;
 const TRAINER_XP_GAIN_PER_UPDATE = 1;
 const POKEMON_XP_GAIN_PER_UPDATE = 2;
+const STAMINA_REGENERATION = 1;
 
 const game = (store) => {
   passiveTrainerXp(
@@ -34,6 +37,11 @@ const game = (store) => {
     (x, p) => {
       store.dispatch({type: 'ADD_XP', xp: x,});
       // TODO: store.dispatch({type: 'ADD_CURRENCY', currency: p,};
-    }
-  )
+    },
+    (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
+    (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),
+  );
+  passiveTrainerStamina(
+    () => store.dispatch({type: 'ADD_STAMINA', stamina: STAMINA_REGENERATION}),
+  );
 }

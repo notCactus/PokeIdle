@@ -25,12 +25,18 @@ export default function roster(state=[], action){
       });
     } else if (action.type === 'ADD_XP_TO_ROSTER_FROM_QUEST') {
       return state.map(pokemon =>{
-        if(pokemon.questId === action.quest)
+        if(pokemon.questId === action.quest && pokemon.hp > 0)
           return addXpAndLevel(pokemon, action.xp);
         return pokemon;
       });
     }else if (action.type === 'ADD_XP_TO_ROSTER') {
       return state.map(pokemon => addXpAndLevel(pokemon, action.xp));
+    }else if (action.type === 'DAMAGE_POKEMON_FROM_QUEST') {
+      return state.map((pokemon) => {
+        if(pokemon.questId === action.quest)
+          pokemon.hp -= action.dmg.pop();
+        return pokemon;
+      })
     }else{
         return state;
     }
