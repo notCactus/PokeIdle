@@ -148,6 +148,7 @@
 
 .Profile .MenuToggler > #options > .option{
   margin: 0.5em;
+  text-decoration: underline;
 }
 
 .Profile .MenuToggler > #menuItems > .menuItem{

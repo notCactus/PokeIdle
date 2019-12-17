@@ -8,6 +8,12 @@
 .Quest .MenuToggler {
   width: 80%;
 }
+
+.Quest .MenuToggler .option {
+  margin: 0.5em;
+  text-decoration: underline;
+}
+
 .Quest .MenuToggler  .menuItem{
   margin: 0.2em;
 }
