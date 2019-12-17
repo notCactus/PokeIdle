@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react';
 import {withRouter, Redirect} from 'react-router';
 import app from '../base';
+import LinkButton from "../generalComponents/linkButton/linkButton";
 
 import './login.css';
 
@@ -36,18 +37,19 @@ const Login = ({history}) => {
     }
     
     return (
-        <div>
-            <h1>Log in</h1>
+        <div className="login">
             <form onSubmit={handleLogin}>
                 <label>
-                    Email: 
-                    <input name="email" type="email" placeholder="Email"/>
+                    <b>Email</b>
                 </label>
+                <input name="email" type="email" placeholder="Email"/>
                 <label>
-                    Password: 
-                    <input name="password" type="password" placeholder="Password"/>
+                    <b>Password</b>
                 </label>
+                <input name="password" type="password" placeholder="Password"/>
                 <button type="submit">Login</button>
+                <p>OR</p>
+                <LinkButton text="Sign Up" linkTo="/createProfile"/>
             </form>
         </div>
     );
