@@ -22,6 +22,8 @@ The database should be updated with all changes to the user during the usage of 
 - Firebase
 #### Hosting
 - Firebase
+### Databse
+- Firestore
 
 ## Explanation of files
 #### Main views
@@ -69,4 +71,5 @@ These are presentational components; they are used by the main views to create t
   - Used as a clickable link to navigate thorugh the website.
 - /generalComponent/signOutButton
   - Used to sign out. 
-    
+#### Game
+The folder /game contains all the files to run the game, such as sending pokémon on quests, and gaining xp, health, etc.    
