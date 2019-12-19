@@ -30,4 +30,43 @@ These views have the responsebility of rendering the subpages and initializing t
 - /createProfile
 - /quest
 - /questDetails
-- /shop   
+- /shop
+#### General components
+These are presentational components; they are used by the main views to create the content seen one every subpage.
+- /generalComponent/avatar
+  - Currently only contains an image, is used to display an image from a given src. 
+- /generalComponent/bar
+  - Renders a bar, fills it based on the precentage given from the props current and max.
+- /generalComponent/characterInformation
+  - Used to show overview of a character, shows name and level, also shows health and level using the bar component
+- /generalComponent/clickable
+  - Used as a button, takes in text and a function used on onClick
+- /generalComponent/confirmWindow
+  - Used when something needs to be confirmed, takes text (explanation of what to confirm), and a function to activate when confirm is clicked
+- /generalComponent/detailedQuestInformation 
+  - Displays information of a quest, takes in the content to display as text, such as time, difficulty, description, used in /questDetails     
+- /generalComponenent/inventoryItem
+  - Used to display owned items has a button. Takes item to display as a prop, and what function to call when the button is clicked as a prop.
+- /generalComponent/itemDetails
+  - Used to display information of an item, information comes from props.
+- /generalComponent/linkButton
+  - Used to navigate to a different part of the website when clicked.
+- /generalComponent/menuToggler
+  - Takes in x amount of views, and lets you toggle between them.
+- /generalComponent/pokeOptions
+  - Used as a container for menuToggler to apply specific game logic, related to a pokémon.
+- /generalComponent/popup
+  - Used to display a popup.
+- /generalComponent/profileOverview
+  - Combines avatar and characterInformation to display an overview of a character.
+- /generalComponent/questItem
+  - Shows a title, difficulty, and an icon. Also has button that takes a callback. Used as a very short overview of a quest.
+- /generalComponent/rosterSelector
+  - Used as a container for profileOverview, marks the clicked profileOverview, and unmarks once clicked again.
+- /genrealComponent/shopItem
+  - Used to display a item, has a button that takes it function from a prop.
+- /generalComponent/sidebarLink
+  - Used as a clickable link to navigate thorugh the website.
+- /generalComponent/signOutButton
+  - Used to sign out. 
+    
