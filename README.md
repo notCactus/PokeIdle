@@ -9,11 +9,17 @@ As for gameplay; there is a view consisting of quets you can send you pokemon to
 
 ## Planned features
 #### Finish the shop
-User should be able to, buy and use items baught from the shop.
+User should be able to, buy and use items bought from the shop and the buyable pokemon should vary.
 #### User session 
 Make sure once the user has signed in, the user keeps being signed and all user related data is stored.
 #### Update database
 The database should be updated with all changes to the user during the usage of the app.
+#### Add UI and improve layout
+Add proper UI and improve the layout
+#### Drag and drop sorting of pokemon
+Drag and drop the pokemon in the roster or pc to sort them.
+#### Improve sign in and sign out flow.
+Improve sign in and sign out flow.
 
 ## Technologies
 #### Framework
@@ -22,7 +28,7 @@ The database should be updated with all changes to the user during the usage of 
 - Firebase
 #### Hosting
 - Firebase
-### Databse
+#### Databse
 - Firestore
 
 ## Explanation of files
@@ -30,9 +36,14 @@ The database should be updated with all changes to the user during the usage of 
 These views have the responsebility of rendering the subpages and initializing their components. They also contain the logic to be passed down to the components, to have them work as intended.
 - /profile
 - /createProfile
+    - Sign up page
 - /quest
 - /questDetails
 - /shop
+- /login
+    - Login page
+- /sidebar
+- /rosterView
 #### General components
 These are presentational components; they are used by the main views to create the content seen one every subpage.
 - /generalComponent/avatar
@@ -72,4 +83,22 @@ These are presentational components; they are used by the main views to create t
 - /generalComponent/signOutButton
   - Used to sign out. 
 #### Game
-The folder /game contains all the files to run the game, such as sending pokémon on quests, and gaining xp, health, etc.    
+The folder /game contains all the files to run the game, such as sending pokémon on quests, and gaining xp, health, etc.
+#### Firebase/Firestore/Authentication
+- /base.js 
+  - Initializes firebase with the appropriate settings.
+- /privateRoute.js
+  - Makes a route private, only accessible if logged in.
+#### Reducers
+- /reducers
+  - /createProfile
+    - Reducers for creating a trainer (user).
+  - /pokemon
+    - Reducers to keep track of the pokemon stats and status.
+  - /quest
+    - Reducers for the quest system.
+  - /trainer
+    - Reducers to keep track of the trainer (user) stats.
+#### Other
+  - /loadData.js
+    - Loads the user's data.

@@ -1,6 +1,7 @@
 import ProfilePresentation from './profilePresentation';
 import { connect } from 'react-redux';
 
+
 const mapStateToProps = (state) => {
     return {
         username: state.createProfile.username,
@@ -14,15 +15,36 @@ const mapStateToProps = (state) => {
     }
 }
 
-/*const mapDispatchToProps = (dispatch) => ({
-    onUsernameChange: (newName) => dispatch ({
+const mapDispatchToProps = (dispatch) => ({
+    setUsername: (newName) => dispatch ({
         type: 'SET_USERNAME',
         username: newName,
     }),
-    onStarterClick: (starter) => dispatch ({
-        type: 'SET_STARTER',
-        starter: starter,
-    })
-});*/
-const Profile = connect(mapStateToProps/*, mapDispatchToProps*/)(ProfilePresentation);
+    setCurrency: (amount) => dispatch ({
+        type: 'SET_CURRENCY',
+        currency: amount,
+    }),
+    setItems: (items) => dispatch ({
+        type: 'SET_ITEMS',
+        item: items,
+    }),
+    setLvl: (amount) => dispatch ({
+        type: 'SET_LVL',
+        lvl: amount,
+    }),
+    setPc: (pokemon) => dispatch ({
+        type: 'SET_PC',
+        pokemon: pokemon,
+    }),
+    setRoster: (pokemon) => dispatch ({
+        type: 'SET_ROSTER',
+        pokemon: pokemon,
+    }),
+    setStamina: (stamina) => dispatch ({
+        type: 'SET_STAMINA',
+        stamina: stamina,
+    }),
+});
+
+const Profile = connect(mapStateToProps, mapDispatchToProps)(ProfilePresentation);
 export default Profile;

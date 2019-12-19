@@ -63,6 +63,12 @@ function App() {
                     <Profile/>
                   }
                 />
+                <PrivateRoute
+                  exact path="/"
+                  render = { (props) =>
+                    <Profile/>
+                  }
+                />
               <Route path="/createProfile"
               render = {(props) => <CreateProfile/>}
               />
@@ -90,6 +96,9 @@ function App() {
           <div className="App">
             <div>
               <Header/>
+              <Route path="/"
+              render = {(props) => <CreateProfile/>}
+              />
               <Route path="/createProfile"
               render = {(props) => <CreateProfile/>}
               />
