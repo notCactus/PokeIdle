@@ -16,6 +16,8 @@ Make sure once the user has signed in, the user keeps being signed and all user 
 The database should be updated with all changes to the user during the usage of the app.
 #### Add UI and improve layout
 Add proper UI and improve the layout
+#### Drag and drop sorting of pokemon
+Drag and drop the pokemon in the roster or pc to sort them.
 
 ## Technologies
 #### Framework
