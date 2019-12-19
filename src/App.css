@@ -78,6 +78,11 @@
   max-width: 400px;
 }
 
+
+/***GLOBAL LOADING SIZE RULE***/
+
+
+
 @media screen and (max-width: 500px) {
   .App .MenuToggler {
     width: 90%;

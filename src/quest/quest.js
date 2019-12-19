@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
         lvl: state.trainer.lvl,
         availibleQuests: state.quest.availibleQuests,
         activeQuests: state.quest.activeQuests,
+        allQuests: state.quest.allQuests,
         roster: state.trainer.roster,
     }
 }
