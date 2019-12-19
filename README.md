@@ -9,11 +9,13 @@ As for gameplay; there is a view consisting of quets you can send you pokemon to
 
 ## Planned features
 #### Finish the shop
-User should be able to, buy and use items baught from the shop.
+User should be able to, buy and use items bought from the shop and the buyable pokemon should vary.
 #### User session 
 Make sure once the user has signed in, the user keeps being signed and all user related data is stored.
 #### Update database
 The database should be updated with all changes to the user during the usage of the app.
+#### Add UI and improve layout
+Add proper UI and improve the layout
 
 ## Technologies
 #### Framework
