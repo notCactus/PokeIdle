@@ -26,8 +26,8 @@ The database should be updated with all changes to the user during the usage of 
 ## Explanation of files
 #### Main views
 These views have the responsebility of rendering the subpages and initializing their components. They also contain the logic to be passed down to the components, to have them work as intended.
--/profile
--/createProfile
--/quest
--/questDetails
--/shop   
+- /profile
+- /createProfile
+- /quest
+- /questDetails
+- /shop   
