@@ -3,7 +3,7 @@
 ## Description
 PokéIdle is a pokemon idle game.
 ## Current features
-So far you're able to create an account using Firebase Authentication. You can pick a start Pokémon, once a starter has been picked and you have chosen a username, you can start the game. As soon as the game has been started you will be taken to a view. This view is an overview of you and your pokémon. While having the game turned on you and your pokémon start to passevily gain experience points. 
+So far you're able to create an account using Firebase Authentication. You can pick a starter Pokémon, once a starter has been picked and you have chosen a username, you can start the game. As soon as the game has been started you will be taken to a view. This view is an overview of you and your pokémon. While having the game turned on you and your pokémon start to passevily gain experience points. 
 
 As for gameplay; there is a view consisting of quets you can send you pokemon to. You pick a quest, then a roster from your pokémon, and finally you send them away. The quest has a timer, once the timer is done, your pokemon will be sent back, you and your pokemon will have lost health.
 
