@@ -18,6 +18,8 @@ The database should be updated with all changes to the user during the usage of 
 Add proper UI and improve the layout
 #### Drag and drop sorting of pokemon
 Drag and drop the pokemon in the roster or pc to sort them.
+#### Improve sign in and sign out flow.
+Improve sign in and sign out flow.
 
 ## Technologies
 #### Framework
@@ -97,3 +99,6 @@ The folder /game contains all the files to run the game, such as sending pokémo
     - Reducers for the quest system.
   - /trainer
     - Reducers to keep track of the trainer (user) stats.
+#### Other
+  - /loadData.js
+    - Loads the user's data.

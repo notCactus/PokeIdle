@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import  { Redirect } from 'react-router-dom'
 import app from '../base';
 
-const CreateProfilePresentation=({history, username, onUsernameChange, starters, onStarterClick, chosenStarter})=>(
+const CreateProfilePresentation=({addToRoster, username, onUsernameChange, starters, onStarterClick, chosenStarter})=>(
     <React.Fragment>
         <ProfileImageAndUsername username={username}
                                 onUsernameChange={onUsernameChange}
                                 chosenStarter={chosenStarter}
-                                history={history}
+                                addToRoster={addToRoster}
                                 starters={starters}
                                 onStarterClick={onStarterClick}/>
     </React.Fragment>
@@ -17,7 +17,7 @@ const CreateProfilePresentation=({history, username, onUsernameChange, starters,
 let debounce;
 
 // Displays the profile and the username
-const ProfileImageAndUsername=({onStarterClick, starters, username, onUsernameChange, chosenStarter}) => {
+const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username, onUsernameChange, chosenStarter}) => {
     return (
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
@@ -32,12 +32,13 @@ const ProfileImageAndUsername=({onStarterClick, starters, username, onUsernameCh
         <SignUp chosenStarter={chosenStarter}
                 starters={starters}
                 username={username}
-                onStarterClick={onStarterClick}/>
+                onStarterClick={onStarterClick}
+                addToRoster={addToRoster}/>
     </div>
 )};
 
 // Handles sign up.
-const SignUp = ({username, chosenStarter, starters, onStarterClick}) => {
+const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick}) => {
     const [redirectState, setRedirectState] = useState('noRedirect');
 
     const handleSignUp = (async (event) => {
@@ -64,6 +65,19 @@ const SignUp = ({username, chosenStarter, starters, onStarterClick}) => {
                         
                     })
                     .then((result) => {
+
+                        // Add to redux store.
+                        addToRoster({
+                            name: chosenStarter,
+                            id: starterObject.id,
+                            uid: result.user.uid,
+                            hp: starterObject.stats[5].base_stat,
+                            lvl: 1,
+                            questId: '',
+                            xp: 0,
+                            requiredXp: (lvl) => Math.pow(10,lvl),
+                            maxHp: (lvl) => lvl*4,
+                        });
 
                         // Add a new trainer to the database.
                         app.firestore().collection('trainer').doc(result.user.uid).set({
