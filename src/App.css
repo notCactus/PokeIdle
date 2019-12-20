@@ -19,6 +19,18 @@
   width: 100%;
 }
 
+.Loading {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.App .Loading img {
+  width: 80px;
+  height: 80px;
+}
+
 .App > div:nth-of-type(2) > div:nth-of-type(2){
   height: 85%;
 }
