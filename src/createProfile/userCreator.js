@@ -27,6 +27,12 @@ const mapDispatchToProps = (dispatch) => ({
       type: 'SET_SIGN_IN',
       signedIn: true,
     }),
+    startReg: () => dispatch ({
+      type: 'START_REGISTRATION',
+    }),
+    finishReg: () => dispatch ({
+      type: 'FINISH_REGISTRATION',
+    }),
 });
 
 const UserCreator = connect(mapStateToProps, mapDispatchToProps)(UserCreatorPresentation);

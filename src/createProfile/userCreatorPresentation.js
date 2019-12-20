@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
 import app from '../base';
 
-const UserCreatorPresentation=({addToRoster, username, onUsernameChange, starters, onStarterClick, chosenStarter,trainer,signInSession})=>(
+const UserCreatorPresentation=(
+  {addToRoster, username, onUsernameChange,
+    starters, onStarterClick,
+    chosenStarter,trainer,
+    signInSession, startReg,
+    finishReg,
+    })=>(
     <React.Fragment>
         <ProfileImageAndUsername username={username}
                                 onUsernameChange={onUsernameChange}
@@ -11,6 +17,8 @@ const UserCreatorPresentation=({addToRoster, username, onUsernameChange, starter
                                 onStarterClick={onStarterClick}
                                 trainer={trainer}
                                 signInSession={signInSession}
+                                startReg={startReg}
+                                finishReg={finishReg}
                                 />
     </React.Fragment>
 );
@@ -19,7 +27,12 @@ const UserCreatorPresentation=({addToRoster, username, onUsernameChange, starter
 let debounce;
 
 // Displays the profile and the username
-const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username, onUsernameChange, chosenStarter, trainer, signInSession}) => {
+const ProfileImageAndUsername=({addToRoster, onStarterClick,
+   starters, username,
+   onUsernameChange, chosenStarter,
+   trainer, signInSession,
+   startReg, finishReg
+    }) => {
     return (
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
@@ -37,12 +50,14 @@ const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username,
                 addToRoster={addToRoster}
                 trainer={trainer}
                 signInSession={signInSession}
+                startReg={startReg}
+                finishReg={finishReg}
                 />
     </div>
 )};
 
 // Handles sign up.
-const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick, trainer, signInSession, signedIn}) => {
+const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick, trainer, signInSession, signedIn,startReg,finishReg}) => {
     const [redirectState, setRedirectState] = useState('noRedirect');
     const handleSignUp = (async (event) => {
         event.preventDefault();
@@ -57,6 +72,7 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
             })[0];
 
             try {
+                startReg();
                 await app
                     .auth()
                     .createUserWithEmailAndPassword(email.value, password.value)
@@ -69,7 +85,6 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
 
                     })
                     .then((result) => {
-
                         // Add to redux store.
                         trainer.roster.push({
                             id: starterObject.name,
@@ -88,10 +103,12 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
                           signInSession();
                         });
                     }).catch((err) => {
+                        finishReg();
                         console.error(err);
                         alert(err.message);
                     });
             } catch (error) {
+                finishReg();
                 alert(error);
             }
         } else if (chosenStarter === 'default' && username === ''){
@@ -103,6 +120,7 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
         } else {
             alert("Something went wrong, contact an admin.");
         }
+      //finishReg();
     });
     return (
         <div className="signUp">

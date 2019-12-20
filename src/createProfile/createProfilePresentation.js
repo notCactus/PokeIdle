@@ -4,6 +4,7 @@ import  { Redirect } from 'react-router-dom'
 
 import {getPokemon} from '../api/api';
 import LinkButton from "../generalComponents/linkButton/linkButton";
+import Loading from '../generalComponents/loading/loading';
 
 import './createProfile.css';
 
@@ -71,6 +72,9 @@ class CreateProfilePresentation extends Component {
     render () {
         if(this.props.signedIn)
           return(<Redirect to="/profile"/>);
+        else if (this.props.registration==='started' && !this.props.signedIn) {
+          return (<Loading image="./loading.gif" text="Creating your account..."/>)
+        }
         else
           return (
               <div className="createProfile">
