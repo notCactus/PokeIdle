@@ -1,36 +1,14 @@
+import PrivateRoutePresentation from './privateRoutePresentation';
+import CreateProfile from './createProfile/createProfile';
+import { connect } from 'react-redux';
 import React from 'react';
-import {Route, Redirect} from 'react-router-dom';
-import app from './base';
 
-const PrivateRoute = ({ component: RouteComponent, render: renderFunction, redirectTo = "/createProfile", ...rest }) => {
 
-    let currentUser = app.auth().currentUser;
-
-    if(typeof RouteComponent !== 'undefined'){
-        return (
-            <Route
-              {...rest}
-              render={routeProps =>
-                !!currentUser ? (
-                  <RouteComponent {...routeProps} />
-                ) : (
-                  <Redirect to={redirectTo} />
-                )
-              }
-            />
-        );
-    } else {
-        return (
-            <Route
-              {...rest}
-              render={(props)=>
-                !!currentUser ? (renderFunction(props)) : (<Redirect to={redirectTo} />)
-              }
-            />
-        );
+const mapStateToProps = (state) => {
+    return {
+        signedIn: state.session.signedIn,
     }
+}
 
-    
-  };
-
+const PrivateRoute = connect(mapStateToProps)(PrivateRoutePresentation);
 export default PrivateRoute;

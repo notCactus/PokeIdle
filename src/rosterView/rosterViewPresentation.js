@@ -25,7 +25,7 @@ class RosterViewPresentation extends Component {
   render() {
     this.fetchImages();
     return (
-      <div className={`RosterView ${this.state.iconState}`}>
+      <div className={`RosterView`}>
         <MenuToggler
           active="activeRoster"
           fallback="activeRoster"
@@ -66,7 +66,7 @@ class RosterViewPresentation extends Component {
   }
 
   createRosterItems(r, inRoster){
-    return r.length > 0 ? r.map((pokemon, i) =>
+    return this.props.loadedData ? r.map((pokemon, i) =>
       <ProfileOverview
         image={this.state.rosterImages[pokemon.id] !== undefined ? this.state.rosterImages[pokemon.id] : "./loading.gif"}
         name={pokemon.id}
@@ -81,7 +81,7 @@ class RosterViewPresentation extends Component {
         clickEvent={() => this.activatePopup(i, inRoster)}
       />
     )
-    : !this.state.iconState ?
+    : !this.props.loadedData ?
     [
       <div className='loading'>
         <img  src="./loading.gif" alt="loading roster"/>

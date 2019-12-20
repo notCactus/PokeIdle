@@ -1,13 +1,21 @@
-import React from 'react';
-import app from '../../base';
+import SignOutButtonPresentation from './signOutButtonPresentation';
+import app from'./../../base';
+import { connect } from 'react-redux';
 
-const SignOutButton = () => {
-    return(
-        <button onClick={() => {
-            app.auth().signOut()
-            alert("You have signed out.")
-            }}>Sign out</button>
-    );
-};
 
+const mapStateToProps = (state) => {
+    return {}
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    onClick: () => {
+      app.auth().signOut()
+      dispatch ({
+        type: 'SET_SIGN_IN',
+        signIn: false,
+      })
+    }
+});
+
+const SignOutButton = connect(mapStateToProps, mapDispatchToProps)(SignOutButtonPresentation);
 export default SignOutButton;

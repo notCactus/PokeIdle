@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import  { Redirect } from 'react-router-dom'
 import app from '../base';
 
-const CreateProfilePresentation=({addToRoster, username, onUsernameChange, starters, onStarterClick, chosenStarter,trainer})=>(
+const UserCreatorPresentation=({addToRoster, username, onUsernameChange, starters, onStarterClick, chosenStarter,trainer,signInSession})=>(
     <React.Fragment>
         <ProfileImageAndUsername username={username}
                                 onUsernameChange={onUsernameChange}
@@ -11,6 +10,7 @@ const CreateProfilePresentation=({addToRoster, username, onUsernameChange, start
                                 starters={starters}
                                 onStarterClick={onStarterClick}
                                 trainer={trainer}
+                                signInSession={signInSession}
                                 />
     </React.Fragment>
 );
@@ -19,7 +19,7 @@ const CreateProfilePresentation=({addToRoster, username, onUsernameChange, start
 let debounce;
 
 // Displays the profile and the username
-const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username, onUsernameChange, chosenStarter, trainer}) => {
+const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username, onUsernameChange, chosenStarter, trainer, signInSession}) => {
     return (
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
@@ -36,12 +36,13 @@ const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username,
                 onStarterClick={onStarterClick}
                 addToRoster={addToRoster}
                 trainer={trainer}
+                signInSession={signInSession}
                 />
     </div>
 )};
 
 // Handles sign up.
-const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick, trainer}) => {
+const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick, trainer, signInSession, signedIn}) => {
     const [redirectState, setRedirectState] = useState('noRedirect');
     const handleSignUp = (async (event) => {
         event.preventDefault();
@@ -82,10 +83,10 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
                         // Add a new trainer to the database.
                         app.firestore().collection('trainer').doc(result.user.uid).set(
                           trainer
-                        );
-
-                        //Redirect
-                        setRedirectState('redirect');
+                        )
+                        .then(r => {
+                          signInSession();
+                        });
                     }).catch((err) => {
                         console.error(err);
                         alert(err.message);
@@ -103,30 +104,26 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
             alert("Something went wrong, contact an admin.");
         }
     });
+    return (
+        <div className="signUp">
+            <form onSubmit={handleSignUp}>
+                <label>
+                    <b>Email</b>
+                </label>
+                <input name="email" type="email" placeholder="Email"/>
+                <label>
+                    <b>Password</b>
+                </label>
+                <input name="password" type="password" placeholder="Password"/>
+                <ProfileStarters starters={starters}
+                onStarterClick={onStarterClick}
+                chosenStarter={chosenStarter}
+                />
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    );
 
-    if(redirectState === 'redirect'){
-        return(<Redirect to="/profile"/>);
-    }else {
-        return (
-            <div className="signUp">
-                <form onSubmit={handleSignUp}>
-                    <label>
-                        <b>Email</b>
-                    </label>
-                    <input name="email" type="email" placeholder="Email"/>
-                    <label>
-                        <b>Password</b>
-                    </label>
-                    <input name="password" type="password" placeholder="Password"/>
-                    <ProfileStarters starters={starters}
-                    onStarterClick={onStarterClick}
-                    chosenStarter={chosenStarter}
-                    />
-                    <button type="submit">Sign Up</button>
-                </form>
-            </div>
-        );
-    }
 }
 
 // Displays the starter pokemons.
@@ -153,4 +150,4 @@ const ProfileStarters=({starters, onStarterClick}) => (
     </div>
 );
 
-export default CreateProfilePresentation;
+export default UserCreatorPresentation;

@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
         username: state.createProfile.username,
         starters: state.createProfile.starters,
         chosenStarter: state.createProfile.chosenStarter,
+        signedIn: state.session.signedIn,
     }
 }
 
@@ -25,6 +26,9 @@ const mapDispatchToProps = (dispatch) => ({
     setStarters: (starters) => dispatch ({
         type: 'SET_STARTERS',
         starters: starters,
+    }),
+    resetTrainer: () => dispatch ({
+        type: 'RESET_TRAINER',
     }),
 });
 

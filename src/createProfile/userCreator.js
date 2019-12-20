@@ -22,7 +22,11 @@ const mapDispatchToProps = (dispatch) => ({
     addToRoster: (member) => dispatch ({
       type: 'ADD_TO_ROSTER',
       pokemon: member,
-    })
+    }),
+    signInSession: () => dispatch ({
+      type: 'SET_SIGN_IN',
+      signedIn: true,
+    }),
 });
 
 const UserCreator = connect(mapStateToProps, mapDispatchToProps)(UserCreatorPresentation);

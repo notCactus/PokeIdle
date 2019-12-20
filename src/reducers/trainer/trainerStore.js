@@ -9,6 +9,18 @@ import xp from './xp';
 import maxXp from './maxXp';
 
 export const trainer = (state = {}, action) => {
+  if(action.type === 'RESET_TRAINER')
+    return {
+      currency: 1,
+      items: [],
+      lvl: 1,
+      pcRoster: [],
+      roster: [],
+      stamina: 11,
+      maxStamina: maxStamina(state.lvl, action),
+      xp: 0,
+      maxXp: maxXp(state.lvl, action),
+    };
   return {
       currency: currency(state.currency, action),
       items: items(state.items, action),

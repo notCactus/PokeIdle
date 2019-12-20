@@ -7,7 +7,10 @@ import passivePcRosterHealth from './passivePcRosterHealth';
 import loadData from '../loadData';
 
 const startGame = (store) => {
-  const gameLoop = setInterval(() => {if(store.getState().session.signedIn) game(store);}, UPDATE_TIME);
+  const gameLoop = setInterval(() => {
+    if(store.getState().session.signedIn)
+      game(store);
+    }, UPDATE_TIME);
   return gameLoop;
 }
 

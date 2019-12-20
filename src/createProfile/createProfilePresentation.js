@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserCreator from './userCreator';
+import  { Redirect } from 'react-router-dom'
 
 import {getPokemon} from '../api/api';
 import LinkButton from "../generalComponents/linkButton/linkButton";
@@ -60,21 +61,27 @@ function starterToTrainer(cb, id){
 }
 
 class CreateProfilePresentation extends Component {
+    constructor(props){
+      super(props);
+      this.props.resetTrainer();
+    }
     componentDidMount(){
         setStarters(this.props.setStarters);
     }
-
     render () {
-        return (
-            <div className="createProfile">
-                    <UserCreator/>
-                <LinkButton text="ADD TO ROSTER TEST BUTTON" linkTo="/profile" onClick={() => starterToTrainer(this.props.addToRoster, this.props.chosenStarter)}/>
-                <p>OR</p>
-                <LinkButton text="Login" linkTo="/login"/>
-                <p>FOR TESTING:</p>
-                <SignOutButton/>
-            </div>
-        );
+        if(this.props.signedIn)
+          return(<Redirect to="/profile"/>);
+        else
+          return (
+              <div className="createProfile">
+                  <UserCreator/>
+                  <LinkButton text="ADD TO ROSTER TEST BUTTON" linkTo="/profile" onClick={() => starterToTrainer(this.props.addToRoster, this.props.chosenStarter)}/>
+                  <p>OR</p>
+                  <LinkButton text="Login" linkTo="/login"/>
+                  <p>FOR TESTING:</p>
+                  <SignOutButton/>
+              </div>
+          );
     }
 }
 

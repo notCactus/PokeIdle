@@ -15,6 +15,20 @@
     margin-top: 50%;
 }
 
+.sidebar > div {
+    margin-top: 50%;
+}
+
+.sidebar .LinkButton {
+  background-color: #1fc8db;
+  height: 25px;
+  width: 80px;
+}
+
+.sidebar .LinkButton .clickable {
+  color: white;
+}
+
 .selectedView {
     background-color: green;
 }

@@ -111,8 +111,11 @@
     justify-content: center;
     align-items: center;
   }
-  .App .sidebar a{
+  .App .sidebar a, .App .sidebar > div{
     margin-top: 0;
+  }
+  .App .sidebar img{
+    display: none;
   }
 
   .App .sidebar > * {
