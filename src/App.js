@@ -79,7 +79,7 @@ function App() {
               />
               <PrivateRoute
                 fallback="/createProfile"
-                path="/quest"
+                exact path="/quest"
                 render = { (props) =>
                   <Quest/>
                 }

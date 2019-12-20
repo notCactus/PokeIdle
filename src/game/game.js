@@ -14,9 +14,11 @@ const startGame = (store) => {
   return gameLoop;
 }
 
+let loadTry = 0;
+
 export default startGame;
 
-const UPDATE_TIME = 10000000;
+const UPDATE_TIME = 1000;
 const TRAINER_XP_GAIN_PER_UPDATE = 1;
 const POKEMON_XP_GAIN_PER_UPDATE = 2;
 const STAMINA_REGENERATION = 1;
@@ -54,7 +56,8 @@ const game = (store) => {
     passivePcRosterHealth(
       () => store.dispatch({type: 'PASSIVE_PC_HEALTH_REGEN', hp: HEALTH_REGENERATION}),
     );
-  } else {
+  } else if(loadTry < 5){
+    loadTry++;
     loadData(
       {
         setUsername: (n) => store.dispatch({type:'SET_USERNAME',username: n,}),

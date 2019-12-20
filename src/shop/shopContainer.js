@@ -57,7 +57,6 @@ function getPokeCost(pokemon){
 }
 
 function currencyToAmount(currency, currAmounts){
-    debugger;
     switch(currency){
         case 'Poké Ball':
             return currAmounts.poke;
@@ -89,7 +88,7 @@ function createMenu(shop, items, callBack, currAmounts){
                     apiData.description = item.effect_entries[0].short_effect;
                     apiData.id = item.name;
                 }
-                return <ShopItem 
+                return <ShopItem
                     name={apiData.name}
                     sprite={apiData.sprite}
                     cost={apiData.cost}
@@ -111,7 +110,7 @@ function ShopContainer({coins, poke, great, ultra, onPurchase}) {
     const [shopData, setShopData] = useState({});
     const [popup, setPopup] = useState();
 
-    const showPopup = (amount, name, cost, id) => 
+    const showPopup = (amount, name, cost, id) =>
         setPopup(
             <Popup
                 title={"Transaction"}
@@ -127,8 +126,8 @@ function ShopContainer({coins, poke, great, ultra, onPurchase}) {
         let retreivedShop =[];
         app.firestore().collection('shop').get().then(docs => {
             docs.forEach(doc => retreivedShop.push(doc.data()));
-            Promise.all(retreivedShop.map(menu => 
-                Promise.all(menu.items.map(item => 
+            Promise.all(retreivedShop.map(menu =>
+                Promise.all(menu.items.map(item =>
                     menu.pokeMenu ? Promise.all([getPokemon(item), getSpecies(item)]) : getItem(item)
                 ))
             )).then(items => {
