@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import Clickable from '../clickable/clickable';
-import ItemDetails from '../itemDetails/itemDetails';
-import './shopItem.css';
+import React, {useState, useEffect} from 'react';
+import ShopItemPresentational from './shopItemPresentational';
 
-function ShopItem({name, sprite, cost, description, onClick, popup}){
+function ShopItem({name, sprite, cost, description, onClick, id, playerAmount}){
 
     const [amount, setAmount] = useState(1);
+    const canAfford = cost ? cost.amount * amount <= playerAmount : undefined;
 
     useEffect(() => {
         setAmount(1);
     }, [name, sprite, cost, description]);
 
     return (
-        <div id="shopItem">
-            <ItemDetails
-                name={name}
-                sprite={sprite}
-                description={description}
-            />
-            {cost ? <div className="costDetails">
-                <p>{`${cost.amount} ${cost.currency}s`}</p>
-                <div>
-                    <input type="number" min="1" max="999" value={amount} onChange={e => setAmount(e.target.value)}/>
-                    <Clickable text="Buy" style={{width:"50px", height:"30px"}} onClick={() => onClick(amount, name, cost)}/>
-                </div>
-            </div> : undefined}
-            {popup}
-        </div>
+        <ShopItemPresentational
+            name={name}
+            sprite={sprite}
+            cost={cost}
+            description={description}
+            amount={amount}
+            id={canAfford ? 'affordable' : 'unaffordable'}
+            onClick={canAfford ? () => onClick(amount, name, cost, id) : undefined}
+            onChange={e => setAmount((!isNaN(e.target.value) && e.target.value > 0) ? e.target.value : 1)}
+        />
     );
 }
 

@@ -55,7 +55,13 @@
     height: 25px;
 }
 
-#shopItem .clickable {
+#shopItem #affordable {
     background-color: blue;
     color: white;
 }
+
+#shopItem #unaffordable {
+    background-color: gray;
+    color: red;
+}
+

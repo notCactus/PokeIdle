@@ -12,24 +12,28 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onMoveToPC: (pokemon) => {
-    dispatch({
+    const action = dispatch({
       type:'REMOVE_FROM_ROSTER',
       index: ownProps.index
     });
-    dispatch({
-      type:'ADD_TO_PC',
-      pokemon: pokemon
-    });
+    if (true/*action.error !== 'UNDERFLOW'*/){
+      dispatch({
+        type:'ADD_TO_PC',
+        pokemon: pokemon
+      });
+    }
   },
   onMoveToRoster: (pokemon) => {
-    dispatch({
-      type:'REMOVE_FROM_PC',
-      index: ownProps.index
-    });
-    dispatch({
+    const action = dispatch({
       type:'ADD_TO_ROSTER',
       pokemon: pokemon
     });
+    if (action.error !== 'OVERFLOW'){
+      dispatch({
+        type:'REMOVE_FROM_PC',
+        index: ownProps.index
+      });
+    }
   }
 })
 

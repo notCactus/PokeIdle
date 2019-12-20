@@ -3,7 +3,7 @@ import ShopPresentational from './shopPresentational';
 import {getItem, getSpecies, getPokemon} from '../api/api';
 import ShopItem from '../generalComponents/shopItem/shopItem';
 import ConfirmButton from '../generalComponents/confirmWindow/confirmWindow';
-import FundsPopup from '../generalComponents/funds/funds';
+import Popup from '../generalComponents/popup/popup';
 import app from '../base';
 import './shop.css';
 
@@ -56,10 +56,24 @@ function getPokeCost(pokemon){
     return cost;
 }
 
-function createMenu(items, shopData, popup, callBack){
+function currencyToAmount(currency, currAmounts){
+    debugger;
+    switch(currency){
+        case 'Poké Ball':
+            return currAmounts.poke;
+        case 'Great Ball':
+            return currAmounts.great;
+        case 'Ultra Ball':
+            return currAmounts.ultra;
+        default:
+            return currAmounts.coins
+    }
+}
+
+function createMenu(shop, items, callBack, currAmounts){
     if (items){
         let menusTemp = {};
-        shopData.forEach((menu, i) =>
+        shop.forEach((menu, i) =>
             menusTemp[menu.name] = {menuIcon: <img src={'./' +  menu.menuIcon} alt={menu.name}/>, items: items[i].map((item, j) => {
                 const apiData = {};
                 if (menu.pokeMenu) {
@@ -67,11 +81,13 @@ function createMenu(items, shopData, popup, callBack){
                     apiData.sprite = item[0].sprites.front_default;
                     apiData.cost = getPokeCost(item);
                     apiData.description = 'Type: ' + item[0].types.map(type => type.type.name);
+                    apiData.id = item[0].name;
                 } else {
                     apiData.name = item.names.filter(name => name.language.name === 'en')[0].name;
                     apiData.sprite = item.sprites.default;
                     apiData.cost = {amount: item.cost, currency:'coin'};
                     apiData.description = item.effect_entries[0].short_effect;
+                    apiData.id = item.name;
                 }
                 return <ShopItem 
                     name={apiData.name}
@@ -79,8 +95,9 @@ function createMenu(items, shopData, popup, callBack){
                     cost={apiData.cost}
                     description={apiData.description}
                     key={j}
+                    id={apiData.id}
                     onClick={callBack}
-                    popup={popup}
+                    playerAmount={currencyToAmount(apiData.cost.currency, currAmounts)}
                 />
             })}
         );
@@ -90,18 +107,18 @@ function createMenu(items, shopData, popup, callBack){
     }
 }
 
-function ShopContainer({coins, poke ,great, ultra, onPurchase}) {
-    const [menus, setMenus] = useState(createMenu());
+function ShopContainer({coins, poke, great, ultra, onPurchase}) {
+    const [shopData, setShopData] = useState({});
     const [popup, setPopup] = useState();
 
-    const showPopup = (amount, name, cost) => 
+    const showPopup = (amount, name, cost, id) => 
         setPopup(
             <Popup
                 title={"Transaction"}
                 exitFunction={() => setPopup()}
                 view={<ConfirmButton
                         toConfirm={`Would you like to buy ${amount} ${name}(s) for ${cost.amount * amount} ${cost.currency}s?`}
-                        confirmFunction={() => onPurchase(name, amount, cost)}
+                        confirmFunction={() => {onPurchase(id, amount, cost); setPopup()}}
                     />}
             />
         );
@@ -115,11 +132,12 @@ function ShopContainer({coins, poke ,great, ultra, onPurchase}) {
                     menu.pokeMenu ? Promise.all([getPokemon(item), getSpecies(item)]) : getItem(item)
                 ))
             )).then(items => {
-                setMenus(createMenu(items, retreivedShop, popup, showPopup));
+                setShopData({shop:retreivedShop, items:items});
             })
         })
     }, []);
 
+    const menus = createMenu(shopData.shop, shopData.items, showPopup, {coins, poke, great, ultra});
     const defMenu = firstMenu(menus);
     return (
             <ShopPresentational

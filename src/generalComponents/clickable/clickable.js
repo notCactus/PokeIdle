@@ -1,9 +1,9 @@
 import React from 'react';
 import './clickable.css';
 
-function Clickable({text, onClick, style}){
+function Clickable({text, onClick, style, id}){
     return (
-        <div className="clickable" style={style} onClick={onClick}>
+        <div className="clickable" id={id} style={style} onClick={onClick}>
             {text}
         </div>
     );

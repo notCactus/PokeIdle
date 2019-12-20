@@ -18,9 +18,9 @@ function rollStarters(){
 
     // All available starter pokemon
     let allStarters = {
-        1: [1, 152, 252, 387, 495, 650, 722], /* grass */
-        2: [4, 155, 255, 390, 498, 653, 725], /* fire */
-        3: [7, 158, 258, 393, 501, 656, 728], /* water */
+        1: ['bulbasaur', 'chikorita', 'treecko', 'turtwig', 'snivy', 'chespin', 'rowlet'], /* grass */
+        2: ['charmander', 'cyndaquil', 'torchic', 'chimchar', 'tepig', 'fennekin', 'litten'], /* fire */
+        3: ['squirtle', 'totodile', 'mudkip', 'piplup', 'oshawott', 'froakie', 'popplio'], /* water */
     };
 
     starters = starters.map(() => {

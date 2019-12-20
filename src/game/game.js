@@ -12,7 +12,7 @@ const startGame = (store) => {
 
 export default startGame;
 
-const UPDATE_TIME = 1000;
+const UPDATE_TIME = 10000000;
 const TRAINER_XP_GAIN_PER_UPDATE = 1;
 const POKEMON_XP_GAIN_PER_UPDATE = 2;
 const STAMINA_REGENERATION = 1;

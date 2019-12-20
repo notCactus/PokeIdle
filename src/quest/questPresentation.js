@@ -10,7 +10,7 @@ class QuestPresentation extends Component{
     super(props);
     this.state = {
       redirect: false,
-      loadedQuests: false,
+      loadedQuests: this.props.allQuests.length > 0 ? 'loaded' : 'loading',
     }
     this.menuProps = this.menuProps.bind(this);
     this.getAllQuests(this);
@@ -18,7 +18,7 @@ class QuestPresentation extends Component{
 
   render() {
     return (
-      <div className='Quest'>
+      <div className={`Quest ${this.state.loadedQuests}`}>
         <MenuToggler
           active="quests"
           fallback="quests"
@@ -38,26 +38,40 @@ class QuestPresentation extends Component{
       .then(snap =>{
         c.props.setAllQuests(snap.docs.map(v => v.data()))
         c.props.setAvailibleQuests(c.props.lvl);
-      });
+      })
+      .then( () => this.setState({loadedQuests: 'loaded',}));
   }
 
   menuProps(quests) {
-        return {
-          quests: {
-            menuIcon: <a>Availible</a>,
-            items: quests.map(quest =>
-              <QuestItem
-                questTitle={quest.name}
-                difficulty={quest.difficulty}
-                linkTo={`/quest/${quest.name}`}
-                onClick={() => this.props.setSelectedQuest(quest)}
-              />
-            )
-          },
-          active: {
-            menuIcon: <a>Active</a>,
-            items: this.props.activeQuests.map(quest => <p>{quest}</p>),
-          }
-        };
+    if(this.state.loadedQuests === 'loaded')
+      return {
+        quests: {
+          menuIcon: <a>Availible</a>,
+          items: quests.map(quest =>
+            <QuestItem
+              questTitle={quest.name}
+              difficulty={quest.difficulty}
+              linkTo={`/quest/${quest.name}`}
+              onClick={() => this.props.setSelectedQuest(quest)}
+            />
+          )
+        },
+        active: {
+          menuIcon: <a>Active</a>,
+          items: this.props.activeQuests.length !== 0? this.props.activeQuests.map(quest => <p>{quest}</p>)
+          : ['NO ACTIVE QUESTS'],
+        }
+      };
+    else
+      return {
+        quests: {
+          items: [
+          <div className="loading">
+            <img src='./loading.gif' alt='loading quests'/>
+            <p>Loading...</p>
+          </div>
+        ]
+      }
+    }
   }
 } export default QuestPresentation;

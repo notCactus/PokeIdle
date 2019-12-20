@@ -7,10 +7,17 @@ export default function roster(state=[], action){
     } else if (action.type === 'ADD_TO_ROSTER'){
         if(state.length < 6){ // Only add if less than 6 in roster.
             return state.concat(action.pokemon);
+        } else {
+          action.error = 'OVERFLOW'
+          return state;
         }
-        return state;
     } else if (action.type === 'REMOVE_FROM_ROSTER'){
+      if (state.length > 1){
         return state.filter((p, i) => i !== action.index);
+      } else {
+        action.error = 'UNDERFLOW';
+        return state;
+      }
     } else if(action.type === "SEND_POKEMON_TO_QUEST"){
       return state.map((pokemon, i) =>{
         if(action.ids.includes(i+""))
