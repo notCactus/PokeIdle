@@ -1,4 +1,4 @@
-export default function currency(state=1, action){
+export default function currency(state=0, action){
     if (action.type === 'SET_CURRENCY') {
         return action.currency;
 

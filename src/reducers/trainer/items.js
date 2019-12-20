@@ -5,11 +5,27 @@ export default function items(state=[], action){
         return state;
 
     } else if (action.type === 'ADD_ITEMS'){
-        return state.concat(action.item);;
+        const itemToAdd = state.indexOf({id:action.item.id});
+        if (itemToAdd >= 0){
+            state[itemToAdd].amount += action.item.amount;
+        } else {
+            state.concat(action.item);
+        }
+        return state;
 
     } else if (action.type === 'REMOVE_ITEMS'){
         // Items are removed based on item ID.
-        return state.filter((i) => i.id !== action.item.id);
+        const itemToRemove = state.indexOf({id:action.item.id});
+        if (itemToAdd >= 0 && state[itemToAdd].amount >= action.item.amount){
+            if (state[itemToAdd].amount === action.item.amount){
+                state.filter(item => item.id !== action.item.id);
+            } else {
+                state[itemToAdd].amount -= action.item.amount;
+            }
+        } else {
+            //Throw error
+        }
+        return state;
 
     } else{
         return state;
