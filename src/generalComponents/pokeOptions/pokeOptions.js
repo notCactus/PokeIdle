@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       type:'REMOVE_FROM_ROSTER',
       index: ownProps.index
     });
-    if (true/*action.error !== 'UNDERFLOW'*/){
+    if (action.error !== 'UNDERFLOW'){
       dispatch({
         type:'ADD_TO_PC',
         pokemon: pokemon

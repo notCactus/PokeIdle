@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch) => ({
                 type: 'REMOVE_CURRENCY',
                 currency: cost.amount * amount,
             });
-            if (true/*action.error !== 'UNDERFLOW'*/){
+            if (action.error !== 'UNDERFLOW'){
                 dispatch({
                     type: 'ADD_ITEMS',
                     item: {id:id, amount:amount}
@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
                 type: 'REMOVE_ITEMS',
                 item: {id:currencyToId(cost.currency), amount: cost.amount * amount},
             });
-            if (true/*action.error !== 'UNDERFLOW'*/){
+            if (action.error !== 'UNDERFLOW'){
                 for (let i = 0; i < amount; i++){
                     dispatch({
                         type:'ADD_TO_PC',
