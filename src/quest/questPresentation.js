@@ -47,14 +47,15 @@ class QuestPresentation extends Component{
       return {
         quests: {
           menuIcon: <a>Availible</a>,
-          items: quests.map(quest =>
+          items: quests.length > 0 ? quests.map(quest =>
             <QuestItem
               questTitle={quest.name}
               difficulty={quest.difficulty}
               linkTo={`/quest/${quest.name}`}
               onClick={() => this.props.setSelectedQuest(quest)}
             />
-          )
+        ) :
+        ['NO AVAILIBLE QUESTS']
         },
         active: {
           menuIcon: <a>Active</a>,
