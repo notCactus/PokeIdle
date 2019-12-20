@@ -2,11 +2,23 @@
     background-color: lightblue;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shop .funds {
+    display:flex;
+    flex-direction: row;
+}
+
+.shop .funds p{
+    margin-left:1em;
 }
 
 .shop .MenuToggler {
     background-color: white;
     width: 80%;
+    height: 100%;
 }
 
 .shop .MenuToggler #options {
@@ -20,3 +32,33 @@
 .shop .MenuToggler .option {
     margin: 1em;
 }
+
+.shop .Popup > div:nth-child(1){
+    background-color: blue;
+    width: 300px;
+    color: white;
+  }
+  .shop .Popup .ConfirmWindow {
+    background-color: white;
+    color: black;
+    border-color: blue;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    margin-top:-20px;
+  }
+  
+  .shop .Popup .ConfirmWindow .clickable {
+    background-color: gray;
+    color: white;
+    width: 70px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .shop .Popup > div:nth-child(1) h3:nth-of-type(2){
+    height: 25px;
+    width: 30px;
+    text-align: center;
+    background-color: black;
+  }
