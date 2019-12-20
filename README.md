@@ -44,6 +44,8 @@ These views have the responsebility of rendering the subpages and initializing t
     - Login page
 - /sidebar
 - /rosterView
+#### Factory
+Alle files in /factory are used to create instances of the pokemon data type used in the project.
 #### General components
 These are presentational components; they are used by the main views to create the content seen one every subpage.
 - /generalComponent/avatar
