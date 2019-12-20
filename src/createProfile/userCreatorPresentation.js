@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import  { Redirect } from 'react-router-dom'
 import app from '../base';
 
-const CreateProfilePresentation=({addToRoster, username, onUsernameChange, starters, onStarterClick, chosenStarter})=>(
+const CreateProfilePresentation=({addToRoster, username, onUsernameChange, starters, onStarterClick, chosenStarter,trainer})=>(
     <React.Fragment>
         <ProfileImageAndUsername username={username}
                                 onUsernameChange={onUsernameChange}
                                 chosenStarter={chosenStarter}
                                 addToRoster={addToRoster}
                                 starters={starters}
-                                onStarterClick={onStarterClick}/>
+                                onStarterClick={onStarterClick}
+                                trainer={trainer}
+                                />
     </React.Fragment>
 );
 
@@ -17,7 +19,7 @@ const CreateProfilePresentation=({addToRoster, username, onUsernameChange, start
 let debounce;
 
 // Displays the profile and the username
-const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username, onUsernameChange, chosenStarter}) => {
+const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username, onUsernameChange, chosenStarter, trainer}) => {
     return (
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
@@ -27,20 +29,20 @@ const ProfileImageAndUsername=({addToRoster, onStarterClick, starters, username,
 
             clearTimeout(debounce);
             debounce = setTimeout(() => onUsernameChange(newName), 300)
-
         }}/>
         <SignUp chosenStarter={chosenStarter}
                 starters={starters}
                 username={username}
                 onStarterClick={onStarterClick}
-                addToRoster={addToRoster}/>
+                addToRoster={addToRoster}
+                trainer={trainer}
+                />
     </div>
 )};
 
 // Handles sign up.
-const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick}) => {
+const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick, trainer}) => {
     const [redirectState, setRedirectState] = useState('noRedirect');
-
     const handleSignUp = (async (event) => {
         event.preventDefault();
 
@@ -58,47 +60,29 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick}
                     .auth()
                     .createUserWithEmailAndPassword(email.value, password.value)
                     .then((r) => {
+                      console.log(r);
                         r.user.updateProfile({
                             displayName: username,
                         });
                         return r;
-                        
+
                     })
                     .then((result) => {
 
                         // Add to redux store.
-                        addToRoster({
-                            name: chosenStarter,
-                            id: starterObject.id,
-                            uid: result.user.uid,
+                        trainer.roster.push({
+                            id: starterObject.name,
                             hp: starterObject.stats[5].base_stat,
                             lvl: 1,
                             questId: '',
                             xp: 0,
-                            requiredXp: (lvl) => Math.pow(10,lvl),
-                            maxHp: (lvl) => lvl*4,
                         });
-
+                        console.log('databased trainer: ')
+                        console.log(trainer);
                         // Add a new trainer to the database.
-                        app.firestore().collection('trainer').doc(result.user.uid).set({
-                            username: username,
-                            uid: result.user.uid,
-                            lvl: 1,
-                            maxStamina: 20,
-                            stamina: 20,
-                            xp: 0,
-                            currency: 0,
-                            pc:[],
-                            roster:[{
-                                name: chosenStarter,
-                                id: starterObject.id,
-                                uid: result.user.uid,
-                                hp: starterObject.stats[5].base_stat,
-                                lvl: 1,
-                                questId: '',
-                                xp: 0,}],
-                            items: [],
-                        });
+                        app.firestore().collection('trainer').doc(result.user.uid).set(
+                          trainer
+                        );
 
                         //Redirect
                         setRedirectState('redirect');

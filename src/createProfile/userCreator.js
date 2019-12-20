@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
         username: state.createProfile.username,
         starters: state.createProfile.starters,
         chosenStarter: state.createProfile.chosenStarter,
+        trainer: state.trainer,
     }
 }
 

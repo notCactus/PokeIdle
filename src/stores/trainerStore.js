@@ -8,7 +8,17 @@ import roster from '../reducers/trainer/roster';
 import stamina from '../reducers/trainer/stamina';
 import xp from '../reducers/trainer/xp';
 
-function reducer(state = {}, action) {
+function reducer(state =
+  {
+    currency: 0,
+    items: [],
+    lvl: 1,
+    pcRoster: [],
+    roster: [],
+    stamina: 11,
+    xp: 0,
+  },
+  action) {
     return {
         currency: currency(state.currency, action),
         items: items(state.items, action),

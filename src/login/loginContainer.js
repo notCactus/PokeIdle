@@ -29,7 +29,7 @@ const Login = ({setUsername, setCurrency, setItems, setLvl, setPc, setRoster, se
                 let loggedInUser = await app
                         .auth()
                         .signInWithEmailAndPassword(email.value, password.value);
-                
+
                 // For testing
                 console.log(loggedInUser);
 
@@ -40,10 +40,10 @@ const Login = ({setUsername, setCurrency, setItems, setLvl, setPc, setRoster, se
 
                 trainerDocRef.get()
                 .then((doc) => {
-                    if(doc.exists) {
-                        let td = doc.data();
+                   if(doc.exists) {
+                        /* let td = doc.data();
 
-                        let rosterModified = td.pc.map((p) => {
+                        let rosterModified = td.pcRoster.map((p) => {
                             p['requiredXp'] = (lvl) => Math.pow(10,lvl);
                             p['maxHp'] = (lvl) => lvl*4;
                         });
@@ -54,9 +54,9 @@ const Login = ({setUsername, setCurrency, setItems, setLvl, setPc, setRoster, se
                         setCurrency(td.currency);
                         setItems(td.items);
                         setLvl(td.lvl);
-                        setPc(td.pc);
-                        setRoster(rosterModified);
-                        setStamina(td.stamina);
+                        setPc(td.pcRoster);
+                        setRoster(td.roster);
+                        setStamina(td.stamina);*/
 
                     }else {
                         console.log("The document doesn't exists.");
