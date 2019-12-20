@@ -32,38 +32,6 @@ const Login = ({setUsername, setCurrency, setItems, setLvl, setPc, setRoster, se
 
                 // For testing
                 console.log(loggedInUser);
-
-                // Set username
-                setUsername(loggedInUser.user.displayName);
-
-                let trainerDocRef = app.firestore().collection("trainer").doc(loggedInUser.user.uid);
-
-                trainerDocRef.get()
-                .then((doc) => {
-                   if(doc.exists) {
-                        /* let td = doc.data();
-
-                        let rosterModified = td.pcRoster.map((p) => {
-                            p['requiredXp'] = (lvl) => Math.pow(10,lvl);
-                            p['maxHp'] = (lvl) => lvl*4;
-                        });
-
-                        // For testing
-                        console.log(doc.data());
-
-                        setCurrency(td.currency);
-                        setItems(td.items);
-                        setLvl(td.lvl);
-                        setPc(td.pcRoster);
-                        setRoster(td.roster);
-                        setStamina(td.stamina);*/
-
-                    }else {
-                        console.log("The document doesn't exists.");
-                    }
-                })
-                .catch(console.err);
-
             } catch (error) {
                 alert(error);
             }

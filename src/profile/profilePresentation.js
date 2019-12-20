@@ -1,33 +1,17 @@
 import React, {Component} from 'react';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
-import RosterView from '../rosterView/rosterView';/*
-import {getPokemon} from '../api/api';
-import PokeOptions from '../generalComponents/pokeOptions/pokeOptions';*/
-import loadData from '../loadData';
+import RosterView from '../rosterView/rosterView';
 import app from '../base';
-import  { Redirect } from 'react-router-dom';
 import './profile.css';
 
 class ProfilePresentation extends Component{
   constructor(props){
     super(props);
-    loadData(this.props);
-  }
-
-
-  renderRedirect () {
-    let currentUser = app.auth().currentUser;
-
-    if(currentUser){
-    } else {
-      return(<Redirect to="/login"/>);
-    }
   }
 
   render(){
     return (
       <div className="Profile">
-          {this.renderRedirect()}
           <ProfileOverview
             name={this.props.username}
             level={this.props.lvl}

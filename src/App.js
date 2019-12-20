@@ -14,14 +14,16 @@ import app from'./base';
 
 import PrivateRoute from './privateRoute';
 
+import Loading from './generalComponents/loading/loading';
+
 import './App.css';
 
 // Imports for the store
 import { createStore } from 'redux';
 
-import {pokemon} from './reducers/pokemon/pokemonStore';
 import {trainer} from './reducers/trainer/trainerStore';
 import {quest} from './reducers/quest/questStore';
+import session from './reducers/session/sessionStore';
 import createProfile from './reducers/createProfile/createProfileStore';
 
 import startGame from './game/game';
@@ -30,10 +32,10 @@ import startGame from './game/game';
 
 function reducer(state = {}, action) {
     return {
-        pokemon: pokemon(state.pokemon, action),
         trainer: trainer(state.trainer, action),
         createProfile: createProfile(state.createProfile, action),
         quest: quest(state.quest, action),
+        session: session(state.session, action),
     };
 }
 
@@ -47,7 +49,8 @@ function App() {
 
   const unsubscribe = app.auth().onAuthStateChanged(() => {
     setStatus('done');
-    unsubscribe();
+    store.dispatch({type: 'SET_SIGN_IN', signedIn: app.auth().currentUser != null})
+    //unsubscribe();
     });
 
   if(status !== "loading"){
@@ -90,22 +93,13 @@ function App() {
           </div>
         </Provider>
     );
-  } else {
+  } else  {
     return (
-        <Provider store={store}>
-          <div className="App">
-            <div>
-              <Header/>
-              <Route path="/"
-              render = {(props) => <CreateProfile/>}
-              />
-              <Route path="/createProfile"
-              render = {(props) => <CreateProfile/>}
-              />
-              <Route path="/login" component={Login}/>
-            </div>
-          </div>
-        </Provider>
+      <div className="App">
+        <Route path="*"
+          render = {() => <Loading text="Loading..." image="./loading.gif"/>}
+        />
+      </div>
     );
   }
 } export default App;

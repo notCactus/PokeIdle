@@ -1,7 +1,7 @@
 import app from './base';
 import {createPokemon} from './factory/pokemonFactory'
 
-export default function loadData({setUsername, setCurrency, setItems, setLvl, setPc, setRoster, setStamina}) {
+export default function loadData({setUsername, setCurrency, setItems, setLvl, setPc, setRoster, setStamina, setDataToLoaded}) {
     let currentUser = app.auth().currentUser;
     console.log(currentUser);
     if(currentUser){
@@ -23,7 +23,7 @@ export default function loadData({setUsername, setCurrency, setItems, setLvl, se
                 setPc(td.pcRoster.map(p => createPokemon(p)));
                 setRoster(td.roster.map(p => createPokemon(p)));
                 setStamina(td.stamina);
-
+                setDataToLoaded(true);
             }else {
                 console.log("The document doesn't exists.");
             }
