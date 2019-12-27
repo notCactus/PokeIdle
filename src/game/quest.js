@@ -15,41 +15,46 @@ export default function quest(params){
 
     activeQuests[quest.name] = quest;
 
-    const before = params.currentStamina();
     params.trainerStaminaCost(questDetails.staminaCost);
 
-    if(before > params.currentStamina()){
-      setTimeout(() => {
-        params.trainerReward(questDetails.baseTrainerXp);
-        params.dmgPokemon(quest, generateDmg(quest.name, questDetails.time, params.roster()))
-        params.rosterReward(quest.name,
-          questDetails.basePokemonXp
-        );
-        params.returnPokemon(quest.name);
-        params.removeFromActive(quest.name);
-        params.updateQuestAvailiblity();
-        delete activeQuests[quest.name];
-      }, questDetails.time*1000)
-    }
+    setTimeout(() => {
+      params.dmgPokemon(quest.name, generateDmg(questDetails, params.roster()))
+      params.trainerReward(questDetails.baseTrainerXp,
+         questDetails.baseTrainerCoins);
+      params.rosterReward(quest.name,
+        questDetails.basePokemonXp
+      );
+      params.returnPokemon(quest.name);
+      params.removeFromActive(quest.name);
+      params.updateQuestAvailiblity();
+      delete activeQuests[quest.name];
+    }, questDetails.time*1000)
   });
   params.updateQuestTimes();
 }
 
+const freeQuest = ({})
 
-const generateDmg = (quest, time, roster)=> {
-  questWithDmgRoster[quest] = roster
-  .filter(p => p.questId === quest).map(k => 0);
+
+const generateDmg = (quest, roster)=> {
+  let time = quest.time;
+  questWithDmgRoster[quest.name] = roster
+  .filter(p => p.questId === quest.name).map(k => 0);
   while(time > 0){
-    questWithDmgRoster[quest] =
-    questWithDmgRoster[quest].map(d => {
-      let t =Math.floor(Math.random() * 10);
-      if(t < 4)
-        return d + 1;
+    questWithDmgRoster[quest.name] =
+    questWithDmgRoster[quest.name].map(d => {
+      let t = getRandomInt(100);
+      if(t <= quest.dmgRisq)
+        return d + getRandomInt(quest.maxDmg - quest.minDmg) + quest.minDmg;;
       return d;
     });
-    time -= DMG_CALC_PER_SEC;
+    time -= quest.dmgPosibilityEvery;
   }
-  let dmg = [...questWithDmgRoster[quest]]
-  delete questWithDmgRoster[quest];
+  let dmg = [...questWithDmgRoster[quest.name]]
+  delete questWithDmgRoster[quest.name];
   return [...dmg];
+}
+
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * Math.floor(max)) + 1;
 }

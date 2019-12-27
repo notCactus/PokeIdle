@@ -2,6 +2,7 @@ import QuestDetailsPresentation from './questDetailsPresentation';
 import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
     return {
+        trainerStamina: state.trainer.stamina,
         roster: state.trainer.roster,
         quest: state.quest.selectedQuest,
     }

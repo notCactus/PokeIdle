@@ -45,7 +45,7 @@ const game = (store) => {
       rosterReward: (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
       trainerReward: (x, c) => {
         store.dispatch({type: 'ADD_XP', xp: x,});
-        // TODO: store.dispatch({type: 'ADD_CURRENCY', currency: c,};
+        store.dispatch({type: 'ADD_CURRENCY', currency: c,});
       },
       trainerStaminaCost: (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
       dmgPokemon: (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),

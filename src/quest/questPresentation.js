@@ -85,7 +85,7 @@ class QuestPresentation extends Component{
           this.props.activeQuests.map(quest =>
             <ActiveQuestProgress
               name={quest.name}
-              current={quest.cd}
+              current={Math.min(quest.time, quest.cd)}
               max={quest.time}
               image={this.state.questIcon[quest.name] === undefined ?
             './loading.gif' : this.state.questIcon[quest.name]}

@@ -5,13 +5,23 @@
   height: 100%;
 }
 
+.Quest .ActiveQuestProgress {
+  width: 290px;
+}
+
+.Quest .ActiveQuestProgress > div {
+  width: 240px;
+}
+
 .Quest .Bar {
   border: 2px solid black;
+  max-width: 100%;
 }
 
 .Quest .Bar > div{
   background-color: red;
   padding-left: 0.3em;
+  max-width: 98%;
 }
 
 .Quest .loading img{
@@ -24,6 +34,11 @@
 
 .Quest .MenuToggler {
   width: 80%;
+  max-height: 90%;
+}
+
+.Quest #menuItems {
+ max-height: calc(100% - 38px);
 }
 
 .Quest .MenuToggler .option {

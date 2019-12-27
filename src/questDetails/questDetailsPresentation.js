@@ -137,7 +137,7 @@ class QuestDetailsPresentation extends Component{
       };
   }
   createRosterItems(r){
-    return r.filter(pokemon => pokemon.questId === '')
+    return r.filter(pokemon => pokemon.questId === '' && pokemon.hp > 0)
     .map((pokemon, i) =>
       <RosterSelector
         key={i}
@@ -156,7 +156,9 @@ class QuestDetailsPresentation extends Component{
   }
   confrimQuest(){
     this.exit();
-    if(this.state.party.length > 0){
+    if(this.state.party.length > 0
+      && this.props.trainerStamina - this.props.quest.staminaCost >= 0
+    ){
       this.props.sendPokemonToQuest(this.state.party, this.props.questId);
       this.props.addActiveQuest(createActiveQuest(this.props.quest));
       this.setState({
