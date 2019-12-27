@@ -17,7 +17,18 @@
   max-height: 92px;
 }
 
-.Profile .loading img {
+
+.Profile .loading  img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40px;
+  height: 40px;
+}
+
+.Profile .loading .Avatar div > img {
+  top: 0;
+  left: 0;
   display: block;
   margin-left: auto;
   margin-right: auto;

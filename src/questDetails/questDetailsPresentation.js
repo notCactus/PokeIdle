@@ -26,7 +26,6 @@ class QuestDetailsPresentation extends Component{
     };
   }
   render() {
-    this.fetchImages();
     return (
       <div className="QuestDetails">
         {this.redirect()}
@@ -50,6 +49,9 @@ class QuestDetailsPresentation extends Component{
         {this.popup()}
       </div>
     );
+    }
+    componentDidMount() {
+      this.fetchImages();
     }
     redirect(){
       if(this.state.redirectCondition)

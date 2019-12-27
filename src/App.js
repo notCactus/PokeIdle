@@ -1,6 +1,6 @@
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
-import React, {useState}  from 'react';
+import React, {Component}  from 'react';
 import Profile from './profile/profile';
 import Quest from './quest/quest';
 import QuestDetails from './questDetails/questDetails';
@@ -44,66 +44,74 @@ const store = createStore(reducer);
 //Contains interval id of the game
 const game = startGame(store);
 
-function App() {
-  const [status, setStatus] = useState('loading');
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      status: 'loading'
+    };
+    const unsubscribe = app.auth().onAuthStateChanged(() => {
+        store.dispatch({type: 'SET_SIGN_IN', signedIn: app.auth().currentUser != null})
+        this.setState({status: 'done'});
+        unsubscribe();
+      });
+  }
 
-  const unsubscribe = app.auth().onAuthStateChanged(() => {
-      setStatus('done');
-      store.dispatch({type: 'SET_SIGN_IN', signedIn: app.auth().currentUser != null})
-      unsubscribe();
-    });
-
-  if(status !== "loading"){
-    return (
-        <Provider store={store}>
-          <div className="App">
-            <Sidebar/>
-            <div>
-              <Header/>
-              <PrivateRoute
-                fallback="/createProfile"
-                exact path="/"
-                render = { (props) =>
-                  <Profile/>
-                }
-                />
-                <PrivateRoute
-                  fallback="/createProfile"
-                  path="/profile"
-                  render = { (props) =>
-                    <Profile/>
-                  }
-                />
-              <Route path="/createProfile"
-              render = {(props) => <CreateProfile/>}
-              />
-              <PrivateRoute
-                fallback="/createProfile"
-                exact path="/quest"
-                render = { (props) =>
-                  <Quest/>
-                }
-              />
-              <PrivateRoute
-                fallback="/createProfile"
-                path="/quest/:id"
-                render = { (props) =>
-                  <QuestDetails questId={props.match.params.id}/>
-                }
-              />
-              <PrivateRoute fallback="/createProfile" path="/shop" component={Shop}/>
-              <Route path="/login" component={Login}/>
+  render(){
+    if(this.state.status !== "loading"){
+      return (
+          <Provider store={store}>
+            <div className="App">
+              <Sidebar/>
+              <div>
+                <Header/>
+                <Switch>
+                  <PrivateRoute
+                    fallback="/createProfile"
+                    exact path="/"
+                    render = { (props) =>
+                      <Profile/>
+                    }
+                    />
+                    <PrivateRoute
+                      fallback="/createProfile"
+                      path="/profile"
+                      render = { (props) =>
+                        <Profile/>
+                      }
+                    />
+                  <Route path="/createProfile"
+                  render = {(props) => <CreateProfile/>}
+                  />
+                  <PrivateRoute
+                    fallback="/createProfile"
+                    exact path="/quest"
+                    render = { (props) =>
+                      <Quest/>
+                    }
+                  />
+                  <PrivateRoute
+                    fallback="/createProfile"
+                    path="/quest/:id"
+                    render = { (props) =>
+                      <QuestDetails questId={props.match.params.id}/>
+                    }
+                  />
+                  <PrivateRoute fallback="/createProfile" path="/shop" component={Shop}/>
+                  <Route path="/login" component={Login}/>
+                </Switch>
+              </div>
             </div>
-          </div>
-        </Provider>
-    );
-  } else  {
-    return (
-      <div className="App">
-        <Route path="*"
-          render = {() => <Loading text="Loading..." image="./loading.gif"/>}
-        />
-      </div>
-    );
+          </Provider>
+      );
+    } else  {
+      return (
+        <div className="App">
+          <Route path="*"
+            render = {() => <Loading text="Loading..." image="./loading.gif"/>}
+          />
+        </div>
+      );
+    }
   }
 } export default App;

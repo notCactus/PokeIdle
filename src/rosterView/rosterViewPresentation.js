@@ -35,9 +35,11 @@ class RosterViewPresentation extends Component {
       </div>
     );
   }
+
   fetchImages(){
     if (Object.entries(this.state.rosterImages).length < 1 && this.props.roster.length > 0)
-      Promise.all([Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id))), Promise.all(this.props.pcRoster.map(pokemon => getPokemon(pokemon.id)))])
+      Promise.all([Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id))),
+      Promise.all(this.props.pcRoster.map(pokemon => getPokemon(pokemon.id)))])
       .then(roster => {
         let temp = this.state.rosterImages;
         roster[0].forEach((pokemon, i) => {
@@ -51,7 +53,6 @@ class RosterViewPresentation extends Component {
         })
       })
     .then(() => {
-      if(this.props.roster.length + this.props.pcRoster.length > 0)
       this.setState({iconState: 'loaded'})
    });
   }
