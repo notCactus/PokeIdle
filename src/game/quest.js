@@ -3,32 +3,35 @@ let questWithDmgRoster = {};
 
 const DMG_CALC_PER_SEC = 2;
 
-export default function quest(activeQuests, roster,
-   allQuests, returnPokemon,
-    removeFromActive, updateQuestAvailiblity,
-    rosterReward, trainerReward,
-    trainerStaminaCost, dmgPokemon){
+export default function quest(params){
   //Checks if quest set up is done
-  const toSet = activeQuests().filter(quest =>
+  const toSet = params.activeQuests().filter(quest =>
     questWithRoster[quest] === undefined
   );
 
   toSet.forEach(quest => {
     const questDetails =
-    allQuests().find(q => q.name === quest)
-    questWithRoster[quest] = roster().map((pokemon) => {if(pokemon.questId === quest) return pokemon;});
-    setTimeout(() => {
-      trainerReward(questDetails.baseTrainerXp);
-      trainerStaminaCost(questDetails.staminaCost);
-      dmgPokemon(quest, generateDmg(quest, questDetails.time))
-      rosterReward(quest,
-        questDetails.basePokemonXp
-      );
-      returnPokemon(quest);
-      removeFromActive(quest);
-      updateQuestAvailiblity();
-      delete questWithRoster[quest];
-    },questDetails.time*1000)
+    params.allQuests().find(q => q.name === quest);
+
+    questWithRoster[quest] =
+    params.roster().map((pokemon) => {if(pokemon.questId === quest) return pokemon;});
+
+    const before = params.currentStamina();
+    params.trainerStaminaCost(questDetails.staminaCost);
+
+    if(before > params.currentStamina()){
+      setTimeout(() => {
+        params.trainerReward(questDetails.baseTrainerXp);
+        params.dmgPokemon(quest, generateDmg(quest, questDetails.time))
+        params.rosterReward(quest,
+          questDetails.basePokemonXp
+        );
+        params.returnPokemon(quest);
+        params.removeFromActive(quest);
+        params.updateQuestAvailiblity();
+        delete questWithRoster[quest];
+      },questDetails.time*1000)
+    }
   });
 }
 

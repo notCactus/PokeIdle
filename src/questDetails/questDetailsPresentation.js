@@ -38,6 +38,7 @@ class QuestDetailsPresentation extends Component{
           description={this.props.quest.description}
           buttonText="Take quest"
           questFunction={this.showPopup}
+          cost={this.props.quest.staminaCost}
           rosterAmount={this.state.party.length}
           rosterCapacity={this.props.quest.rosterCapacity}
         />

@@ -17,6 +17,7 @@ class DetailedQuestInformation extends Component{
           <div>
             <p>{this.props.difficulty}</p>
             <p>Time: {this.props.time}</p>
+            <p>Cost: {this.props.cost} stamina</p>
             <p>{this.props.rosterAmount}/{this.props.rosterCapacity}</p>
           </div>
           <Clickable text={this.props.buttonText} onClick={this.props.questFunction}/>

@@ -25,7 +25,7 @@ class RosterViewPresentation extends Component {
   render() {
     this.fetchImages();
     return (
-      <div className={`RosterView`}>
+      <div className={`RosterView ${this.state.iconState}`}>
         <MenuToggler
           active="activeRoster"
           fallback="activeRoster"

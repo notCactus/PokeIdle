@@ -35,21 +35,22 @@ const game = (store) => {
     passivePokemonXp(
       () => store.dispatch({type: 'ADD_XP_TO_ROSTER', xp: POKEMON_XP_GAIN_PER_UPDATE}),
     );
-    quest(
-      () => store.getState().quest.activeQuests,
-      () => store.getState().trainer.roster,
-      () => store.getState().quest.allQuests,
-      (name) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', quest: name}),
-      (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
-      () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl}),
-      (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
-      (x, c) => {
+    quest({
+      activeQuests: () => store.getState().quest.activeQuests,
+      roster: () => store.getState().trainer.roster,
+      allQuests: () => store.getState().quest.allQuests,
+      returnPokemon: (name) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', quest: name}),
+      removeFromActive: (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
+      updateQuestAvailiblity: () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl}),
+      rosterReward: (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
+      trainerReward: (x, c) => {
         store.dispatch({type: 'ADD_XP', xp: x,});
         // TODO: store.dispatch({type: 'ADD_CURRENCY', currency: c,};
       },
-      (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
-      (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),
-    );
+      trainerStaminaCost: (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
+      dmgPokemon: (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),
+      currentStamina: () => store.getState().trainer.stamina,
+    });
     passiveTrainerStamina(
       () => store.dispatch({type: 'ADD_STAMINA', stamina: STAMINA_REGENERATION}),
     );
