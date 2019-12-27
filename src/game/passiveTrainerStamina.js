@@ -1,5 +1,5 @@
 const MINUTES = 60;
-const STAMINA_TIMEOUT = 10*MINUTES;
+const STAMINA_TIMEOUT = 3*MINUTES;
 let time = 0;
 
 export default function passiveTrainerStamina(addStamina){
