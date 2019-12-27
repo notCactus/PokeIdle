@@ -1,4 +1,4 @@
-let questWithRoster = {};
+let activeQuests = {};
 let questWithDmgRoster = {};
 
 const DMG_CALC_PER_SEC = 2;
@@ -6,15 +6,14 @@ const DMG_CALC_PER_SEC = 2;
 export default function quest(params){
   //Checks if quest set up is done
   const toSet = params.activeQuests().filter(quest =>
-    questWithRoster[quest] === undefined
+    activeQuests[quest.name] === undefined
   );
 
   toSet.forEach(quest => {
     const questDetails =
-    params.allQuests().find(q => q.name === quest);
+    params.allQuests().find(q => q.name === quest.name);
 
-    questWithRoster[quest] =
-    params.roster().map((pokemon) => {if(pokemon.questId === quest) return pokemon;});
+    activeQuests[quest.name] = quest;
 
     const before = params.currentStamina();
     params.trainerStaminaCost(questDetails.staminaCost);
@@ -22,22 +21,24 @@ export default function quest(params){
     if(before > params.currentStamina()){
       setTimeout(() => {
         params.trainerReward(questDetails.baseTrainerXp);
-        params.dmgPokemon(quest, generateDmg(quest, questDetails.time))
-        params.rosterReward(quest,
+        params.dmgPokemon(quest, generateDmg(quest.name, questDetails.time, params.roster()))
+        params.rosterReward(quest.name,
           questDetails.basePokemonXp
         );
-        params.returnPokemon(quest);
-        params.removeFromActive(quest);
+        params.returnPokemon(quest.name);
+        params.removeFromActive(quest.name);
         params.updateQuestAvailiblity();
-        delete questWithRoster[quest];
-      },questDetails.time*1000)
+        delete activeQuests[quest.name];
+      }, questDetails.time*1000)
     }
   });
+  params.updateQuestTimes();
 }
 
 
-const generateDmg = (quest, time)=> {
-  questWithDmgRoster[quest] = questWithRoster[quest].map(k => 0);
+const generateDmg = (quest, time, roster)=> {
+  questWithDmgRoster[quest] = roster
+  .filter(p => p.questId === quest).map(k => 0);
   while(time > 0){
     questWithDmgRoster[quest] =
     questWithDmgRoster[quest].map(d => {

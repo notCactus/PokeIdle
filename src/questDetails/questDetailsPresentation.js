@@ -5,7 +5,8 @@ import DetailedQuestInformation from '../generalComponents/detailedQuestInformat
 import MenuToggler from '../generalComponents/menuToggler/menuToggler';
 import Popup from '../generalComponents/popup/popup';
 import ConfirmWindow from '../generalComponents/confirmWindow/confirmWindow';
-import {getPokemon} from '../api/api';
+import {getPokemon, getItem} from '../api/api';
+import createActiveQuest from '../factory/activeQuestFactory';
 import './questDetails.css';
 class QuestDetailsPresentation extends Component{
   constructor(props){
@@ -21,6 +22,7 @@ class QuestDetailsPresentation extends Component{
       rosterImages: [], //Once images of pokemon have been fetched they are stored here
       questRoster: [], //Contains picked pokemon as objects
       party: [], //Contains id of picked pokemon
+      questIcon: "../loading.gif",
       redirectCondition: this.props.questId !== this.props.quest.name,
       popup: false,
     };
@@ -30,7 +32,7 @@ class QuestDetailsPresentation extends Component{
       <div className="QuestDetails">
         {this.redirect()}
         <DetailedQuestInformation
-          icon=""
+          icon={this.state.questIcon}
           difficulty={this.props.quest.difficulty}
           title={this.props.questId}
           time={this.props.quest.time}
@@ -51,7 +53,8 @@ class QuestDetailsPresentation extends Component{
     );
     }
     componentDidMount() {
-      this.fetchImages();
+      if(!this.state.redirectCondition)
+        this.fetchImages();
     }
     redirect(){
       if(this.state.redirectCondition)
@@ -59,11 +62,15 @@ class QuestDetailsPresentation extends Component{
     }
 
     fetchImages(){
-      if (this.state.rosterImages.length < 1 && this.props.roster.length > 0)
-        Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id)))
-        .then(roster => this.setState({
-          rosterImages: roster.map(pokemon => pokemon['sprites']['front_default'])
-        }));
+      Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id)))
+      .then(roster => this.setState({
+        rosterImages: roster.map(pokemon => pokemon['sprites']['front_default'])
+      }));
+      getItem(this.props.quest.iconItemId).then(item =>
+        this.setState({
+          questIcon: item.sprites.default,
+        })
+      )
     }
   showPopup(){
     this.setState({
@@ -151,7 +158,7 @@ class QuestDetailsPresentation extends Component{
     this.exit();
     if(this.state.party.length > 0){
       this.props.sendPokemonToQuest(this.state.party, this.props.questId);
-      this.props.addActiveQuest(this.props.questId);
+      this.props.addActiveQuest(createActiveQuest(this.props.quest));
       this.setState({
         redirectCondition: true,
       });

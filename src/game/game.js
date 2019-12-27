@@ -50,6 +50,7 @@ const game = (store) => {
       trainerStaminaCost: (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
       dmgPokemon: (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),
       currentStamina: () => store.getState().trainer.stamina,
+      updateQuestTimes: () => store.dispatch({type: 'ADD_TIME_TO_ACTIVE_QUESTS', time: 1}),
     });
     passiveTrainerStamina(
       () => store.dispatch({type: 'ADD_STAMINA', stamina: STAMINA_REGENERATION}),

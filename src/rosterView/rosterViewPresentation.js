@@ -4,6 +4,7 @@ import ProfileOverview from '../generalComponents/profileOverview/profileOvervie
 import PokeOptions from '../generalComponents/pokeOptions/pokeOptions';
 import Popup from '../generalComponents/popup/popup';
 import {getPokemon} from '../api/api';
+import conditionReached from '../helperFunctions/conditionReached';
 import './rosterView.css';
 
 class RosterViewPresentation extends Component {
@@ -23,7 +24,6 @@ class RosterViewPresentation extends Component {
   }
 
   render() {
-    this.fetchImages();
     return (
       <div className={`RosterView ${this.state.iconState}`}>
         <MenuToggler
@@ -36,8 +36,12 @@ class RosterViewPresentation extends Component {
     );
   }
 
+  componentDidMount() {
+    conditionReached(() => Object.entries(this.state.rosterImages).length < 1 && this.props.roster.length > 0)
+    .then(this.fetchImages);
+  }
+
   fetchImages(){
-    if (Object.entries(this.state.rosterImages).length < 1 && this.props.roster.length > 0)
       Promise.all([Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id))),
       Promise.all(this.props.pcRoster.map(pokemon => getPokemon(pokemon.id)))])
       .then(roster => {

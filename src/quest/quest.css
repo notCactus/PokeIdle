@@ -5,6 +5,15 @@
   height: 100%;
 }
 
+.Quest .Bar {
+  border: 2px solid black;
+}
+
+.Quest .Bar > div{
+  background-color: red;
+  padding-left: 0.3em;
+}
+
 .Quest .loading img{
   display: block;
   margin-left: auto;
@@ -29,7 +38,7 @@
   width: 100%;
 }
 
-.Quest > .MenuToggler .QuestItem img{
+.Quest > .MenuToggler img{
   min-width: 50px;
   max-width: 50px;
   max-height: 50px;

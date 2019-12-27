@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MenuToggler from '../generalComponents/menuToggler/menuToggler';
 import QuestItem from '../generalComponents/questItem/questItem';
+import ActiveQuestProgress from '../generalComponents/activeQuestProgress/activeQuestProgress';
 import {getItem} from '../api/api';
 import conditionReached from '../helperFunctions/conditionReached';
 import app from '../base'
@@ -80,7 +81,15 @@ class QuestPresentation extends Component{
         },
         active: {
           menuIcon: <a>Active</a>,
-          items: this.props.activeQuests.length !== 0? this.props.activeQuests.map(quest => <p>{quest}</p>)
+          items: this.props.activeQuests.length !== 0 ?
+          this.props.activeQuests.map(quest =>
+            <ActiveQuestProgress
+              name={quest.name}
+              current={quest.cd}
+              max={quest.time}
+              image={this.state.questIcon[quest.name] === undefined ?
+            './loading.gif' : this.state.questIcon[quest.name]}
+            />)
           : ['NO ACTIVE QUESTS'],
         }
       };
