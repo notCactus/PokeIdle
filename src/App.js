@@ -53,7 +53,7 @@ class App extends Component {
     const unsubscribe = app.auth().onAuthStateChanged(() => {
         store.dispatch({type: 'SET_SIGN_IN', signedIn: app.auth().currentUser != null})
         this.setState({status: 'done'});
-        unsubscribe();
+        //unsubscribe();
       });
   }
 
@@ -98,7 +98,8 @@ class App extends Component {
                     }
                   />
                   <PrivateRoute fallback="/createProfile" path="/shop" component={Shop}/>
-                  <Route path="/login" component={Login}/>
+                  <Route path="/login"
+                  render = {(props) => <Login/>}/>
                 </Switch>
               </div>
             </div>
