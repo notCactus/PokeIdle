@@ -6,7 +6,7 @@ const SignOutButtonPresentation = ({onClick}) => {
     return(
         <LinkButton
           text="Sign Out"
-          linkTo='/createProfile'
+          linkTo='/login'
           onClick= {onClick}
         />
     );

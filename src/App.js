@@ -53,7 +53,7 @@ class App extends Component {
     const unsubscribe = app.auth().onAuthStateChanged(() => {
         store.dispatch({type: 'SET_SIGN_IN', signedIn: app.auth().currentUser != null})
         this.setState({status: 'done'});
-        unsubscribe();
+        //unsubscribe();
       });
   }
 
@@ -67,14 +67,14 @@ class App extends Component {
                 <Header/>
                 <Switch>
                   <PrivateRoute
-                    fallback="/createProfile"
+                    fallback="/login"
                     exact path="/"
                     render = { (props) =>
                       <Profile/>
                     }
                     />
                     <PrivateRoute
-                      fallback="/createProfile"
+                      fallback="/login"
                       path="/profile"
                       render = { (props) =>
                         <Profile/>
@@ -84,21 +84,22 @@ class App extends Component {
                   render = {(props) => <CreateProfile/>}
                   />
                   <PrivateRoute
-                    fallback="/createProfile"
+                    fallback="/login"
                     exact path="/quest"
                     render = { (props) =>
                       <Quest/>
                     }
                   />
                   <PrivateRoute
-                    fallback="/createProfile"
+                    fallback="/login"
                     path="/quest/:id"
                     render = { (props) =>
                       <QuestDetails questId={props.match.params.id}/>
                     }
                   />
-                  <PrivateRoute fallback="/createProfile" path="/shop" component={Shop}/>
-                  <Route path="/login" component={Login}/>
+                  <PrivateRoute fallback="/login" path="/shop" component={Shop}/>
+                  <Route path="/login"
+                  render = {(props) => <Login/>}/>
                 </Switch>
               </div>
             </div>
