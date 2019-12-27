@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
         activeQuests: state.quest.activeQuests,
         allQuests: state.quest.allQuests,
         roster: state.trainer.roster,
+        loadedData: state.session.loadedData,
     }
 }
 

@@ -4,6 +4,7 @@ import passiveTrainerXp from './passiveTrainerXp';
 import passivePokemonXp from './passivePokemonXp';
 import passiveTrainerStamina from './passiveTrainerStamina';
 import passivePcRosterHealth from './passivePcRosterHealth';
+import saveProgress from './saveProgress'
 import loadData from '../loadData';
 
 const startGame = (store) => {
@@ -23,9 +24,16 @@ const TRAINER_XP_GAIN_PER_UPDATE = 1;
 const POKEMON_XP_GAIN_PER_UPDATE = 2;
 const STAMINA_REGENERATION = 1;
 const HEALTH_REGENERATION = 1;
+const SAVE_EVERY = 5;
 
 const game = (store) => {
   if(store.getState().session.loadedData){
+    saveProgress({
+      trainer: () => store.getState().trainer,
+      activeQuests: () => store.getState().quest.activeQuests,
+      save: SAVE_EVERY,
+    });
+
     passiveTrainerXp(
       () => store.dispatch({type: 'ADD_XP', xp: TRAINER_XP_GAIN_PER_UPDATE}),
       () => store.getState().trainer.xp,
@@ -65,11 +73,13 @@ const game = (store) => {
         setUsername: (n) => store.dispatch({type:'SET_USERNAME',username: n,}),
         setCurrency: (amount) => store.dispatch({type:'SET_CURRENCY',currency: amount,}),
         setItems: (items) => store.dispatch({type:'SET_ITEMS',item: items,}),
+        setActiveQuests: (q) => store.dispatch({type: 'SET_ACTIVE_QUESTS', quests: q,}),
         setLvl: (amount) => store.dispatch({type:'SET_LVL',lvl: amount,}),
         setPc: (pokemon) => store.dispatch({type:'SET_PC', pokemon: pokemon,}),
         setRoster: (pokemon) => store.dispatch({type:'SET_ROSTER',pokemon: pokemon,}),
         setStamina: (stamina) => store.dispatch({type:'SET_STAMINA',stamina: stamina,}),
-        setDataToLoaded: (loaded) => store.dispatch({type:'SET_DATA_LOADED', loaded: loaded})
+        setDataToLoaded: (loaded) => store.dispatch({type:'SET_DATA_LOADED', loaded: loaded}),
+        setAllQuests: (quests) => store.dispatch({type: 'SET_ALL_QUESTS',quests: quests,}),
       }
     )
   }

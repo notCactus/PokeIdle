@@ -5,18 +5,19 @@ const DMG_CALC_PER_SEC = 2;
 
 export default function quest(params){
   //Checks if quest set up is done
-  const toSet = params.activeQuests().filter(quest =>
-    activeQuests[quest.name] === undefined
-  );
+  let toSet = [];
+  if(params.allQuests().length > 0)
+    toSet = params.activeQuests().filter(quest =>
+      activeQuests[quest.name] === undefined
+    );
 
   toSet.forEach(quest => {
     const questDetails =
     params.allQuests().find(q => q.name === quest.name);
 
     activeQuests[quest.name] = quest;
-
-    params.trainerStaminaCost(questDetails.staminaCost);
-
+    if(quest.cd === 0)
+      params.trainerStaminaCost(questDetails.staminaCost);
     setTimeout(() => {
       params.dmgPokemon(quest.name, generateDmg(questDetails, params.roster()))
       params.trainerReward(questDetails.baseTrainerXp,
@@ -28,7 +29,7 @@ export default function quest(params){
       params.removeFromActive(quest.name);
       params.updateQuestAvailiblity();
       delete activeQuests[quest.name];
-    }, questDetails.time*1000)
+    }, (questDetails.time - quest.cd)*1000)
   });
   params.updateQuestTimes();
 }

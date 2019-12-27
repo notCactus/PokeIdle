@@ -18,7 +18,6 @@ class QuestPresentation extends Component{
       questIcon: {},
     }
     this.menuProps = this.menuProps.bind(this);
-    this.getAllQuests(this);
   }
   render() {
     return (
@@ -26,7 +25,7 @@ class QuestPresentation extends Component{
         <MenuToggler
           active="quests"
           fallback="quests"
-          menus={this.menuProps(this.props.availibleQuests)}
+          menus={this.menuProps(this.props.allQuests)}
           width="100%"
           height="80%"
         />
@@ -34,8 +33,10 @@ class QuestPresentation extends Component{
     );
   }
   componentDidMount() {
-    this.props.setAvailibleQuests(this.props.lvl);
-    conditionReached(() => this.state.loadedQuests === 'loaded')
+    conditionReached(() => this.props.loadedData)
+    .then(() => this.props.setAvailibleQuests(this.props.lvl));
+
+    conditionReached(() => this.props.allQuests.length > 0)
     .then(() =>
       Promise.all(this.props.allQuests.map(q =>
         getItem(q.iconItemId)
@@ -51,22 +52,12 @@ class QuestPresentation extends Component{
     })
   }
 
-  getAllQuests(c){
-    if(c.props.availibleQuests.length < 1)
-      app.firestore().collection('quest').get()
-      .then(snap =>{
-        c.props.setAllQuests(snap.docs.map(v => v.data()))
-        c.props.setAvailibleQuests(c.props.lvl);
-      })
-      .then( () => this.setState({loadedQuests: 'loaded',}));
-  }
-
   menuProps(quests) {
-    if(this.state.loadedQuests === 'loaded')
+    if(this.props.allQuests.length > 0)
       return {
         quests: {
           menuIcon: <a>Availible</a>,
-          items: quests.length > 0 ? quests.map(quest =>
+          items: quests.length > 0 ? this.props.availibleQuests.map(quest =>
             <QuestItem
               image={this.state.questIcon[quest.name] === undefined ?
                 './loading.gif' : this.state.questIcon[quest.name]
