@@ -30,7 +30,6 @@ const currencyToId = (currency) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     onPurchase: (id, amount, cost) => {
-        debugger;
         if (cost.currency === 'coin'){
             const action = dispatch ({
                 type: 'REMOVE_CURRENCY',

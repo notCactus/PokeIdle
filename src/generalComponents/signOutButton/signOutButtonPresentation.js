@@ -2,10 +2,10 @@ import React from 'react';
 import LinkButton from '../linkButton/linkButton';
 
 
-const SignOutButtonPresentation = ({onClick}) => {
+const SignOutButtonPresentation = ({text, onClick}) => {
     return(
         <LinkButton
-          text="Sign Out"
+          text={text}
           linkTo='/login'
           onClick= {onClick}
         />

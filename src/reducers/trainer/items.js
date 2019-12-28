@@ -16,7 +16,6 @@ export default function items(state=[], action){
 
     } else if (action.type === 'REMOVE_ITEMS'){
         // Items are removed based on item ID.
-        debugger;
         action.item.amount = Number(action.item.amount);
         const itemToRemove = state.findIndex(item => item.id === action.item.id);
         if (itemToRemove >= 0 && state[itemToRemove].amount >= action.item.amount){
