@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import React, {useState}  from 'react';
 import Profile from './profile/profile';
@@ -9,6 +9,7 @@ import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
 import Shop from './shop/shop';
 import Login from './login/login';
+import Error from './error/error';
 
 import app from'./base';
 
@@ -60,6 +61,7 @@ function App() {
             <Sidebar/>
             <div>
               <Header/>
+              <Switch>
               <PrivateRoute
                 fallback="/createProfile"
                 exact path="/"
@@ -93,6 +95,8 @@ function App() {
               />
               <PrivateRoute fallback="/createProfile" path="/shop" component={Shop}/>
               <Route path="/login" component={Login}/>
+              <Route component={Error}/>
+            </Switch>
             </div>
           </div>
         </Provider>

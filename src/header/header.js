@@ -23,7 +23,7 @@ function getTitle(path){
         case '/shop':
             return "SHOP";
         default:
-            return "Titel finns inte än";
+            return "Pokéidle";
     }
 }
 export default Header;
