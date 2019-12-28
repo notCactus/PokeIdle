@@ -8,15 +8,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-/*const mapDispatchToProps = (dispatch) => ({
-    onUsernameChange: (newName) => dispatch ({
-        type: 'SET_USERNAME',
-        username: newName,
-    }),
-    onStarterClick: (starter) => dispatch ({
-        type: 'SET_STARTER',
-        starter: starter,
-    })
-});*/
-const RosterView = connect(mapStateToProps/*, mapDispatchToProps*/)(RosterViewPresentation);
+const RosterView = connect(mapStateToProps)(RosterViewPresentation);
 export default RosterView;

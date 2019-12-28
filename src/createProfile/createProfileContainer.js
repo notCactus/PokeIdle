@@ -4,11 +4,9 @@ import  { Redirect } from 'react-router-dom'
 
 import {getPokemon} from '../api/api';
 import LinkButton from "../generalComponents/linkButton/linkButton";
+import Loading from '../generalComponents/loading/loading';
 
 import './createProfile.css';
-
-// Only for testing
-import SignOutButton from '../generalComponents/signOutButton/signOutButton';
 
 // Helper function for getting the random starters
 function rollStarters(){
@@ -45,21 +43,6 @@ function setStarters(setStartersInStore){
     .then((starters) => setStartersInStore(starters))
 }
 
-//Gives starter to trainer
-function starterToTrainer(cb, id){
-  if(id !== "")
-    getPokemon(id)
-    .then(pokemon => cb({
-      id: pokemon.name,
-      lvl: 1,
-      xp: 1,
-      requiredXp: (lvl) => Math.pow(10,lvl),
-      hp: 4,
-      maxHp: (lvl) => lvl*4,
-      questId: "",
-    }));
-}
-
 class CreateProfilePresentation extends Component {
     constructor(props){
       super(props);
@@ -71,15 +54,15 @@ class CreateProfilePresentation extends Component {
     render () {
         if(this.props.signedIn)
           return(<Redirect to="/profile"/>);
+        else if (this.props.registration==='started' && !this.props.signedIn) {
+          return (<Loading image="./loading.gif" text="Creating your account..."/>)
+        }
         else
           return (
               <div className="createProfile">
                   <UserCreator/>
-                  <LinkButton text="ADD TO ROSTER TEST BUTTON" linkTo="/profile" onClick={() => starterToTrainer(this.props.addToRoster, this.props.chosenStarter)}/>
                   <p>OR</p>
                   <LinkButton text="Login" linkTo="/login"/>
-                  <p>FOR TESTING:</p>
-                  <SignOutButton/>
               </div>
           );
     }

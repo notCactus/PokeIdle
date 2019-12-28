@@ -1,32 +1,44 @@
 import app from './base';
 import {createPokemon} from './factory/pokemonFactory'
 
-export default function loadData({setUsername, setCurrency, setItems, setLvl, setPc, setRoster, setStamina, setDataToLoaded}) {
+export default function loadData(params) {
     let currentUser = app.auth().currentUser;
-    console.log(currentUser);
     if(currentUser){
         // Set username
-        setUsername(currentUser.displayName);
-        console.log(currentUser.displayName);
+        params.setUsername(currentUser.displayName);
         let trainerDocRef = app.firestore().collection("trainer").doc(currentUser.uid);
+        let activeQuestsRef = app.firestore().collection("activeQuests").doc(currentUser.uid);
+        let allQuestsRef = app.firestore().collection('quest');
 
         trainerDocRef.get()
         .then((doc) => {
             if(doc.exists) {
                 let td = doc.data();
-                // For testing
-                console.log(doc.data());
-
-                setCurrency(td.currency);
-                setItems(td.items);
-                setLvl(td.lvl);
-                setPc(td.pcRoster.map(p => createPokemon(p)));
-                setRoster(td.roster.map(p => createPokemon(p)));
-                setStamina(td.stamina);
-                setDataToLoaded(true);
+                params.setCurrency(td.currency);
+                params.setItems(td.items);
+                params.setLvl(td.lvl);
+                params.setPc(td.pcRoster.map(p => createPokemon(p)));
+                params.setRoster(td.roster.map(p => createPokemon(p)));
+                params.setStamina(td.stamina);
+                params.setDataToLoaded(true);
             }else {
                 console.log("The document doesn't exists.");
             }
+        })
+        .catch(console.err);
+
+        activeQuestsRef.get()
+        .then((doc) => {
+            if(doc.exists) {
+                let td = doc.data();
+                params.setActiveQuests(td.activeQuests);
+            }
+        })
+        .catch(console.err);
+
+        allQuestsRef.get()
+        .then(snap =>{
+          params.setAllQuests(snap.docs.map(v => v.data()))
         })
         .catch(console.err);
     }

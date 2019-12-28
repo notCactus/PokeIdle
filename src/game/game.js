@@ -4,6 +4,7 @@ import passiveTrainerXp from './passiveTrainerXp';
 import passivePokemonXp from './passivePokemonXp';
 import passiveTrainerStamina from './passiveTrainerStamina';
 import passivePcRosterHealth from './passivePcRosterHealth';
+import saveProgress from './saveProgress'
 import loadData from '../loadData';
 
 const startGame = (store) => {
@@ -23,9 +24,16 @@ const TRAINER_XP_GAIN_PER_UPDATE = 1;
 const POKEMON_XP_GAIN_PER_UPDATE = 2;
 const STAMINA_REGENERATION = 1;
 const HEALTH_REGENERATION = 1;
+const SAVE_EVERY = 5;
 
 const game = (store) => {
   if(store.getState().session.loadedData){
+    saveProgress({
+      trainer: () => store.getState().trainer,
+      activeQuests: () => store.getState().quest.activeQuests,
+      save: SAVE_EVERY,
+    });
+
     passiveTrainerXp(
       () => store.dispatch({type: 'ADD_XP', xp: TRAINER_XP_GAIN_PER_UPDATE}),
       () => store.getState().trainer.xp,
@@ -35,21 +43,23 @@ const game = (store) => {
     passivePokemonXp(
       () => store.dispatch({type: 'ADD_XP_TO_ROSTER', xp: POKEMON_XP_GAIN_PER_UPDATE}),
     );
-    quest(
-      () => store.getState().quest.activeQuests,
-      () => store.getState().trainer.roster,
-      () => store.getState().quest.allQuests,
-      (name) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', quest: name}),
-      (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
-      () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl}),
-      (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
-      (x, c) => {
+    quest({
+      activeQuests: () => store.getState().quest.activeQuests,
+      roster: () => store.getState().trainer.roster,
+      allQuests: () => store.getState().quest.allQuests,
+      returnPokemon: (name) => store.dispatch({type: 'RETURN_POKEMON_FROM_QUEST', quest: name}),
+      removeFromActive: (name) => store.dispatch({type: 'REMOVE_ACTIVE_QUEST', quest: name}),
+      updateQuestAvailiblity: () => store.dispatch({type: 'SET_AVAILIBLE_QUESTS', lvl: store.getState().trainer.lvl}),
+      rosterReward: (name, x) => store.dispatch({type: 'ADD_XP_TO_ROSTER_FROM_QUEST', quest: name, xp: x}),
+      trainerReward: (x, c) => {
         store.dispatch({type: 'ADD_XP', xp: x,});
-        // TODO: store.dispatch({type: 'ADD_CURRENCY', currency: c,};
+        store.dispatch({type: 'ADD_CURRENCY', currency: c,});
       },
-      (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
-      (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),
-    );
+      trainerStaminaCost: (s) => store.dispatch({type: 'REMOVE_STAMINA', stamina: s}),
+      dmgPokemon: (q, d) => store.dispatch({type: 'DAMAGE_POKEMON_FROM_QUEST', quest: q, dmg: d}),
+      currentStamina: () => store.getState().trainer.stamina,
+      updateQuestTimes: () => store.dispatch({type: 'ADD_TIME_TO_ACTIVE_QUESTS', time: 1}),
+    });
     passiveTrainerStamina(
       () => store.dispatch({type: 'ADD_STAMINA', stamina: STAMINA_REGENERATION}),
     );
@@ -63,11 +73,13 @@ const game = (store) => {
         setUsername: (n) => store.dispatch({type:'SET_USERNAME',username: n,}),
         setCurrency: (amount) => store.dispatch({type:'SET_CURRENCY',currency: amount,}),
         setItems: (items) => store.dispatch({type:'SET_ITEMS',item: items,}),
+        setActiveQuests: (q) => store.dispatch({type: 'SET_ACTIVE_QUESTS', quests: q,}),
         setLvl: (amount) => store.dispatch({type:'SET_LVL',lvl: amount,}),
         setPc: (pokemon) => store.dispatch({type:'SET_PC', pokemon: pokemon,}),
         setRoster: (pokemon) => store.dispatch({type:'SET_ROSTER',pokemon: pokemon,}),
         setStamina: (stamina) => store.dispatch({type:'SET_STAMINA',stamina: stamina,}),
-        setDataToLoaded: (loaded) => store.dispatch({type:'SET_DATA_LOADED', loaded: loaded})
+        setDataToLoaded: (loaded) => store.dispatch({type:'SET_DATA_LOADED', loaded: loaded}),
+        setAllQuests: (quests) => store.dispatch({type: 'SET_ALL_QUESTS',quests: quests,}),
       }
     )
   }

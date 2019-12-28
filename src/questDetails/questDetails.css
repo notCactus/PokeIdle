@@ -1,5 +1,6 @@
 .QuestDetails .DetailedQuestInformation {
   width: 70%;
+  max-height: 70%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -7,6 +8,11 @@
 .QuestDetails .DetailedQuestInformation img{
   width: 30px;
   height: 30px;
+}
+
+.QuestDetails > .DetailedQuestInformation > div:nth-of-type(2) .clickable{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .QuestDetails .DetailedQuestInformation .clickable {
@@ -27,7 +33,13 @@
 .QuestDetails .MenuToggler {
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  margin-top: 0.5em;
+  width: 50%;
+  max-height: 30%;
+}
+
+.QuestDetails #menuItems {
+   height: calc(30% - 23px);
 }
 
 .QuestDetails .RosterSelector {
@@ -85,4 +97,10 @@
 .QuestDetails  .ProfileOverview > .CharacterInformation > div:nth-of-type(3){
   font-size: 10px;
   margin-left: 12px;
+}
+
+@media screen and (max-width: 500px) {
+  .QuestDetails .DetailedQuestInformation {
+    width: 96%;
+  }
 }

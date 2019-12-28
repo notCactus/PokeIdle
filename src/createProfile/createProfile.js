@@ -1,4 +1,4 @@
-import CreateProfilePresentation from './createProfilePresentation';
+import CreateProfileContainer from './createProfileContainer';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
         starters: state.createProfile.starters,
         chosenStarter: state.createProfile.chosenStarter,
         signedIn: state.session.signedIn,
+        registration: state.createProfile.registration,
     }
 }
 
@@ -32,6 +33,6 @@ const mapDispatchToProps = (dispatch) => ({
     }),
 });
 
-const CreateProfile = connect(mapStateToProps, mapDispatchToProps)(CreateProfilePresentation);
+const CreateProfile = connect(mapStateToProps, mapDispatchToProps)(CreateProfileContainer);
 
 export default CreateProfile;

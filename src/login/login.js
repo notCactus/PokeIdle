@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        username: state.createProfile.username,
+        /*username: state.createProfile.username,
         lvl: state.trainer.lvl,
         roster: state.trainer.roster,
         pcRoster: state.trainer.pcRoster,
         trainerStamina: state.trainer.stamina,
         trainerMaxStamina: state.trainer.maxStamina,
         trainerXp: state.trainer.xp,
-        trainerMaxXp: state.trainer.maxXp,
+        trainerMaxXp: state.trainer.maxXp,*/
+        signedIn: state.session.signedIn,
     }
 }
-
+/*
 const mapDispatchToProps = (dispatch) => ({
     setUsername: (newName) => dispatch ({
         type: 'SET_USERNAME',
@@ -43,6 +44,6 @@ const mapDispatchToProps = (dispatch) => ({
         type: 'SET_STAMINA',
         stamina: stamina,
     }),
-});
-const Login = connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+});*/
+const Login = connect(mapStateToProps/*, mapDispatchToProps*/)(LoginContainer);
 export default Login;

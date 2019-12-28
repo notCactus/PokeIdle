@@ -8,7 +8,7 @@ export default function availibleQuests(state = [], action){
     (quest, i) =>
         (i <= action.lvl
         &&
-        action.activeQuests.findIndex(active => active === quest.name) === -1)
+        action.activeQuests.findIndex(active => active.name === quest.name) === -1)
     );
   return state;
 }
