@@ -20,7 +20,6 @@ class QuestDetailsPresentation extends Component{
     this.redirect = this.redirect.bind(this);
     this.state = {
       rosterImages: [], //Once images of pokemon have been fetched they are stored here
-      questRoster: [], //Contains picked pokemon as objects
       party: [], //Contains id of picked pokemon
       questIcon: "../loading.gif",
       redirectCondition: this.props.questId !== this.props.quest.name,
@@ -78,11 +77,6 @@ class QuestDetailsPresentation extends Component{
       loading: this.state.loading,
       roster: this.state.rosterView,
     });
-    this.setState({questRoster: this.props.roster.filter((pokemon, i) =>
-      this.state.party.includes(i+"")
-    )
-    .map(pokemon => pokemon.id)
-    });
   }
   popup(){
     if(this.state.popup)
@@ -91,7 +85,8 @@ class QuestDetailsPresentation extends Component{
          exitFunction={this.exit}
          view={(
            <ConfirmWindow
-             toConfirm={`Is this your roster:${this.state.questRoster.map(id => " "+id)}?`}
+             toConfirm=
+             {`Is this your roster:${this.state.party.map(id => " "+this.props.roster[id].id)}?`}
              confirmFunction={this.confrimQuest}
             />
          )}
@@ -106,26 +101,14 @@ class QuestDetailsPresentation extends Component{
     })
   }
 
-  onToggle(e){
-    const idHolder = this.findPO(e.target);
-    if(idHolder !== false){
-      if(!this.state.party.includes(idHolder.dataset.pokemon))
-        this.setState({
-          party: this.state.party.concat(idHolder.dataset.pokemon),
-        });
-      else this.setState({
-        party: this.state.party.filter(id => id !== idHolder.dataset.pokemon),
+  onToggle(id, toggle){
+    if(!this.state.party.includes(id) && toggle)
+      this.setState({
+        party: this.state.party.concat(id),
       });
-    }
-  }
-
-  // TODO: move this func to seperate document
-  findPO(element){
-    while(![...element.classList].includes('RosterSelector') && element !== null){
-      if([...element.classList].includes('ProfileOverview'))
-        return element;
-      element= element.parentElement
-    } return false;
+    else this.setState({
+      party: this.state.party.filter(i => i !== id),
+    });
   }
 
   menuProps(roster) {
