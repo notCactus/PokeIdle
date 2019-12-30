@@ -41,7 +41,7 @@ export default function roster(state=[], action){
     }else if (action.type === 'DAMAGE_POKEMON_FROM_QUEST') {
       return state.map((pokemon) => {
         if(pokemon.questId === action.quest)
-          pokemon.hp -= action.dmg.pop();
+          pokemon.hp = Math.max(0,pokemon.hp - action.dmg.pop());
         return pokemon;
       })
     }else{

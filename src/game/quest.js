@@ -34,9 +34,6 @@ export default function quest(params){
   params.updateQuestTimes();
 }
 
-const freeQuest = ({})
-
-
 const generateDmg = (quest, roster)=> {
   let time = quest.time;
   questWithDmgRoster[quest.name] = roster
