@@ -3,8 +3,10 @@ import app from'./../../base';
 import { connect } from 'react-redux';
 
 
-const mapStateToProps = (state) => {
-    return {}
+const mapStateToProps = (state, ownProps) => {
+    return {
+      text: ownProps.text ? ownProps.text : "Sign Out"
+    };
 }
 
 const mapDispatchToProps = (dispatch) => ({

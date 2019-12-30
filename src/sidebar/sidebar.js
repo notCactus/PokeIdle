@@ -4,11 +4,11 @@ import SidebarPresentational from './sidebarPresentational';
 
 function Sidebar() {
 
-    let location = useLocation();
+    let dir = useLocation().pathname.split('/')[1];
 
     return (
         <SidebarPresentational
-            visibility={(location.pathname === '/createProfile' || location.pathname === '/login') ? {display: 'none'} : undefined}
+            visibility={(dir !== 'profile' && dir !== 'quest' && dir !== 'shop') ? {display: 'none'} : undefined}
             imgSrc={'./logo.png'}
         />
     );
