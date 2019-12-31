@@ -1,8 +1,12 @@
+.RosterSelector > div:nth-of-type(1) {
+  position: relative;
+  z-index: 2;
+}
 .RosterSelector > div:nth-of-type(2) {
   position: relative;
   top: -50px;
   left: 0px;
-  z-index: -10;
+  z-index: 1;
   width: 100%;
   height: 100%;
 }

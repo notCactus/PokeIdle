@@ -1,0 +1,9 @@
+.ExplanationContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.ExplanationContainer > div > div{
+  display: flex;
+  flex-direction: column;
+}

@@ -9,6 +9,7 @@ import Sidebar from './sidebar/sidebar';
 import CreateProfile from './createProfile/createProfile';
 import Shop from './shop/shop';
 import Login from './login/login';
+import About from './about/about';
 import Error from './error/error';
 
 import app from'./base';
@@ -71,7 +72,7 @@ class App extends Component {
                     fallback="/createProfile"
                     exact path="/"
                     render = { (props) =>
-                      <Redirect to='/profile'/>
+                      <Redirect to='/about'/>
                     }
                     />
                     <PrivateRoute
@@ -101,6 +102,8 @@ class App extends Component {
                   <PrivateRoute fallback="/login" path="/shop" component={Shop}/>
                   <Route path="/login"
                   render = {(props) => <Login/>}/>
+                <Route path="/about"
+                  render = {(props) => <About/>}/>
                   <Route component={Error}/>
                 </Switch>
               </div>

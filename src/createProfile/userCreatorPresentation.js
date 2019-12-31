@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './userCreator.css';
 import app from '../base';
 
 const UserCreatorPresentation=(
@@ -8,7 +9,7 @@ const UserCreatorPresentation=(
     signInSession, startReg,
     finishReg,
     })=>(
-    <React.Fragment>
+    <div className="userCreator">
         <ProfileImageAndUsername username={username}
                                 onUsernameChange={onUsernameChange}
                                 chosenStarter={chosenStarter}
@@ -20,7 +21,7 @@ const UserCreatorPresentation=(
                                 startReg={startReg}
                                 finishReg={finishReg}
                                 />
-    </React.Fragment>
+    </div>
 );
 
 // Variable for debouncing
@@ -41,7 +42,7 @@ const ProfileImageAndUsername=({addToRoster, onStarterClick,
             let newName = e.target.value;
 
             clearTimeout(debounce);
-            debounce = setTimeout(() => onUsernameChange(newName), 300)
+            debounce = setTimeout(() => onUsernameChange(newName), 300);
         }}/>
         <SignUp chosenStarter={chosenStarter}
                 starters={starters}
@@ -77,7 +78,7 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
                     .auth()
                     .createUserWithEmailAndPassword(email.value, password.value)
                     .then((r) => {
-                      console.log(r);
+                        // The username/display name is set.
                         r.user.updateProfile({
                             displayName: username,
                         });
@@ -93,8 +94,7 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
                             questId: '',
                             xp: 0,
                         });
-                        console.log('databased trainer: ')
-                        console.log(trainer);
+
                         // Add a new trainer to the database.
                         app.firestore().collection('trainer').doc(result.user.uid).set(
                           trainer
@@ -120,7 +120,6 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
         } else {
             alert("Something went wrong, contact an admin.");
         }
-      //finishReg();
     });
     return (
         <div className="signUp">
@@ -133,6 +132,7 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
                     <b>Password</b>
                 </label>
                 <input name="password" type="password" placeholder="Password"/>
+                <div className="starterText"><b>Choose your starter</b></div>
                 <ProfileStarters starters={starters}
                 onStarterClick={onStarterClick}
                 chosenStarter={chosenStarter}

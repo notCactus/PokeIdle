@@ -1,0 +1,72 @@
+.createProfile .userCreator {
+    margin: 1em 0em 0em 0em;
+}
+
+.createProfile .userCreator input{
+    margin-bottom: 16px;
+}
+
+.createProfile .userCreator {
+    width: 100%;
+}
+
+.createProfile .userCreator .profileStarters {
+    width: 357px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    border: 3px solid white;
+    background-color: white;
+    margin: 1em 0 1em 0;
+    box-shadow: 0 8px 16px 0 rgba(89, 163, 224, 0.4), 0 6px 20px 0 rgba(5, 27, 88, 0.2);
+    border-radius: 8px;
+}
+
+.createProfile .userCreator img {
+    height: 96px;
+    border-radius: 4px;
+    align-self: center;
+}
+
+.createProfile .userCreator .img-Selected {
+    height: 112px;
+    width: 112px;
+    border-radius: 4px;
+    align-self: center;
+    border: 3px solid royalblue;
+    background-color: lightgreen;
+}
+
+.createProfile .userCreator button {
+    max-width: 160px;
+    align-self: center;
+    width: 100%;
+}
+
+.createProfile .userCreator .signUp input {
+    margin-top: 4px;
+}
+
+.createProfile .signUp form{    
+    display: flex;
+    flex-direction: column;
+
+}
+
+.createProfile .userCreator .pImgAndUsername{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createProfile .userCreator .pImgAndUsername > img:first-child{
+    width: 96px;
+    height: auto;
+    border: 3px solid royalblue;
+    background-color: white;
+    margin-bottom: 1em;
+}
+
+.createProfile .userCreator .starterText {
+    align-self: center;
+}

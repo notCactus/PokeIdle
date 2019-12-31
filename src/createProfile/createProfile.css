@@ -2,25 +2,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: visible;
 }
 
-.createProfile .pImgAndUsername{
-    display: flex;
-    flex-direction: column;
+.createProfile img {
+    margin-bottom: 0;
+}
+
+.createProfile ul li {
     align-items: center;
-}
-
-.createProfile img{
-    width: 96px;
-    height: auto;
-}
-
-.createProfile .img-Selected{
-    width: 112px;
-    border: 3px solid black;
-}
-
-.createProfile .signUp form{
     display: flex;
-    flex-direction: column;
+}
+
+.createProfile ul li span {
+    margin-left: 0.5em;
+    font-size: 1em;
+}
+
+.createProfile ul {
+    margin-bottom: 2em;
+}
+
+.createProfile .clickable {
+    margin-bottom: 2em;
 }
