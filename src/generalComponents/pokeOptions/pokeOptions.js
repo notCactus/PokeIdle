@@ -14,18 +14,17 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onMoveToPC: (pokemon) => {
     let action = dispatch({
-      type:'REMOVE_FROM_ROSTER',
-      index: ownProps.index
+      type:'ADD_TO_PC',
+      pokemon: pokemon
     });
     if (!action.error){
       action = dispatch({
-        type:'ADD_TO_PC',
-        pokemon: pokemon
+        type:'REMOVE_FROM_ROSTER',
+        index: ownProps.index
       });
       if (action.error){
         dispatch({
-          type:'ADD_TO_ROSTER',
-          pokemon: pokemon
+          type:'REMOVE_FROM_PC'
         })
       }
     }

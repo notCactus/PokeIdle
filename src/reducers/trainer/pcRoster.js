@@ -11,7 +11,12 @@ export default function pcRoster(state=[], action){
       }
       return state;
     } else if (action.type === 'REMOVE_FROM_PC'){
-      return state.filter((p, i) => i !== action.index);
+      if (action.index){
+        return state.filter((p, i) => i !== action.index);
+      } else {
+        state.pop();
+        return state;
+      }
     } else if (action.type === 'PASSIVE_PC_HEALTH_REGEN') {
       return state.map(pokemon => {
         pokemon.hp = Math.min(pokemon.hp + action.hp,
