@@ -38,19 +38,19 @@
 }
 
 .Quest #menuItems {
- max-height: calc(100% - 38px);
+ height: calc(100% - 50px);
+ width: 98%;
 }
 
 .Quest .MenuToggler .option {
   margin: 0.5em;
-  text-decoration: underline;
 }
 
 .Quest .MenuToggler  .menuItem{
   margin: 0.2em;
 }
 .Quest .QuestItem {
-  width: 100%;
+  width: 98%;
 }
 
 .Quest > .MenuToggler img{

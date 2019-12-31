@@ -4,6 +4,27 @@
     color: white;
 }
 
+/*
+// width
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+// Track
+::-webkit-scrollbar-track {
+  background: #232427;
+}
+
+// Handle
+::-webkit-scrollbar-thumb {
+  background: #0b0c10;
+}
+
+// Handle on hover 
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}*/
+
 .App {
     height: 100%;
     display: flex;
@@ -93,8 +114,19 @@
 }
 
 
-/***GLOBAL LOADING SIZE RULE***/
+/***SEMI GLOBAL MENU_TOGGLER RULE***/
+.Profile .RosterView > .MenuToggler , .Quest .MenuToggler {
+    background-color: #1A212A;
+    border-radius: 25px;
+    -moz-box-shadow:    1px 1px 1px 1px black;
+    -webkit-box-shadow: 1px 1px 1px 1px black;
+    box-shadow:         1px 1px 1px 1px black;
+}
 
+.Profile .selected, .Quest .selected{
+  margin: 0.5em;
+  text-decoration: underline;
+}
 
 
 @media screen and (max-width: 500px) {

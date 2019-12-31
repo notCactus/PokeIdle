@@ -146,7 +146,6 @@ class QuestDetailsPresentation extends Component{
   }
   confrimQuest(){
     this.exit();
-    debugger;
     if(this.state.party.length > 0
       && this.props.trainerStamina - this.props.quest.staminaCost >= 0
     ){
