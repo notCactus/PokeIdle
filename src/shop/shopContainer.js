@@ -4,6 +4,7 @@ import {getItem, getSpecies, getPokemon} from '../api/api';
 import ShopItem from '../generalComponents/shopItem/shopItem';
 import ConfirmButton from '../generalComponents/confirmWindow/confirmWindow';
 import Popup from '../generalComponents/popup/popup';
+import ErrorPopup from '../generalComponents/popup/errorPopup'
 import app from '../base';
 import './shop.css';
 
@@ -116,8 +117,32 @@ function ShopContainer({coins, poke, great, ultra, onPurchase}) {
                 title={"Transaction"}
                 exitFunction={() => setPopup()}
                 view={<ConfirmButton
-                        toConfirm={`Would you like to buy ${amount} ${name}(s) for ${cost.amount * amount} ${cost.currency}s?`}
-                        confirmFunction={() => {onPurchase(id, amount, cost); setPopup()}}
+                        toConfirm={`Would you like to buy ${amount} ${name}` + ((amount === 1) ? "" : "s") + ` for ${cost.amount * amount} ${cost.currency}s?` +
+                            ((cost.currency === 'coin') ? "" : ("\n" + ((amount === 1) ? "It" : "They") + " will be sent to your PC."))}
+                        confirmFunction={() => {
+                            let pop;
+                            const result = onPurchase(id, amount, cost);
+                            switch (result){
+                                case 'UNDERFLOW':
+                                    pop = <ErrorPopup
+                                        title={"Not enough funds."}
+                                        onExit={() => setPopup()}
+                                        errorMsg="You do not have enough funds."
+                                    />
+                                    break;
+                                case 'OVERFLOW':
+                                    pop = <ErrorPopup
+                                        title={"Not enough room in PC"}
+                                        onExit={() => setPopup()}
+                                        errorMsg="Please make room for your purchase and try again."
+                                    />
+                                    break;
+                                default:
+                                    pop = undefined;
+                                    break;
+                            }
+                            setPopup(pop);
+                        }}
                     />}
             />
         );

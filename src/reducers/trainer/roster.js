@@ -12,7 +12,10 @@ export default function roster(state=[], action){
           return state;
         }
     } else if (action.type === 'REMOVE_FROM_ROSTER'){
-      if (state.length > 1){
+      if (state[action.index].questId){
+        action.error = 'QUEST';
+        return state;
+      } else if (state.length > 1){
         return state.filter((p, i) => i !== action.index);
       } else {
         action.error = 'UNDERFLOW';
@@ -44,6 +47,14 @@ export default function roster(state=[], action){
           pokemon.hp = Math.max(0,pokemon.hp - action.dmg.pop());
         return pokemon;
       })
+    }else if (action.type === 'RESTORE_HP_ROSTER') {
+      const poke = state[action.index];
+      if (poke.hp !== poke.maxHp(poke.lvl)){
+        state[action.index].hp = Math.min(poke.hp + action.hp, poke.maxHp(poke.lvl));
+      } else {
+        action.error = 'HP_FULL';
+      }
+      return state;
     }else{
         return state;
     }
