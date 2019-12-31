@@ -128,7 +128,7 @@ class QuestDetailsPresentation extends Component{
   createRosterItems(r){
     return r.map((pokemon, i) =>{
       if(pokemon.questId === '' && pokemon.hp > 0)
-      return(
+      return (
       <RosterSelector
         key={i}
         image={this.state.rosterImages[pokemon.id] === undefined ? "./loading.gif" : this.state.rosterImages[pokemon.id]}

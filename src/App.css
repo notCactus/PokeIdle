@@ -1,5 +1,7 @@
 #root {
     height: 100%;
+    background-color: #1f2833;
+    color: white;
 }
 
 .App {
