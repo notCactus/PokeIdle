@@ -22,6 +22,9 @@ function getTitle(path){
             return "QUEST";
         case '/shop':
             return "SHOP";
+        case '/about':
+            return 'ABOUT';
+          break;
         default:
             return "Pokéidle";
     }

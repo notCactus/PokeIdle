@@ -198,7 +198,7 @@
   left: -25px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .Profile > .ProfileOverview {
     width: 80%;
     height: 13%;
