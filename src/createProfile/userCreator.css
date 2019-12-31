@@ -1,0 +1,60 @@
+.createProfile .userCreator {
+    margin: 1em 0em 0em 0em;
+}
+
+.createProfile .userCreator input, img{
+    margin-bottom: 16px;
+}
+
+.createProfile .userCreator {
+    width: 100%;
+}
+
+.createProfile .userCreator .profileStarters {
+    width: 357px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+}
+
+.createProfile .userCreator img {
+    height: 96px;
+    align-self: center;
+}
+
+.createProfile .userCreator .img-Selected {
+    height: 112px;
+    width: 112px;
+    align-self: center;
+    border: 3px solid royalblue;
+    background-color: lightgreen;
+}
+
+.createProfile .userCreator button {
+    max-width: 160px;
+    align-self: center;
+    width: 100%;
+}
+
+.createProfile .userCreator .signUp input {
+    margin-top: 4px;
+}
+
+.createProfile .signUp form{    
+    display: flex;
+    flex-direction: column;
+
+}
+
+.createProfile .userCreator .pImgAndUsername{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createProfile .userCreator .pImgAndUsername > img:first-child{
+    width: 96px;
+    height: auto;
+    border: 3px solid royalblue;
+    background-color: white
+}

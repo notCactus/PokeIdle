@@ -60,6 +60,12 @@ class CreateProfilePresentation extends Component {
         else
           return (
               <div className="createProfile">
+                  <h2>Choose a pokemon!</h2>
+                  <ul>
+                      <li>Choose a pokemon and level up trough questing.</li>
+                      <li>Collect coins, buy pokeballs and trade them for new and more powerful pokemons.</li>
+                      <li>Regenerate the pokemons health points (hp) when those pokemon are in the PC.</li>
+                  </ul>
                   <UserCreator/>
                   <p>OR</p>
                   <LinkButton text="Login" linkTo="/login"/>

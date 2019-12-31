@@ -3,24 +3,3 @@
     flex-direction: column;
     align-items: center;
 }
-
-.createProfile .pImgAndUsername{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.createProfile img{
-    width: 96px;
-    height: auto;
-}
-
-.createProfile .img-Selected{
-    width: 112px;
-    border: 3px solid black;
-}
-
-.createProfile .signUp form{
-    display: flex;
-    flex-direction: column;
-}
