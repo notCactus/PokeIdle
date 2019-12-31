@@ -12,7 +12,7 @@ class RosterSelector extends Component{
   }
   render() {
     return (
-      <div className="RosterSelector" onClick={(e) => this.selectToggle(e, this.props.toggle)}>
+      <div className="RosterSelector" onClick={(e) => this.selectToggle(this.props.pokemonId, this.props.toggle)}>
         <ProfileOverview
           name={this.props.name}
           image={this.props.image}
@@ -27,11 +27,11 @@ class RosterSelector extends Component{
       </div>
     );
   }
-  selectToggle(e, toggle){
+  selectToggle(id, toggle){
     if(toggle && this.state.checked === 'red')
       this.setState({checked: 'green'});
     else
       this.setState({checked: 'red'});
-    this.props.onToggle(e);
+    this.props.onToggle(id, toggle);
   }
 } export default RosterSelector;

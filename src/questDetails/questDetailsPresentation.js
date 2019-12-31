@@ -19,8 +19,7 @@ class QuestDetailsPresentation extends Component{
     this.confrimQuest = this.confrimQuest.bind(this);
     this.redirect = this.redirect.bind(this);
     this.state = {
-      rosterImages: [], //Once images of pokemon have been fetched they are stored here
-      questRoster: [], //Contains picked pokemon as objects
+      rosterImages: {}, //Once images of pokemon have been fetched they are stored here
       party: [], //Contains id of picked pokemon
       questIcon: "../loading.gif",
       redirectCondition: this.props.questId !== this.props.quest.name,
@@ -63,9 +62,15 @@ class QuestDetailsPresentation extends Component{
 
     fetchImages(){
       Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id)))
-      .then(roster => this.setState({
-        rosterImages: roster.map(pokemon => pokemon['sprites']['front_default'])
-      }));
+      .then(roster => {
+        let imgs = {};
+        roster.forEach(pokemon =>
+          imgs[pokemon.name] = (pokemon['sprites']['front_default'])
+        );
+        this.setState({
+          rosterImages: {...imgs},
+        });
+      });
       getItem(this.props.quest.iconItemId).then(item =>
         this.setState({
           questIcon: item.sprites.default,
@@ -78,11 +83,6 @@ class QuestDetailsPresentation extends Component{
       loading: this.state.loading,
       roster: this.state.rosterView,
     });
-    this.setState({questRoster: this.props.roster.filter((pokemon, i) =>
-      this.state.party.includes(i+"")
-    )
-    .map(pokemon => pokemon.id)
-    });
   }
   popup(){
     if(this.state.popup)
@@ -91,7 +91,8 @@ class QuestDetailsPresentation extends Component{
          exitFunction={this.exit}
          view={(
            <ConfirmWindow
-             toConfirm={`Is this your roster:${this.state.questRoster.map(id => " "+id)}?`}
+             toConfirm=
+             {`Is this your roster:${this.state.party.map(id => " "+this.props.roster[id].id)}?`}
              confirmFunction={this.confrimQuest}
             />
          )}
@@ -106,26 +107,14 @@ class QuestDetailsPresentation extends Component{
     })
   }
 
-  onToggle(e){
-    const idHolder = this.findPO(e.target);
-    if(idHolder !== false){
-      if(!this.state.party.includes(idHolder.dataset.pokemon))
-        this.setState({
-          party: this.state.party.concat(idHolder.dataset.pokemon),
-        });
-      else this.setState({
-        party: this.state.party.filter(id => id !== idHolder.dataset.pokemon),
+  onToggle(id, toggle){
+    if(!this.state.party.includes(id) && toggle)
+      this.setState({
+        party: this.state.party.concat(id),
       });
-    }
-  }
-
-  // TODO: move this func to seperate document
-  findPO(element){
-    while(![...element.classList].includes('RosterSelector') && element !== null){
-      if([...element.classList].includes('ProfileOverview'))
-        return element;
-      element= element.parentElement
-    } return false;
+    else this.setState({
+      party: this.state.party.filter(i => i !== id),
+    });
   }
 
   menuProps(roster) {
@@ -137,11 +126,12 @@ class QuestDetailsPresentation extends Component{
       };
   }
   createRosterItems(r){
-    return r.filter(pokemon => pokemon.questId === '' && pokemon.hp > 0)
-    .map((pokemon, i) =>
+    return r.map((pokemon, i) =>{
+      if(pokemon.questId === '' && pokemon.hp > 0)
+      return (
       <RosterSelector
         key={i}
-        image={this.state.rosterImages.length < 1 ? "./loading.gif" : this.state.rosterImages[i]}
+        image={this.state.rosterImages[pokemon.id] === undefined ? "./loading.gif" : this.state.rosterImages[pokemon.id]}
         stamina={pokemon.hp}
         maxStamina={pokemon.maxHp(pokemon.lvl)}
         name={pokemon.id}
@@ -151,11 +141,12 @@ class QuestDetailsPresentation extends Component{
         pokemonId={i}
         onToggle={this.onToggle}
         toggle={this.state.party.length < this.props.quest.rosterCapacity}
-      />
-    );
+      />);
+    });
   }
   confrimQuest(){
     this.exit();
+    debugger;
     if(this.state.party.length > 0
       && this.props.trainerStamina - this.props.quest.staminaCost >= 0
     ){

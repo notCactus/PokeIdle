@@ -80,6 +80,7 @@ const game = (store) => {
         setStamina: (stamina) => store.dispatch({type:'SET_STAMINA',stamina: stamina,}),
         setDataToLoaded: (loaded) => store.dispatch({type:'SET_DATA_LOADED', loaded: loaded}),
         setAllQuests: (quests) => store.dispatch({type: 'SET_ALL_QUESTS',quests: quests,}),
+        setXp: (xp) => store.dispatch({type: 'SET_XP', xp: xp}),
       }
     )
   }

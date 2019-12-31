@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect} from "react-router-dom";
 import { Provider } from 'react-redux';
 import React, {Component}  from 'react';
 import Profile from './profile/profile';
@@ -71,7 +71,7 @@ class App extends Component {
                     fallback="/createProfile"
                     exact path="/"
                     render = { (props) =>
-                      <Profile/>
+                      <Redirect to='/profile'/>
                     }
                     />
                     <PrivateRoute

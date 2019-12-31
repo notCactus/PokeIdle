@@ -17,6 +17,7 @@ export default function loadData(params) {
                 params.setCurrency(td.currency);
                 params.setItems(td.items);
                 params.setLvl(td.lvl);
+                params.setXp(td.xp);
                 params.setPc(td.pcRoster.map(p => createPokemon(p)));
                 params.setRoster(td.roster.map(p => createPokemon(p)));
                 params.setStamina(td.stamina);

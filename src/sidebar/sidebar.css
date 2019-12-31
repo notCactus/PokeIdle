@@ -5,6 +5,8 @@
     width: 100px;
     flex-direction: column;
     align-items: center;
+    background-color: #0b0c10;
+    color: white;
 }
 
 .sidebar img {
@@ -13,6 +15,8 @@
 
 .sidebar a {
     margin-top: 50%;
+    text-decoration: none;
+    color: #66fcf1;
 }
 
 .sidebar > div {
@@ -29,6 +33,6 @@
   color: white;
 }
 
-.selectedView {
-    background-color: green;
+.selectedView:link{
+  text-decoration: underline;
 }
