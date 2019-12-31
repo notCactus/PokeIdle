@@ -165,20 +165,26 @@
   margin-right: auto;
 }
 
-.Profile .MenuToggler > #options > .option{
+.Profile .MenuToggler > #options > .selected{
   margin: 0.5em;
   text-decoration: underline;
 }
 
-.Profile .MenuToggler > #menuItems > .menuItem{
+.Profile .MenuToggler > #menuItems > .menuItem .ProfileOverview{
   margin: 0.2em;
 }
 
-.Profile .RosterView > .MenuToggler #menuItems {
- max-height: calc(100% - 38px);
+.Profile .RosterView .Popup #menuItems {
+ height: calc(100% - 38px);
+ width: 100%;
+}
+.Profile .RosterView #menuItems {
+ height: calc(100% - 50px);
+ width: 98%;
 }
 
 .Profile .RosterView .MenuToggler {
+  margin-top: 10px;
   height: 95%;
 }
 
