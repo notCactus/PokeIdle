@@ -3,10 +3,53 @@
 }
 
 .login form {
+    background-color: #1A212A;
+    border-radius: 25px;
+    -moz-box-shadow:    1px 1px 1px 1px black;
+    -webkit-box-shadow: 1px 1px 1px 1px black;
+    box-shadow:         1px 1px 1px 1px black;
+    width: 300px;
+    height: 250px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.login form p {
-    align-self: center;
+.login form label {
+  position: relative;
+  width: 71px;
+  left: -46px;
+}
+.login form input {
+  margin-bottom: 0.6em;
+}
+.login form button {
+  background-color: #e7e7e7;
+  border: none;
+  color: black;
+  padding: 4px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.login .LinkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 70px;
+  height: 35px;
+  border: 2px solid #66fcf1;
+}
+.login .LinkButton:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.login .LinkButton a {
+  color: white;
 }

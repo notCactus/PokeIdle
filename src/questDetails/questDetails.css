@@ -51,11 +51,11 @@
   margin-right: auto;
   margin-top: 0.5em;
   width: 50%;
-  max-height: 30%;
+  height: 30%;
 }
 
 .QuestDetails #menuItems {
-   height: calc(30% - 23px);
+   height: calc(100% - 23px);
 }
 
 .QuestDetails .RosterSelector {

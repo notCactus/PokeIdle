@@ -18,15 +18,15 @@
 .shop .MenuToggler {
     background-color: azure;
     width: 80%;
-    height: calc(100% - 54px);
+    height: calc(100% - 68px);
 }
 
 .shop .MenuToggler #options {
-    height: 12%;
+    height: 54px;
 }
 
 .shop .MenuToggler #menuItems {
-    height: calc(100% - 68px);
+    height: calc(100% - 54px);
 }
 
 .shop .MenuToggler .option {

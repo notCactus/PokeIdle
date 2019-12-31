@@ -20,7 +20,7 @@
   background: #0b0c10;
 }
 
-// Handle on hover 
+// Handle on hover
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }*/
@@ -55,7 +55,8 @@
 }
 
 .App > div:nth-of-type(2) > div:nth-of-type(2){
-  height: 85%;
+  max-height: 85%;
+  min-height: 85%;
 }
 
 .App .PokeHeader {
