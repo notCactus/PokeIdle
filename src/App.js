@@ -68,7 +68,7 @@ class App extends Component {
                 <Header/>
                 <Switch>
                   <PrivateRoute
-                    fallback="/login"
+                    fallback="/createProfile"
                     exact path="/"
                     render = { (props) =>
                       <Profile/>
