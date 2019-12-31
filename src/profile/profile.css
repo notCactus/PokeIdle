@@ -174,7 +174,7 @@
   margin: 0.2em;
 }
 
-.Profile .RosterView #menuItems {
+.Profile .RosterView > .MenuToggler #menuItems {
  max-height: calc(100% - 38px);
 }
 

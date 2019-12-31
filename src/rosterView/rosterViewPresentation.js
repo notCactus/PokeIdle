@@ -3,6 +3,7 @@ import MenuToggler from '../generalComponents/menuToggler/menuToggler';
 import ProfileOverview from '../generalComponents/profileOverview/profileOverview';
 import PokeOptions from '../generalComponents/pokeOptions/pokeOptions';
 import Popup from '../generalComponents/popup/popup';
+import ErrorPopup from '../generalComponents/popup/errorPopup';
 import {getPokemon} from '../api/api';
 import conditionReached from '../helperFunctions/conditionReached';
 import './rosterView.css';
@@ -99,20 +100,48 @@ class RosterViewPresentation extends Component {
   }
 
   popup(){
-    if (this.state.popup)
-      return <Popup
-         title="What would you like to do?"
-         exitFunction={() => this.setState({popup: false,})}
-         view={
-           <PokeOptions
-             confirmFunction ={() => this.setState({popup: false,})}
-             roster={this.state.mainView}
-             index={this.state.popupIndex}
-            />
-         }
-        />;
+    if (this.state.popup){
+      switch(this.state.error){
+        case 'UNDERFLOW':
+          return <ErrorPopup
+            title={"Last Pokémon in roster"}
+            onExit={() => {this.setState({popup: false, error:undefined})}}
+            errorMsg={"At least one Pokémon must remain in your roster."}
+          />
+        case 'OVERFLOW':
+          return <ErrorPopup
+            title={"Roster/PC is full"}
+            onExit={() => this.setState({popup: false, error:undefined})}
+            errorMsg={"There is no room to move this Pokémon."}
+          />
+        case 'QUEST':
+          return <ErrorPopup
+            title={"Pokémon is on a Quest"}
+            onExit={() => this.setState({popup: false, error:undefined})}
+            errorMsg={"Pokémon that are on a quest cannot be sent to the PC."}
+          />
+        case 'HP_FULL':
+          return <ErrorPopup
+            title={"HP is full"}
+            onExit={() => this.setState({popup: false, error:undefined})}
+            errorMsg={"It won't have any effect."}
+          />
+        default:
+          return <Popup
+            title="What would you like to do?"
+            exitFunction={() => this.setState({popup: false})}
+            view={
+              <PokeOptions
+                confirmFunction ={(error) => this.setState({popup: error !== undefined, error: error})}
+                roster={this.state.mainView}
+                index={this.state.popupIndex}
+              />
+            }
+          />;
+      }
+    }
   }
   activatePopup(index, inRoster){
-    this.setState({popupIndex: index, popup: true, mainView: inRoster,});
+    this.setState({popupIndex: index, popup: true, mainView: inRoster});
   }
 } export default RosterViewPresentation;

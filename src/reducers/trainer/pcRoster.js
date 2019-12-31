@@ -2,7 +2,14 @@ export default function pcRoster(state=[], action){
     if (action.type === 'SET_PC') {
       return action.pokemon;
     } else if (action.type === 'ADD_TO_PC'){
-      return state.concat(action.pokemon);
+      action.amount = action.amount === undefined ? 1 : Number(action.amount);
+      if (action.amount + state.length <= 50){
+        for (let i = 0; i < action.amount; i++)
+          state.push(action.pokemon);
+      } else {
+        action.error = 'OVERFLOW';
+      }
+      return state;
     } else if (action.type === 'REMOVE_FROM_PC'){
       return state.filter((p, i) => i !== action.index);
     } else if (action.type === 'PASSIVE_PC_HEALTH_REGEN') {
@@ -11,7 +18,16 @@ export default function pcRoster(state=[], action){
            pokemon.maxHp(pokemon.lvl));
         return pokemon
       })
-    }else {
+    } else if (action.type === 'RESTORE_HP_PC') {
+      const poke = state[action.index];
+      if (poke.hp !== poke.maxHp(poke.lvl)){
+        state[action.index].hp = Math.min(poke.hp + action.hp, poke.maxHp(poke.lvl));
+      } else {
+        action.error = 'HP_FULL';
+      }
+      return state;
+    }
+    else {
       return state;
     }
 }

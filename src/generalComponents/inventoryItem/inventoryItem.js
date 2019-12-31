@@ -3,7 +3,7 @@ import ItemDetails from '../itemDetails/itemDetails';
 import Clickable from '../clickable/clickable';
 import './inventoryItem.css';
 
-function InventoryItem({name, sprite, description, quantity}){
+function InventoryItem({name, sprite, description, quantity, onUse}){
     return (
         <div id="inventoryItem">
             <ItemDetails
@@ -13,7 +13,7 @@ function InventoryItem({name, sprite, description, quantity}){
             />
             <div id="quantityDetails">
                 <p>{`x ${quantity}`}</p>
-                <Clickable text="Use" style={{width:"50px", height:"30px"}} onClick={() => {}}/>
+                <Clickable text="Use" style={{width:"50px", height:"30px"}} onClick={() => onUse()}/>
             </div>
         </div>
     );

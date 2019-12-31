@@ -30,8 +30,9 @@ const currencyToId = (currency) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     onPurchase: (id, amount, cost) => {
+        let action;
         if (cost.currency === 'coin'){
-            const action = dispatch ({
+            action = dispatch ({
                 type: 'REMOVE_CURRENCY',
                 currency: cost.amount * amount,
             });
@@ -42,19 +43,25 @@ const mapDispatchToProps = (dispatch) => ({
                 })
             }
         } else {
-            const action = dispatch ({
+            action = dispatch ({
                 type: 'REMOVE_ITEMS',
                 item: {id:currencyToId(cost.currency), amount: cost.amount * amount},
             });
             if (action.error !== 'UNDERFLOW'){
-                for (let i = 0; i < amount; i++){
-                    dispatch({
-                        type:'ADD_TO_PC',
-                        pokemon:createPokemon({id:id})
+                action = dispatch({
+                    type:'ADD_TO_PC',
+                    pokemon:createPokemon({id:id}),
+                    amount: amount
+                });
+                if (action.error === 'OVERFLOW'){
+                    dispatch ({
+                        type: 'ADD_ITEMS',
+                        item: {id:currencyToId(cost.currency), amount: cost.amount * amount},
                     });
                 }
             }
         }
+        return action.error;
     }
 });
 
