@@ -72,7 +72,7 @@ class App extends Component {
                     fallback="/login"
                     exact path="/"
                     render = { (props) =>
-                      <Redirect to='/profile'/>
+                      <Redirect to='/about'/>
                     }
                     />
                     <PrivateRoute
