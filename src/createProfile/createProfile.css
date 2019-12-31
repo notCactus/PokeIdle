@@ -3,3 +3,21 @@
     flex-direction: column;
     align-items: center;
 }
+
+.createProfile img {
+    margin-bottom: 0;
+}
+
+.createProfile ul li {
+    align-items: center;
+    display: flex;
+}
+
+.createProfile ul li span {
+    margin-left: 0.5em;
+    font-size: 1em;
+}
+
+.createProfile ul {
+    margin-bottom: 2em;
+}
