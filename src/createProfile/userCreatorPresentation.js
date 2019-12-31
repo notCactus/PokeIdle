@@ -132,6 +132,7 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
                     <b>Password</b>
                 </label>
                 <input name="password" type="password" placeholder="Password"/>
+                <div className="starterText"><b>Choose your starter</b></div>
                 <ProfileStarters starters={starters}
                 onStarterClick={onStarterClick}
                 chosenStarter={chosenStarter}
