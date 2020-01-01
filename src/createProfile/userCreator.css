@@ -101,3 +101,17 @@
 .createProfile .userCreator .starterText {
     align-self: center;
 }
+
+@media only screen and (max-width: 470px){
+    .createProfile .userCreator {
+        max-width: calc(100% - 24px);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .createProfile .userCreator .profileStarters {
+        flex-direction: column;
+        width: auto;
+        height: auto;
+    }
+}

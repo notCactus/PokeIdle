@@ -12,6 +12,7 @@
 .createProfile ul li {
     align-items: center;
     display: flex;
+    margin-bottom: 0.5em;
 }
 
 .createProfile ul li span {
@@ -20,6 +21,7 @@
 }
 
 .createProfile ul {
+    padding: 1em;
     margin-bottom: 2em;
 }
 
@@ -41,4 +43,8 @@
 
 .createProfile .LinkButton a {
   color: white;
+}
+
+.createProfile h2 {
+    text-align: center;
 }
