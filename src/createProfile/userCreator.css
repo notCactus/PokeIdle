@@ -26,6 +26,12 @@
     height: 96px;
     border-radius: 4px;
     align-self: center;
+    filter: brightness(66%);
+}
+
+.createProfile .userCreator img:hover {
+    cursor: pointer;
+    filter: brightness(100%);
 }
 
 .createProfile .userCreator .img-Selected {
@@ -33,8 +39,9 @@
     width: 112px;
     border-radius: 4px;
     align-self: center;
-    border: 3px solid royalblue;
-    background-color: lightgreen;
+    box-shadow: 2px 2px 2px 1px rgba(8, 35, 56, 0.4);
+    background-color: rgb(161, 182, 209);
+    filter: brightness(100%);
 }
 
 .createProfile .userCreator button {
@@ -96,6 +103,8 @@
     border: 3px solid royalblue;
     background-color: white;
     margin-bottom: 1em;
+    filter: brightness(100%);
+    cursor: default;
 }
 
 .createProfile .userCreator .starterText {
