@@ -1,5 +1,11 @@
 .login {
     align-self: center;
+    display: flex;
+    flex-direction: column; 
+}
+
+.login p {
+  text-align: center;
 }
 
 .login .loginContainer {

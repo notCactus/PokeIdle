@@ -38,10 +38,10 @@ const LoginContainer = ({signedIn}) => {
                         </label>
                         <input name="password" type="password" placeholder="Password"/>
                         <button type="submit">Login</button>
-                        <p>OR</p>
-                        <LinkButton text="Sign Up" linkTo="/createProfile"/>
                     </form>
                 </div>
+                <p>OR</p>
+                <LinkButton text="Sign Up" linkTo="/createProfile"/>
             </div>
         );
     }
