@@ -27,19 +27,21 @@ const LoginContainer = ({signedIn}) => {
     } else {
         return (
             <div className="login">
-                <form onSubmit={handleLogin}>
-                    <label>
-                        <b>Email</b>
-                    </label>
-                    <input name="email" type="email" placeholder="Email"/>
-                    <label>
-                        <b>Password</b>
-                    </label>
-                    <input name="password" type="password" placeholder="Password"/>
-                    <button type="submit">Login</button>
-                    <p>OR</p>
-                    <LinkButton text="Sign Up" linkTo="/createProfile"/>
-                </form>
+                <div className="loginContainer">
+                    <form onSubmit={handleLogin}>
+                        <label>
+                            <b>Email</b>
+                        </label>
+                        <input name="email" type="email" placeholder="Email"/>
+                        <label>
+                            <b>Password</b>
+                        </label>
+                        <input name="password" type="password" placeholder="Password"/>
+                        <button type="submit">Login</button>
+                        <p>OR</p>
+                        <LinkButton text="Sign Up" linkTo="/createProfile"/>
+                    </form>
+                </div>
             </div>
         );
     }
