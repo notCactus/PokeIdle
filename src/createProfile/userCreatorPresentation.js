@@ -10,6 +10,7 @@ const UserCreatorPresentation=(
     finishReg,
     })=>(
     <div className="userCreator">
+        <b>Create Your Profile</b>
         <ProfileImageAndUsername username={username}
                                 onUsernameChange={onUsernameChange}
                                 chosenStarter={chosenStarter}

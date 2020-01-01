@@ -66,7 +66,6 @@ class CreateProfilePresentation extends Component {
                       <li><img src="/shop_balls.png" alt="Pokemon balls"/><span>Collect coins through quests, buy pokeballs and trade them for new and more powerful pokemons.</span></li>
                       <li><img src="/shop_medicine.png" alt="Potion"/><span>Regenerate the pokemon's health points (hp) when those pokemon are in the PC. </span></li>
                   </ul>
-                  <b>Create Your Profile</b>
                   <UserCreator/>
                   <p>OR</p>
                   <LinkButton text="Login" linkTo="/login"/>
