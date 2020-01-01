@@ -53,10 +53,9 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  width: 70px;
-  height: 35px;
   border: 2px solid #66fcf1;
   align-self: center;
+  padding: 0;
 }
 .login .LinkButton:hover {
   opacity: 0.7;
@@ -64,6 +63,11 @@
 }
 .login .LinkButton a {
   color: white;
+  padding: 10px 8px 10px 8px;
+}
+
+.login .clickable {
+  padding: 2px;
 }
 
 @media only screen and (max-width: 300px) {
