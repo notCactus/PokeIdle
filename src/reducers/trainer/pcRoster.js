@@ -14,8 +14,7 @@ export default function pcRoster(state=[], action){
       if (action.index !== undefined){
         return state.filter((p, i) => i !== action.index);
       } else {
-        // TODO: Kanske bättre att returnera action error här?
-        //state.pop();
+        state.pop();
         return state;
       }
     } else if (action.type === 'PASSIVE_PC_HEALTH_REGEN') {
