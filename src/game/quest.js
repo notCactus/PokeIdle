@@ -20,11 +20,14 @@ export default function quest(params){
       params.trainerStaminaCost(questDetails.staminaCost);
     setTimeout(() => {
       params.dmgPokemon(quest.name, generateDmg(questDetails, params.roster()))
-      params.trainerReward(questDetails.baseTrainerXp,
-         questDetails.baseTrainerCoins);
-      params.rosterReward(quest.name,
+      const succeded = !params.rosterReward(quest.name,
         questDetails.basePokemonXp
-      );
+      ).allFainted;
+      if(succeded)
+        params.trainerReward(
+          questDetails.baseTrainerXp,
+          questDetails.baseTrainerCoins
+        );
       params.returnPokemon(quest.name);
       params.removeFromActive(quest.name);
       params.updateQuestAvailiblity();
@@ -43,7 +46,12 @@ const generateDmg = (quest, roster)=> {
     questWithDmgRoster[quest.name].map(d => {
       let t = getRandomInt(100);
       if(t <= quest.dmgRisq)
-        return d + getRandomInt(quest.maxDmg - quest.minDmg) + quest.minDmg;;
+        return d +
+        Math.max(
+          getRandomInt(quest.maxDmg - quest.minDmg) + quest.minDmg
+          - (questWithDmgRoster[quest.name].length - 1),
+          1
+        );
       return d;
     });
     time -= quest.dmgPosibilityEvery;
