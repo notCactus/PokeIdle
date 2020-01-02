@@ -11,10 +11,11 @@ export default function pcRoster(state=[], action){
       }
       return state;
     } else if (action.type === 'REMOVE_FROM_PC'){
-      if (action.index){
+      if (action.index !== undefined){
         return state.filter((p, i) => i !== action.index);
       } else {
-        state.pop();
+        // TODO: Kanske bättre att returnera action error här?
+        //state.pop();
         return state;
       }
     } else if (action.type === 'PASSIVE_PC_HEALTH_REGEN') {
@@ -30,6 +31,11 @@ export default function pcRoster(state=[], action){
       } else {
         action.error = 'HP_FULL';
       }
+      return state;
+    }else if (action.type === 'SWAP_IN_PC_ROSTER') {
+      const t = state[action.a];
+      state[action.a] = state[action.b];
+      state[action.b] = t;
       return state;
     }
     else {

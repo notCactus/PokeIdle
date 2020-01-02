@@ -21,6 +21,9 @@ class RosterViewPresentation extends Component {
       popup: false,
       popupIndex: 0,
       mainView: true,
+      drag: false,
+      swapA: undefined,
+      swapB: undefined,
     }
   }
 
@@ -88,6 +91,13 @@ class RosterViewPresentation extends Component {
         inRoster={inRoster}
         index={i}
         clickEvent={() => this.activatePopup(i, inRoster)}
+        dragEvent={()=> this.drag.bind(this)(i, inRoster)}
+        dragEndEvent={() => this.dragEnd.bind(this)(i, inRoster)}
+        dragOverEvent={(e) => {
+          e.preventDefault();
+          this.dragOver.bind(this)(i, inRoster)}
+        }
+        dragLeaveEvent={() => this.dragLeave.bind(this)(i, inRoster)}
       />
     )
     : !this.props.loadedData ?
@@ -99,6 +109,38 @@ class RosterViewPresentation extends Component {
     ] : ['EMPTY']
   }
 
+  drag(i, inRoster){
+    this.setState({
+      swapA: i,
+    })
+  }
+  dragEnd(i, inRoster){
+    console.log(`Swap: ${this.state.swapA} with ${this.state.swapB}`);
+    if(!isNaN(this.state.swapA + this.state.swapB)){
+      if(inRoster)
+        this.props.swapInMain(this.state.swapA, this.state.swapB);
+      else
+        this.props.swapInPC(this.state.swapA, this.state.swapB);
+
+    }
+    this.setState({
+      swapA: undefined,
+      swapB: undefined,
+    });
+  }
+  dragOver(i, inRoster){
+    if(i !== this.state.swapA && i !== this.state.swapB){
+      this.setState({
+        swapB: i,
+      });
+    }
+  }
+  dragLeave(i, inRoster){
+    if(i !== this.state.swapA)
+      this.setState({
+        swapB: undefined,
+      });
+  }
   popup(){
     if (this.state.popup){
       switch(this.state.error){

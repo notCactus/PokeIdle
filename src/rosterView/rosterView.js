@@ -8,5 +8,18 @@ const mapStateToProps = (state) => {
     }
 }
 
-const RosterView = connect(mapStateToProps)(RosterViewPresentation);
+const mapDispatchToProps = (dispatch) => ({
+  swapInMain: (a, b) => dispatch ({
+      type: 'SWAP_IN_MAIN_ROSTER',
+      a: a,
+      b: b,
+  }),
+  swapInPC: (a, b) => dispatch ({
+      type: 'SWAP_IN_PC_ROSTER',
+      a: a,
+      b: b,
+  }),
+});
+
+const RosterView = connect(mapStateToProps, mapDispatchToProps)(RosterViewPresentation);
 export default RosterView;

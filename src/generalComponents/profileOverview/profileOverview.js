@@ -3,27 +3,28 @@ import Avatar from '../avatar/avatar';
 import CharacterInformation from '../characterInformation/characterInformation';
 import './profileOverview.css';
 
-function ProfileOverview({
-  pokemonId, width, height,
-  maxWidth, canClick, image,
-  name, health, level, xp,
-  maxXp, stamina, maxStamina,
-  inRoster, index, clickEvent}){
+function ProfileOverview(props){
 
     return (
-      <div className="ProfileOverview" data-pokemon={pokemonId}
-        onClick={() => clickEvent !== undefined ? clickEvent() : console.log('no func')}>
+      <div className="ProfileOverview" data-pokemon={props.pokemonId}
+        draggable={true}
+        onClick={() => props.clickEvent !== undefined ? props.clickEvent() : console.log('no func')}
+        onDrag={props.dragEvent}
+        onDragOver={props.dragOverEvent}
+        onDragLeave={props.dragLeaveEvent}
+        onDragEnd={props.dragEndEvent}
+      >
         <Avatar
-          image={image}
+          image={props.image}
         />
         <CharacterInformation
-          name={name}
-          health={health}
-          level={level}
-          xp={xp}
-          maxXp={maxXp}
-          stamina={stamina}
-          maxStamina={maxStamina}
+          name={props.name}
+          health={props.health}
+          level={props.level}
+          xp={props.xp}
+          maxXp={props.maxXp}
+          stamina={props.stamina}
+          maxStamina={props.maxStamina}
         />
       </div>
     );

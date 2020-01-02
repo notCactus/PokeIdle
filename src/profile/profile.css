@@ -172,6 +172,7 @@
 }
 
 .Profile .MenuToggler > #menuItems > .menuItem .ProfileOverview{
+  user-select: none;
   margin: 0.2em;
 }
 

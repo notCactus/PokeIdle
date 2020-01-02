@@ -55,6 +55,11 @@ export default function roster(state=[], action){
         action.error = 'HP_FULL';
       }
       return state;
+    }else if (action.type === 'SWAP_IN_MAIN_ROSTER') {
+      const t = state[action.a];
+      state[action.a] = state[action.b];
+      state[action.b] = t;
+      return state; 
     }else{
         return state;
     }
