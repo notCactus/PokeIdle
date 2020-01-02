@@ -12,6 +12,7 @@
 .Profile > .ProfileOverview {
   width: 60%;
   max-width: 555px;
+  min-width: 385px;
   height: 15%;
   min-height: 80px;
   max-height: 92px;
@@ -192,6 +193,13 @@
   margin: 1em;
 }
 
+.Profile > .ProfileOverview h3:nth-of-type(1) {
+  max-width: 70%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .Profile > .ProfileOverview h3 {
   margin: 0.05em;
   padding: 0;
@@ -204,9 +212,18 @@
   left: -25px;
 }
 
-@media screen and (max-width: 600px) {
+.Profile .RosterView .ProfileOverview:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 500px) {
   .Profile > .ProfileOverview {
-    width: 80%;
+    min-width: 85%;
+    width: 85%;
     height: 13%;
+  }
+  .Profile > .ProfileOverview h3:nth-of-type(1) {
+    max-width: 57%;
   }
 }

@@ -22,11 +22,11 @@
 }
 
 .shop .MenuToggler #options {
-    height: 54px;
+    height: 12%;
 }
 
 .shop .MenuToggler #menuItems {
-    height: calc(100% - 54px);
+    height: 88%;
 }
 
 .shop .MenuToggler .option {
@@ -62,3 +62,9 @@
     text-align: center;
     background-color: black;
   }
+
+@media screen and (max-width: 500px) {
+  .shop .MenuToggler {
+    height: calc(100% - 155px);
+  }
+}
