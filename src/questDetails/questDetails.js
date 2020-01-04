@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
         trainerStamina: state.trainer.stamina,
         roster: state.trainer.roster,
         quest: state.quest.selectedQuest,
+        trainerMaxStamina: state.trainer.maxStamina,
     }
 }
 

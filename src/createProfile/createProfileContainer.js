@@ -69,6 +69,7 @@ class CreateProfilePresentation extends Component {
                       <li><img src="/pikachu.png" alt="pikachu"/><span>Choose a pokemon and level up through questing.</span></li>
                       <li><img src="/shop_balls.png" alt="Pokemon balls"/><span>Collect coins through quests, buy pokeballs and trade them for new and more powerful pokemons.</span></li>
                       <li><img src="/shop_medicine.png" alt="Potion"/><span>Move the pokemon with low health to the PC so that they may regenerate their health points (hp).</span></li>
+                      <li><img src="/shop_balls.png" alt="Pokemon balls"/><span>Drag and drop the pokemon in the Roster or the PC to reorder them.</span></li>
                   </ul>
                   <UserCreator/>
                   <p>OR</p>

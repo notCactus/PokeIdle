@@ -115,6 +115,29 @@
   margin-left: 12px;
 }
 
+.QuestDetails .trainerStamina {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin-bottom: 1em;
+  background-color: #1A212A;
+  box-shadow: 1px 1px 1px 1px black;
+  width: 80%;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 0 8px 0;
+}
+
+.QuestDetails .trainerStamina > b {
+  margin-right: 4px;
+}
+
+.QuestDetails .trainerStamina > .Bar > div > p {
+  font-size: 12px;
+  margin-left: 4px;
+}
+
 @media screen and (max-width: 500px) {
   .QuestDetails .DetailedQuestInformation {
     width: 96%;

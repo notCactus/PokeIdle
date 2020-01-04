@@ -8,6 +8,9 @@ import ConfirmWindow from '../generalComponents/confirmWindow/confirmWindow';
 import {getPokemon, getItem} from '../api/api';
 import createActiveQuest from '../factory/activeQuestFactory';
 import './questDetails.css';
+
+import Bar from '../generalComponents/bar/bar';
+
 class QuestDetailsPresentation extends Component{
   constructor(props){
     super(props);
@@ -30,6 +33,16 @@ class QuestDetailsPresentation extends Component{
     return (
       <div className="QuestDetails">
         {this.redirect()}
+        <div className="trainerStamina">
+        <b>Stamina: </b>
+        <Bar
+          current={this.props.trainerStamina}
+          max={this.props.trainerMaxStamina} 
+          color="green"
+          width="33%"
+          height="15px"
+        />
+        </div>
         <DetailedQuestInformation
           icon={this.state.questIcon}
           difficulty={this.props.quest.difficulty}
