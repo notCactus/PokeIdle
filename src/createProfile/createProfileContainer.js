@@ -22,10 +22,12 @@ function rollStarters(){
         3: ['squirtle', 'totodile', 'mudkip', 'piplup', 'oshawott', 'froakie', 'popplio'], /* water */
     };
 
+    // Selects random numbers
     starters = starters.map(() => {
         return Math.floor(min + Math.random() * (max - min));
     });
 
+    // Selects random pokemon
     return starters.map((num, i) => {
         return allStarters[i+1][num-1];
     });
@@ -45,16 +47,18 @@ function setStarters(setStartersInStore){
 
 class CreateProfilePresentation extends Component {
     constructor(props){
-      super(props);
-      this.props.resetTrainer();
+        super(props);
+        this.props.resetTrainer();
     }
+
     componentDidMount(){
         setStarters(this.props.setStarters);
     }
+
     render () {
         if(this.props.signedIn)
           return(<Redirect to="/profile"/>);
-        else if (this.props.registration==='started' && !this.props.signedIn) {
+        else if (this.props.registration === 'started' && !this.props.signedIn) {
           return (<Loading image="./loading.gif" text="Creating your account..."/>)
         }
         else

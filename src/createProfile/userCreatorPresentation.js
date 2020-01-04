@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './userCreator.css';
 import app from '../base';
 
@@ -39,6 +39,8 @@ const ProfileImageAndUsername=({addToRoster, onStarterClick,
     <div className="pImgAndUsername">
         <img src={`https://avatars.dicebear.com/v2/gridy/${username}.svg`} alt="profile"/>
         <input type="text" placeholder="Enter your username..." onInput={(e) => {
+            
+            // Debouncing for the avatar
 
             let newName = e.target.value;
 
@@ -59,11 +61,11 @@ const ProfileImageAndUsername=({addToRoster, onStarterClick,
 )};
 
 // Handles sign up.
-const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick, trainer, signInSession, signedIn,startReg,finishReg}) => {
-    const [redirectState, setRedirectState] = useState('noRedirect');
+const SignUp = ({username, chosenStarter, starters, onStarterClick, trainer, signInSession, startReg, finishReg}) => {
     const handleSignUp = (async (event) => {
         event.preventDefault();
 
+        // Makes sure that the user has filled in all of the fields.
         if(chosenStarter !== 'default' && username !== ''){
             const {email, password} = event.target.elements;
 
@@ -112,6 +114,7 @@ const SignUp = ({addToRoster, username, chosenStarter, starters, onStarterClick,
                 finishReg();
                 alert(error);
             }
+        // Feedback for the user
         } else if (chosenStarter === 'default' && username === ''){
             alert("Please choose a starter pokemon and a username.");
         } else if (username === ''){
@@ -154,8 +157,10 @@ const ProfileStarters=({starters, onStarterClick}) => (
                 (e) => {
                     onStarterClick(e.target.alt);
 
+                    // Add the img-Selected class.
                     e.currentTarget.classList.add("img-Selected");
 
+                    // Remove the img-Selected class if it exists. 
                     for(let i = 0; i < e.currentTarget.parentNode.children.length; i++){
                         let child = e.currentTarget.parentNode.children[i];
                         if(e.currentTarget.alt !== child.alt){
