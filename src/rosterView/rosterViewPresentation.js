@@ -8,6 +8,9 @@ import {getPokemon} from '../api/api';
 import conditionReached from '../helperFunctions/conditionReached';
 import './rosterView.css';
 
+/***********************************************
+* Container for roster in /profile
+************************************************/
 class RosterViewPresentation extends Component {
   constructor(props){
     super(props);
@@ -78,7 +81,7 @@ class RosterViewPresentation extends Component {
   }
 
   createRosterItems(r, inRoster){
-    return this.props.loadedData ? r.map((pokemon, i) =>
+    return this.props.loadedData ? r.length >  0 ? r.map((pokemon, i) =>
       <ProfileOverview
         image={this.state.rosterImages[pokemon.id] !== undefined ? this.state.rosterImages[pokemon.id] : "./loading.gif"}
         name={pokemon.id}
@@ -99,14 +102,14 @@ class RosterViewPresentation extends Component {
         }
         dragLeaveEvent={() => this.dragLeave.bind(this)(i, inRoster)}
       />
-    )
-    : !this.props.loadedData ?
+  ) : ['EMPTY']
+    :
     [
       <div className='loading'>
         <img  src="./loading.gif" alt="loading roster"/>
         <p>Loading</p>
       </div>
-    ] : ['EMPTY']
+    ]
   }
 
   drag(i, inRoster){

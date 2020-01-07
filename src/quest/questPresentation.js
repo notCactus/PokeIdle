@@ -53,7 +53,7 @@ class QuestPresentation extends Component{
   }
 
   menuProps(quests) {
-    if(this.props.allQuests.length > 0)
+    if(quests.length > 0)
       return {
         quests: {
           menuIcon: <a>Availible</a>,

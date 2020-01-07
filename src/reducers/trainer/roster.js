@@ -56,7 +56,12 @@ export default function roster(state=[], action){
         })
       );*/
     }else if (action.type === 'ADD_XP_TO_ROSTER') {
-      return state.map(pokemon => addXpAndLevel(pokemon, action.xp));
+      return state.map(pokemon => {
+        if (pokemon.hp > 0)
+          return addXpAndLevel(pokemon, action.xp);
+        else return pokemon;
+      }
+      );
     }else if (action.type === 'DAMAGE_POKEMON_FROM_QUEST') {
       return state.map((pokemon) => {
         if(pokemon.questId === action.quest)

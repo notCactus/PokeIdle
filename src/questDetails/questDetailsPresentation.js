@@ -11,6 +11,11 @@ import './questDetails.css';
 
 import Bar from '../generalComponents/bar/bar';
 
+/***********************************************
+* Container for all the components in /quest/*
+* Page can be reached by going to /quest and then
+* clicking details on any of the items.
+************************************************/
 class QuestDetailsPresentation extends Component{
   constructor(props){
     super(props);
@@ -37,7 +42,7 @@ class QuestDetailsPresentation extends Component{
         <b>Stamina: </b>
         <Bar
           current={this.props.trainerStamina}
-          max={this.props.trainerMaxStamina} 
+          max={this.props.trainerMaxStamina}
           color="green"
           width="33%"
           height="15px"
@@ -73,6 +78,7 @@ class QuestDetailsPresentation extends Component{
         return <Redirect to="/quest"/>
     }
 
+    // Gets images of pokemon to be displayed
     fetchImages(){
       Promise.all(this.props.roster.map(pokemon => getPokemon(pokemon.id)))
       .then(roster => {
@@ -120,6 +126,7 @@ class QuestDetailsPresentation extends Component{
     })
   }
 
+  // Function used when clicking on a roster member
   onToggle(id, toggle){
     if(!this.state.party.includes(id) && toggle)
       this.setState({
@@ -157,6 +164,7 @@ class QuestDetailsPresentation extends Component{
       />);
     });
   }
+  //Used in popup container component
   confrimQuest(){
     this.exit();
     if(this.state.party.length > 0

@@ -1,6 +1,26 @@
 import React, { Component } from 'react';
 import './menuToggler.css';
 
+/*************************************************
+* Container used to toggle between container items,
+* in other words a menu of containers.
+* Takes a prop "menu", which contains all of the
+* menues. The "menu" prop follows this structure:
+{
+  menu1(any name works here) {
+    menuIcon: Component
+    items: [...] (arrray of components)
+  },
+  menu2(any name works here) {
+    menuIcon: Component
+    items: [...] (arrray of components)
+  }
+}
+* This lets you tab between 2 menus. The prop
+* "fallback" lets you set a menu to fallback to.
+* This component is used in /profile, /quest,
+* /quest/*, /shop
+**************************************************/
 class MenuToggler extends Component{
   constructor(props){
     super(props);

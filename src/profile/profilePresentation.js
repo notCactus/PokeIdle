@@ -3,7 +3,6 @@ import ProfileOverview from '../generalComponents/profileOverview/profileOvervie
 import RosterView from '../rosterView/rosterView';
 import app from '../base';
 import './profile.css';
-
 class ProfilePresentation extends Component{
   constructor(props){
     super(props);

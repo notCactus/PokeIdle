@@ -26,6 +26,7 @@ const STAMINA_REGENERATION = 1;
 const HEALTH_REGENERATION = 1;
 const SAVE_EVERY = 5;
 
+// Game loop, all game logic is found here.
 const game = (store) => {
   if(store.getState().session.loadedData){
     saveProgress({
@@ -82,6 +83,7 @@ const game = (store) => {
         setAllQuests: (quests) => store.dispatch({type: 'SET_ALL_QUESTS',quests: quests,}),
         setXp: (xp) => store.dispatch({type: 'SET_XP', xp: xp}),
       }
-    )
+    );
+    store.dispatch({type: 'SET_AVAILIBLE_QUESTS'});
   }
 }
