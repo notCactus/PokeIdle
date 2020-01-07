@@ -119,6 +119,7 @@
   display: flex;
   align-self: center;
   justify-content: center;
+  align-items: center;
   margin-bottom: 1em;
   background-color: #1A212A;
   box-shadow: 1px 1px 1px 1px black;
@@ -141,5 +142,10 @@
 @media screen and (max-width: 500px) {
   .QuestDetails .DetailedQuestInformation {
     width: 96%;
+  }
+  @media screen and (max-height: 580px) {
+    .QuestDetails .MenuToggler {
+      height: 20%;
+    }
   }
 }
