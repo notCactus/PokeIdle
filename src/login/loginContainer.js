@@ -8,7 +8,8 @@ import './login.css';
 const LoginContainer = ({signedIn}) => {
     const [api, setAPI] = useState("start");
 
-   let handleLogin = async (event) => {
+    // Handles the user login
+    let handleLogin = async (event) => {
             event.preventDefault();
 
             const {email , password} = event.target.elements;
@@ -20,6 +21,7 @@ const LoginContainer = ({signedIn}) => {
                     .catch((err) => {console.error(err); alert(err)});
     };
 
+    // Redirects if logged in.
     if(signedIn){
         return(<Redirect to="/profile"/>);
     } else if (api === "loading") {
