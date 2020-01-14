@@ -1,5 +1,11 @@
 # PokéIdle
 
+## Setup
+- Install node.js and npm from https://nodejs.org/en/.
+- Open up a console window, go to the root of the project and run ```npm install```.
+- Install firebase with ```npm install --save firebase```.
+- Run the app with ```npm start```.
+
 ## Description
 PokéIdle is a pokemon idle game.
 ## Current features
