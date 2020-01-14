@@ -118,7 +118,6 @@ class RosterViewPresentation extends Component {
     })
   }
   dragEnd(i, inRoster){
-    console.log(`Swap: ${this.state.swapA} with ${this.state.swapB}`);
     if(!isNaN(this.state.swapA + this.state.swapB)){
       if(inRoster)
         this.props.swapInMain(this.state.swapA, this.state.swapB);

@@ -20,19 +20,19 @@ const INTRODUCTION = (
   const EXPLANATIONS = [
     {
       title: 'PROFILE',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      text: 'Under profile you will find an overview of yourself and your roster. To use any of your items click on one of your roster members, and navigate to the "Item"-option in the popup. Drag and drop to change the order of your roster.'
     },
     {
       title: 'ROSTER',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      text: 'Your roster can be viewed under Profile. Click on any of the members to interact with them. If one of them has fainted move them to the PC, they will not gain any hp or xp if fainted.'
     },
     {
       title: 'QUEST',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      text: 'Send your Pokémon on quests to get xp and money. Remeber to pay attention to the health of your Pokémon and have the difficulty of the quest in mind before you select your party.',
     },
     {
       title: 'SHOP',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      text: 'Not enough hp, need a new roster members? Then the Shop is the right place for you. Turn of coins in to PokéBalls and buy a new roster member after gaining enough coins. Will you be able to collect all of them?',
     }
   ];
 
