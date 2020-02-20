@@ -1,10 +1,11 @@
 # PokéIdle
+Play the game at: https://pokeidle.web.app/
 
 ## Setup
 - Install node.js and npm from https://nodejs.org/en/.
 - In the root of the project create a file called ```.env```.
 - Add the following variables REACT_APP_FIREBASE_KEY, REACT_APP_FIREBASE_DOMAIN, REACT_APP_FIREBASE_DATABASE, REACT_APP_FIREBASE_DATABASE, REACT_APP_FIREBASE_PROJECT_ID, REACT_APP_FIREBASE_STORAGE_BUCKET, REACT_APP_FIREBASE_SENDER_ID, REACT_APP_FIREBASE_APP_ID.
-- Go to firebase and create a project.
+- Go to Firebase ( https://firebase.google.com/ ) and create a project.
 - Inside the project click on the cogwheel and then on project settings.
 - Set the .env variables equal to the corresponding value from the Firebase sdk snippet.
 - Open up a console/terminal window, go to the root of the project and run ```npm install```.
@@ -16,20 +17,6 @@ PokéIdle is a pokemon idle game.
 So far you're able to create an account using Firebase Authentication. You can pick a starter Pokémon, once a starter has been picked and you have chosen a username, you can start the game. As soon as the game has been started you will be taken to a view. This view is an overview of you and your pokémon. While having the game turned on you and your pokémon start to passevily gain experience points. 
 
 As for gameplay; there is a view consisting of quets you can send you pokemon to. You pick a quest, then a roster from your pokémon, and finally you send them away. The quest has a timer, once the timer is done, your pokemon will be sent back, you and your pokemon will have lost health.
-
-## Planned features
-#### Finish the shop
-User should be able to, buy and use items bought from the shop and the buyable pokemon should vary.
-#### User session 
-Make sure once the user has signed in, the user keeps being signed and all user related data is stored.
-#### Update database
-The database should be updated with all changes to the user during the usage of the app.
-#### Add UI and improve layout
-Add proper UI and improve the layout
-#### Drag and drop sorting of pokemon
-Drag and drop the pokemon in the roster or pc to sort them.
-#### Improve sign in and sign out flow.
-Improve sign in and sign out flow.
 
 ## Technologies
 #### Framework
