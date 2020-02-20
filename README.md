@@ -2,8 +2,12 @@
 
 ## Setup
 - Install node.js and npm from https://nodejs.org/en/.
-- Open up a console window, go to the root of the project and run ```npm install```.
-- Install firebase with ```npm install --save firebase```.
+- In the root of the project create a file called ```.env```.
+- Add the following variables REACT_APP_FIREBASE_KEY, REACT_APP_FIREBASE_DOMAIN, REACT_APP_FIREBASE_DATABASE, REACT_APP_FIREBASE_DATABASE, REACT_APP_FIREBASE_PROJECT_ID, REACT_APP_FIREBASE_STORAGE_BUCKET, REACT_APP_FIREBASE_SENDER_ID, REACT_APP_FIREBASE_APP_ID.
+- Go to firebase and create a project.
+- Inside the project click on the cogwheel and then on project settings.
+- Set the .env variables equal to the corresponding value from the Firebase sdk snippet.
+- Open up a console/terminal window, go to the root of the project and run ```npm install```.
 - Run the app with ```npm start```.
 
 ## Description
